@@ -1,0 +1,12 @@
+#+TITLE: The to-do list for this collection of notes.
+
+* TODO Add a bibliography
+* Concrete topics
+** TODO Small complete internal categories
+** Naive models of System F in the effective topos
+** Tripos-to-topos construction and other methods of constructing the effective topos
+* Pie-in-the-sky ideas for topics
+** Discuss the effective topos as a setting for constructivism
+   Possibly contrast this with other realizability toposes and discuss
+   the reflection of K1 as a model of computation in the internal
+   logic.
