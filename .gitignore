@@ -1,3 +1,6 @@
+*.blg
+*.bbl
+*.out
 *.aux
 *.log
 auto/*
