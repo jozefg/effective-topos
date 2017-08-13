@@ -3,6 +3,9 @@
 \usepackage{amsmath, amssymb, amsthm}
 \usepackage{natbib, hyperref}
 \usepackage{tikz-cd}
+\usepackage{xcolor}
+
+\newcommand{\todo}[1]{{\color{red}{\LARGE #1}}}
 
 \newcommand{\cat}[1]{\ensuremath{\mathbf{#1}}}
 \newcommand{\topos}[1]{\ensuremath{\mathcal{#1}}}
@@ -107,10 +110,24 @@ that it might fail in a nonclassical setting.
   assumed the existence of all small limits. Now consider
   $\hom(A, C)$. We know that $\hom(A, C) \subset X$ where $X$ is
   \[
-    X = \{\Pi_{i \in \kappa} x_i \mid \forall i.\ x_i \in \{a, b\}\}
+    X = \{\langle x_i \rangle_{i \in \kappa}\mid \forall i.\ x_i \in \{a, b\}\}
   \]
   However, $\card{X} = 2^\kappa$, contradicting our assumption that
   the cardinality of the set of morphisms is $\kappa$.
+\end{proof}
+
+What is especially interesting is this result is that it can be
+generalized from applying to just a boolean topos, such as $\set$ to
+any topos which is based on top of $\set$ with an object of
+generators! In particular, we can generalize this result to any
+internal category to a Grothendieck topos. This result was concisely
+proven by \citet{Gubkin:10} and is restated below.
+\begin{thm}\label{thm:freyd:grothendieck}
+  In any category $\Ccat$ internal to a topos $\Etop$ based on $\set$
+  which is complete must be a poset.
+\end{thm}
+\begin{proof}
+  \todo{Reprove this}
 \end{proof}
 
 \section{Internal Category Theory in a Topos}\label{sec:internal}
