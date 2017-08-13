@@ -17,6 +17,7 @@
 \newcommand{\Etop}{\ensuremath{\mathcal{E}}}
 \newcommand{\Ftop}{\ensuremath{\mathcal{F}}}
 \newcommand{\pow}[1]{\ensuremath{\mathcal{P}\left(#1\right)}}
+\newcommand{\card}[1]{\ensuremath{\left\vert#1\right\vert}}
 \newcommand{\powfin}[1]{\ensuremath{\mathcal{P}_{fin}\left(#1\right)}}
 
 \newcommand{\epi}{\ensuremath{\twoheadrightarrow}}
@@ -96,7 +97,20 @@ that it might fail in a nonclassical setting.
 \end{thm}
 \begin{proof}
   Suppose we have such a $\Ccat$. We wish to show that for any
-  $A, B \in \Ccat$ that $\card{\hom(A, B)} \le 1$.
+  $A, B \in \Ccat$ that $\card{\hom(A, B)} \le 1$. Let's suppose that
+  this is not the case, namely, that we have a pair of objects $A$ and
+  $B$ so that $\card{\hom(A, B)} \ge 2$. Let us distinguish two
+  morphisms $a \neq b \in \hom(A, B)$ for later purposes.. Since
+  $\Ccat$ is small we know that the collection of all morphisms is a
+  set, let us say of cardinality $\kappa$. Let us then form the
+  product $C = \prod_{i \in \kappa} B$. This must exist since we have
+  assumed the existence of all small limits. Now consider
+  $\hom(A, C)$. We know that $\hom(A, C) \subset X$ where $X$ is
+  \[
+    X = \{\Pi_{i \in \kappa} x_i \mid \forall i.\ x_i \in \{a, b\}\}
+  \]
+  However, $\card{X} = 2^\kappa$, contradicting our assumption that
+  the cardinality of the set of morphisms is $\kappa$.
 \end{proof}
 
 \section{Internal Category Theory in a Topos}\label{sec:internal}
