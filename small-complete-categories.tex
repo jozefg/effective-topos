@@ -31,7 +31,7 @@
 \DeclareMathOperator{\sub}{Sub}
 \DeclareMathOperator{\dom}{Dom}
 \DeclareMathOperator{\cod}{Cod}
-\DeclareMathOperator{\into}{in}
+\DeclareMathOperator{\full}{Full}
 
 \newtheorem{thm}{Theorem}[section]
 \newtheorem{cor}[thm]{Corollary}
@@ -165,6 +165,55 @@ question of internal limits.
   \item $m \circ \langle 1, i \circ \partial_1\rangle = 1$
   \end{itemize}
 \end{defn}
+This concept seems rather opaque at first glance, but it is in fact
+just the categorization of the normal definition of category. For
+instance:
+\begin{example}
+  Any small category is just a category internal to $\set$.
+\end{example}
+\begin{example}
+  Given a category $\Ccat$ which is has pullbacks and local
+  exponentials and a morphism $f : A \to B$ in this category, the
+  category $\full(a)$ is an internal category defined as follows.
+  \begin{description}
+  \item[Objects] The object of objects is simply $B$
+  \item[Morphisms] The object of morphisms is given by the domain of
+    $\pi_2^*(f)^{\pi_1^*(f)}$, an object in $\Ccat/B \times B$. Let us
+    denote this object $B_1$. We then define
+    $\partial_i : B_1 \to B \times B \overset{\pi_i}{\to} B$
+  \end{description}
+  We then must describe the identity and composition morphisms. In
+  order to construct the identity morphism, it suffices to find a
+  morphism from $\Delta : B \to B \times B$ to
+  $\pi_2^*(a)^{\pi_1^*(a)}$ in $\Ccat/B \times B$. Doing this will
+  immediately ensure that it is indeed a section for $\partial_0$ and
+  $\partial_1$. By the universal property of an exponential, this is
+  equivalent to finding a morphism in
+  $\hom_{\Ccat/B \times B}(\Delta \times \pi_1^*(a), \pi_2^*(a))$.
+  However, examination of $\Delta \times \pi_1^*(a)$ shows that it is
+  equivalent to $\Sigma_\Delta a$ since
+  $\Delta^* \circ \pi_1^* \cong 1$. Therefore, we need a morphism in
+  \[
+    \hom_{\Ccat/B \times B}(\Sigma_\Delta a, \pi_2^*(a)) \cong
+    \hom_{\Ccat/B \times B}(a, \Delta^* \pi_2^*(a)) \cong
+    \hom_{\Ccat/B \times B}(a, a)
+  \]
+  So we simply pick the identity morphism.
+
+  Next we perform the same operation for composition. We need a
+  morphism in $\hom_{\Ccat/B \times B}(b_2, \pi_2^*(a)^{\pi_1^*(a)})$
+  where $b_2 : B_2 \to B \times B$ is defined as
+  $(\partial_0 \circ \pi_1, \partial_1 \circ \pi_2)$ with the domain
+  given by the pullback
+  \[
+    \begin{tikzcd}
+      B_2 \ar[r] \ar[d] & B_1 \ar[d, "\partial_1"]\\
+      B_1 \ar[r, swap, "\partial_0"] & B
+    \end{tikzcd}
+  \]
+  Composition then is given as a morphism
+  $\hom_{\Ccat/B \times B}(\pi_1^*(a) \times b_2, \pi_2^*(a))$
+\end{example}
 
 \section{Notions of Completeness and Their Preservation Properties}\label{sec:completeness}
 \section{Orthogonal Objects and Subquotients of the Natural Number Object}\label{sec:orth}
