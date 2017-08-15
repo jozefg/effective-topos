@@ -235,6 +235,53 @@ instance:
   $\partial_1 \circ p = \partial_0 \circ p'$ by the definition of
   $B_2$.
 \end{example}
+It will be fruitful to develop a small amount of normal category
+theory in this framework. For instance, we can define what it means to
+be a poset
+\begin{defn}\label{defn:internal:poset}
+  An internal category is a poset if
+  $\langle \partial_0, \partial_1 \rangle$ is a monomorphism.
+\end{defn}
+Intuitively, a category if is a poset if the function which strips
+away all information from a morphism except its domain and codomain
+does not lose any information. In other words, there is at most one
+morphism of any given type. In order to define what it means for a
+category to have limits and other universal constructions, it will be
+simplest to establish a corresponding version of $\cat{Cat}$ for
+internal categories: $\cat{Cat}(\Ccat)$. Then all of these
+constructions can be defined by the existence of suitable
+adjoints. Therefore, it is necessary to define corresponding internal
+versions of a functor and natural transformation.
+\begin{defn}\label{defn:internal:functor}
+  An internal functor $F : C \to D$ is a pair of morphisms
+  $F_0 : C_0 \to D_0$ and $F_1 : C_1 \to D_1$ so that $F_0$ and $F_1$
+  commute with $i$, $m$, and $\partial_i$.
+\end{defn}
+\begin{defn}\label{defn:internal:naturaltrans}
+  An internal natural transformation $\alpha : F \to G$ is a morphism
+  $C_0 \to D_1$ so that the following diagrams commute
+  \[
+    \begin{tikzcd}
+      &C_1 \ar[dl, swap, "{\langle \alpha \circ \partial_0, G_1 \rangle}"]
+           \ar[dr, "{\langle F_1, \alpha \circ \partial_1 \rangle}"]&\\
+      D_2 \ar[r, "m"] & D_1 & D_2 \ar[l, "m"]
+    \end{tikzcd}
+    \begin{tikzcd}
+      &C_0 \ar[d, "\alpha"] \ar[dl, swap, "F_0"] \ar[dr, "G_0"]&\\
+      D_0 & D_1 \ar[l, "\partial_0"] \ar[r, swap, "\partial_1"] & D_0
+    \end{tikzcd}
+  \]
+\end{defn}
+The diagram on the right being that the arrows produced by the
+natural transformation have the right type. The diagram on the left
+is simply an expression of naturality.
+\begin{thm}
+  $\cat{Cat}(\Ccat)$ is a 2-category with internal categories,
+  functors, and natural transformations.
+\end{thm}
+\begin{proof}
+  \todo{Probably should prove some parts of this}
+\end{proof}
 
 \section{Notions of Completeness and Their Preservation Properties}\label{sec:completeness}
 \section{Orthogonal Objects and Subquotients of the Natural Number Object}\label{sec:orth}
