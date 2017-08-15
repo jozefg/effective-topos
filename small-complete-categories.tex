@@ -203,16 +203,37 @@ instance:
   Next we perform the same operation for composition. We need a
   morphism in $\hom_{\Ccat/B \times B}(b_2, \pi_2^*(a)^{\pi_1^*(a)})$
   where $b_2 : B_2 \to B \times B$ is defined as
-  $(\partial_0 \circ \pi_1, \partial_1 \circ \pi_2)$ with the domain
-  given by the pullback
+  $\langle \partial_0 \circ p, \partial_1 \circ p' \rangle$
+  with the domain given by the pullback
   \[
     \begin{tikzcd}
-      B_2 \ar[r] \ar[d] & B_1 \ar[d, "\partial_1"]\\
-      B_1 \ar[r, swap, "\partial_0"] & B
+      B_2 \ar[r, "p'"] \ar[d, swap, "p"] & B_1 \ar[d, "\partial_0"]\\
+      B_1 \ar[r, swap, "\partial_1"] & B
     \end{tikzcd}
   \]
-  Composition then is given as a morphism
-  $\hom_{\Ccat/B \times B}(\pi_1^*(a) \times b_2, \pi_2^*(a))$
+  In order to derive composition, we note that
+  \begin{align*}
+    \hom(\langle f, g \rangle, \pi_2^*(a)^{\pi_1^*(a)})
+    &\cong \hom(\Sigma_{\langle f, g \rangle} 1, \pi_2^*(a)^{\pi_1^*(a)})\\
+    &\cong \hom(1, \langle f, g \rangle^*(\pi_2^*(a)^{\pi_1^*(a)}))\\
+    &\cong \hom(1, (\langle f, g \rangle^*\pi_2^*)(a)^{\langle f, g \rangle^*\pi_1^*(a)})\\
+    &\cong \hom(1, g^*(a)^{f^*(a)})\\
+    &\cong \hom(f^*(a), g^*(a))
+  \end{align*}
+  Therefore, we merely need to find a morphism
+  \[
+    m \in \hom((\delta_0 \circ p)^*(a), (\delta_1 \circ p')^*(a))
+  \]
+  We note that by
+  $1 \in \hom(\pi_2^*(a)^{\pi_1^*(a)}, \pi_2^*(a)^{\pi_1^*(a)})$ we
+  have a morphism
+  $f \in \hom(\partial_0^*(a), \partial_1^*(a))$ so we can obtain
+  \[
+    m \triangleq p^*(f) \circ p'^*(f)
+  \]
+  Which typechecks because we have that
+  $\partial_1 \circ p = \partial_0 \circ p'$ by the definition of
+  $B_2$.
 \end{example}
 
 \section{Notions of Completeness and Their Preservation Properties}\label{sec:completeness}
