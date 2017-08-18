@@ -32,6 +32,7 @@
 \DeclareMathOperator{\dom}{Dom}
 \DeclareMathOperator{\cod}{Cod}
 \DeclareMathOperator{\full}{Full}
+\DeclareMathOperator{\family}{Fam}
 
 \newtheorem{thm}{Theorem}[section]
 \newtheorem{cor}[thm]{Corollary}
@@ -282,6 +283,57 @@ is simply an expression of naturality.
 \begin{proof}
   \todo{Probably should prove some parts of this}
 \end{proof}
+Having fleshed out that this forms a 2-category, we know that it
+automatically inherits the notion of adjoint functors and therefore,
+equivalences that are describable in all 2-categories. We will
+devote greater care to the question of equivalences in the next
+section, but for now we will take the opportunity to make some obvious
+definitions.
+
+\begin{thm}\label{thm:internal:2categorical}
+  The 2-category $\cat{cat}(\Ccat)$ has finite (co)limits and
+  exponentials when the ambient category does.
+\end{thm}
+\begin{proof}
+  \todo{Routine proof, but should spell out}
+\end{proof}
+
+As a final construction, we will concern ourselves with the conversion
+of an internal category to a particular fibration on the
+category. This will be essential for the remainder of our technical
+development because it is much more convenient to prove the
+completeness of fibrations rather than work with cumbersome diagrams
+for internal categories. Furthermore, the fibration, or
+\emph{externalization}, of an internal category shares many essential
+properties with its internal category.
+\begin{defn}\label{defn:internal:externalization}
+  The \emph{externalization} of an internal category $C \in \Ccat$ is
+  a functor $\family(C) : \cat{Fam}(C) \to \Ccat$ where
+  \begin{description}
+  \item[Objects] Objects of $\cat{Fam}(C)$ are maps $I \to C_0$ in
+    $\Ccat$.
+  \item[Morphisms] Morphisms of $\cat{Fam}(C)(f, g)$ are pairs of maps
+    $(\alpha, h)$ where $\alpha : \dom(f) \to \dom(g)$ and a map $h :
+    I \to C_1$ so the following commutes
+    \[
+      \begin{tikzcd}
+        I \ar[dd, swap, "f"] \ar[rd, "h"] \ar[rr, "\alpha"] && J \ar[dd, "g"]\\
+        & C_1 \ar[dl, swap, "\partial_0"] \ar[dr, "\partial_1"] &\\
+        C_0 && C_0
+      \end{tikzcd}
+    \]
+    In other words, it is an $I$-indexed collection of morphisms which
+    map one family of $C$ objects onto the new family.
+  \end{description}
+\end{defn}
+
+\begin{thm}\label{thm:internal:externalization}
+  $\family(C)$ is a split fibration.
+\end{thm}
+\begin{proof}
+  \todo{Should prove this in full}
+\end{proof}
+
 
 \section{Notions of Completeness and Their Preservation Properties}\label{sec:completeness}
 \section{Orthogonal Objects and Subquotients of the Natural Number Object}\label{sec:orth}
