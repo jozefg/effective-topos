@@ -334,12 +334,66 @@ properties with its internal category.
   \todo{Should prove this in full}
 \end{proof}
 
-
 \section{Notions of Completeness and Their Preservation Properties}\label{sec:completeness}
+
+In this section we investigate two main questions. The first is how to
+define completeness in the context of an internal category. In order
+to provide a satisfactory answer, we will want this notion of
+completeness to be preserved and reflected by $\family(-)$, so that we
+can continue to work with fibrations. Next, we will need to see what
+notions equivalences preserve completeness. In particular, many of our
+categories will provide only a weak (but sufficient!) notion of
+completeness and it is not obvious that it will be preserved by only
+internal equivalences.
+
+To begin with, internal categories, like normal categories, give us a
+simplistic method of defining finite limits. For instance, products
+may be defined as follows.
+\begin{defn}\label{defn:completeness:products}
+  An internal category $C$ is said to have products if
+  $\Delta : C \to C \times C$ has a right adjoint.
+\end{defn}
+Similarly, the existence of equalizers can be defined by asserting the
+existence of a right adjoint of the functor
+$C \to C^{\rightrightarrows}$, the internal category of parallel
+arrows. The reader may consult~\citet{Jacobs:99} for a more detailed
+account of this in Chapter 7. This, moreover, can be seen to be the
+right notion of finite limit for externalizations as well.
+\begin{thm}\label{defn:completeness:finlimexternalization}
+  $\family(C)$ has fiberwise finite limits if and only if $C$ has
+  finite limits.
+\end{thm}
+\begin{proof}
+  \todo{Flesh me out!}
+\end{proof}
+Often times the existence of such an adjoint is too strong a
+condition. Working internally to a topos, another reasonable approach
+would be to state the existence of a limit cone using the internal
+language. That is for example,
+\begin{defn}\label{defn:completeness:weakproducts}
+  An internal category $C$ is said to have weak products if there is
+  $Z$ has an epi onto $1$ where $Z$ is defined as
+  \[
+    Z \triangleq \forall a, b \in C_0.\ \exists c, \pi_1, \pi_2.
+    \ \forall d.\ (\exists f_1 f_2.\ f_1 : d \to a \mathrel{\wedge} f_2 : d \to b) \implies
+    \exists! g.\ g : c \to d \mathrel{\wedge} \pi_i \circ g = f_i\}
+  \]
+  Where the proposition
+  $f : A \to B \triangleq \partial_0(f) = A \mathrel{\wedge} \partial_1(f) = B$.
+\end{defn}
+These definitions can be shown to coincide if and only if the topos
+satisfies the axiom of choice\footnote{I'm 80\% sure at least} but
+since the effective topos does not, we are then left with two
+different notions of finite limits. The one based on the existence of
+adjoints essentially asserts the global existence of a limit cone and
+will be called the \emph{strong} notion of finite limits. The one
+based on the internal language is implied by this and is called the
+\emph{weak} or \emph{local} version of a finite limit.
+
 \section{Orthogonal Objects and Subquotients of the Natural Number Object}\label{sec:orth}
 \section{Modest Sets}\label{sec:modest}
 \section{Conclusion}\label{sec:conclusion}
 
-\bibliographystyle{plainnat}
+\bibliographystyle{plain}
 \bibliography{bibliography}{}
 \end{document}
