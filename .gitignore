@@ -9,3 +9,4 @@ _minted*/*
 *.fls
 *.fdb_latexmk
 _region_.tex
+*.pdf
