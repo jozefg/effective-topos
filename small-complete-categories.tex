@@ -390,6 +390,42 @@ will be called the \emph{strong} notion of finite limits. The one
 based on the internal language is implied by this and is called the
 \emph{weak} or \emph{local} version of a finite limit.
 
+We can take this idea to its natural completion and define (weak)
+completeness for all small limits.
+\begin{defn}\label{defn:complete:complete}
+  An internal category $C$ is strongly complete if for all internal
+  categories $D$ the diagonal functor $C \to C^D$ has a right
+  adjoint.
+\end{defn}
+\begin{defn}\label{defn:complete:weakcompletebroken}
+  An internal category $C$ is weakly complete if for all internal
+  categories $D$ the formula specifying an adjoint to the the diagonal
+  functor $C \to C^D$ specifies an object with an epi onto $1$.
+\end{defn}
+We now wish to check that this definition is useful, that is, that it
+is preserved and reflected by equivalences. In order to do this, of
+course, we must define a notion of equivalence. Again, there are two
+reasonable notions. We can assert either the existence of a
+pseudo-inverse globally, that is, in the ambient logic, or merely the
+existence internally. The former notion is sufficient to determine an
+equivalence relation, but the latter does not. It does not, for
+instance, satisfy symmetry because of the potential difference between
+internal and external existence. Therefore, we need to characterize
+the completion of weak equivalences to an equivalence relation.
+\begin{defn}\label{defn:complete:weakequivalence}
+  Two internal categories, $C$ and $D$, are said to be weakly
+  equivalent if there is an third internal category, $E$, so that
+  there is a pair weak equivalences, $F : E \to C$ and $G : E \to D$.
+\end{defn}
+Now we turn to the fatal flaw in
+Definition~\ref{defn:complete:weakcompletebroken}.
+\begin{thm}\label{thm:complete:weakcompletenotpreserved}
+  Weak completeness is not preserved by weak equivalences.
+\end{thm}
+\begin{proof}
+  Sketch the reason why this is true.
+\end{proof}
+
 \section{Orthogonal Objects and Subquotients of the Natural Number Object}\label{sec:orth}
 \section{Modest Sets}\label{sec:modest}
 \section{Conclusion}\label{sec:conclusion}
