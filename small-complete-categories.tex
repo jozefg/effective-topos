@@ -417,6 +417,32 @@ the completion of weak equivalences to an equivalence relation.
   equivalent if there is an third internal category, $E$, so that
   there is a pair weak equivalences, $F : E \to C$ and $G : E \to D$.
 \end{defn}
+We wish to generalize the notion of equivalences of internal
+categories to equivalences of their fibrations so that we can work
+with fibrations in later technical developments. This is done in two
+steps, first of all
+\begin{thm}\label{thm:complete:equivalencelifts}
+  An equivalence of internal categories lifts to a fibered equivalence
+  of their externalizations.
+\end{thm}
+\begin{proof}
+  \todo{Should be a straightforward check}
+\end{proof}
+Weak equivalences are more difficult because there isn't a
+corresponding notion of existential quantifier at in the metalogic
+which corresponds to internal existence. In order to deal with this,
+we draw inspiration from Kripke-Joyal semantics where $\exists$ is
+modelled with a change of base. \todo{elaborate}
+\begin{thm}\label{thm:complete:weakequivalencelifts}
+  $F : C \to D$ is a weak equivalence if it lifts to $\family(F)$ so
+  that $\family(F)$ is cartesian, full, faithful, and for any $X$ in
+  $\cat{Fam}(D)$ there is a $Y \in \cat{Fam}(C)$ so that
+  there is an $\alpha \in \hom(\family(D)(\family(F)(Y)), X)$. so that
+  $\alpha^*(X) \cong \family(F)(Y)$.
+\end{thm}
+\begin{proof}
+  \todo{This is weird but not too bad}
+\end{proof}
 Now we turn to the fatal flaw in
 Definition~\ref{defn:complete:weakcompletebroken}.
 \begin{thm}\label{thm:complete:weakcompletenotpreserved}
@@ -459,6 +485,8 @@ characterization at the level of fibrations.
     each $u : I \to J$ there is a $e : J \epi K$ so that $(eu)^*$ has
     a right adjoint.
   \end{itemize}
+  Furthermore, (weak) equivalences of fibration preserve (weak)
+  completeness.
 \end{thm}
 \begin{proof}
   \todo{Really tricky but very important}
@@ -467,7 +495,23 @@ At this point we have developed all the theory that we need to being
 our investigation of what small complete categories exist in the
 effective topos.
 
-\section{Orthogonal Objects and Subquotients of the Natural Number Object}\label{sec:orth}
+\section{Orthogonal Objects and Subquotients of the Object of Realizers}\label{sec:orth}
+
+The first small complete category we will be examining is the one
+determined by partial equivalences relations on the object of
+realizers (in the $\eff$, the natural number object). Our methodology
+for establishing completeness will be the following.
+\begin{itemize}
+\item First we will concretely define the internal category we're
+  studying
+\item Second, we will prove it to be weakly equivalent when
+  externalized to the full subfibration of $\cod$ given by arrows
+  orthogonal to $\Omega$
+\item We shall show then that this subfibration is strongly complete.
+\end{itemize}
+All of these stepped when chained together are sufficient to give us
+the weak completeness of our internal category.
+
 \section{Modest Sets}\label{sec:modest}
 \section{Conclusion}\label{sec:conclusion}
 
