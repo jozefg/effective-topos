@@ -604,6 +604,27 @@ concisely in our case.
   $m(z(y)) = x$ so this pair uniquely corresponds to a $z \in f'$ as
   required.
 \end{proof}
+We now turn to recharacterizing orthogonality in a slightly different
+way that will allow us to prove a number of important closure
+theorems.
+\begin{lem}\label{lem:orth:orthpushout}
+  In order to show that $f : X \to I$ is orthogonal to $A \epi 1$ if
+  and only if that there is an $\iota$
+  \[
+    \begin{tikzcd}
+      f^{I^*(A)} \times_I I^*(A) \ar[r, "\pi_1"] \ar[d, "ev"] & f^{I^*(A)} \ar[d, "\iota"]\\
+      f \ar[r, equals] & f
+    \end{tikzcd}
+  \]
+\end{lem}
+\begin{proof}
+  The only if direction is trivial because $f$ being orthogonal to $A$
+  specifically implies that $\iota : f^{I^*(A)} \cong f$ must exist
+  and such a map obviously forms a commutative square. For the if
+  direction, if $\iota$ exists then it is clear that it is a right
+  identity to the diagonal $f \to f^{I^*(A)}$ which is monotone since
+  $A \epi 1$ giving us that $f \to f^{I^*(A)}$ is an iso as required.
+\end{proof}
 
 \section{Modest Sets}\label{sec:modest}
 \section{Conclusion}\label{sec:conclusion}
