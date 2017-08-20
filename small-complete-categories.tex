@@ -580,8 +580,7 @@ We will now spend a bit more time establishing properties related
 purely to orthogonal objects so that we can characterize them more
 concisely in our case.
 \begin{lem}\label{lem:orth:orthsubobjects}
-  If $A \epi 1$ and $A$ is internally projective then $\orth(A)$ is
-  closed under subobjects.
+  If $A \epi 1$ and then $\orth(A)$ is closed under subobjects.
 \end{lem}
 \begin{proof}
   Suppose we have some $f : X \to I$ and $f' : X' \to I$ so that there
@@ -593,12 +592,17 @@ concisely in our case.
   us that the following is a pullback
   \[
     \begin{tikzcd}
-      f' \ar[d, rightarrowtail] \ar[r, rightarrowtail] & {f'^{I^*(A)}} \ar[d, rightarrowtail, "m_2"]\\
-      f \ar[r, rightarrowtail, swap, "m_1"] & {f^{I^*(A)}}
+      f' \ar[d, rightarrowtail] \ar[r, rightarrowtail] & {f'^{I^*(A)}} \ar[d, rightarrowtail, "m^{I^*(A)}"]\\
+      f \ar[r, rightarrowtail, swap, "m'"] & {f^{I^*(A)}}
     \end{tikzcd}
   \]
   Now since the bottom arrow is an iso, so too is the top and we're
-  done. In order to show this is a pullback
+  done. In order to show this is a pullback we just have to show that
+  if we have $x \in f$ and $\lambda y. z \in f'^{I^*(A)}$ so that
+  $m^*(\lambda y. z) = \lambda y. x$ we then have that
+  $\lambda y. m(z(y)) = \lambda y. x$ so we have that for all $y$,
+  $m(z(y)) = x$ so this pair uniquely corresponds to a $z \in f'$ as
+  required.
 \end{proof}
 
 \section{Modest Sets}\label{sec:modest}
