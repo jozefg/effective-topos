@@ -625,6 +625,63 @@ theorems.
   identity to the diagonal $f \to f^{I^*(A)}$ which is monotone since
   $A \epi 1$ giving us that $f \to f^{I^*(A)}$ is an iso as required.
 \end{proof}
+\begin{cor}\label{lem:orth:orthpushout2}
+  The previous lemma can be stated as the following statement if the
+  following two maps commute.
+  \[
+    \begin{tikzcd}
+      {f^{I^*(A)} \times_I I^*(A)^2} \ar[r] &
+      {f^{I^*(A)} \times_I I^*(A) \times_I I^*(A)} \ar[r, shift left=0.2em] \ar[r, shift right=0.2em] &
+      {f^{I^*(A)} \times_I I^*(A)} \ar[r] &
+      f
+    \end{tikzcd}
+  \]
+\end{cor}
+\begin{proof}
+  \todo{Should be a simple elaboration of pushout conditions}
+\end{proof}
+In particular, we really wish for a theorem to characterize when
+$\orth(A)$ is the same as $\orth(B)$ for some $A$ and $B$. This is
+because the object $\Omega$ in $\eff$ is somewhat ungainly to work
+with. It would be much more convenient if we could switch to studying
+simpler objects (it will turn out that quotients of $\neg\neg$-sheaves
+suffice).
+\begin{lem}\label{lem:orth:orthequiv}
+  If $B \epi A \epi 1$ so that $2 \to A$ inducing an epimorphism
+  $B^A \epi B^2$ by composition then $\orth(A)$ is equal to
+  $\orth(B)$.
+\end{lem}
+\begin{proof}
+  First, we wish to show that if $f : X \to I$ is $B$-orthogonal than
+  it is $A$-orthogonal. Suppose we have the following commutative diagram
+  \[
+    \begin{tikzcd}
+      I^*(A) \ar[r, "g"] \ar[d] & f \ar[d]\\
+      1 \ar[r, equals] & 1
+    \end{tikzcd}
+  \]
+  We can rewrite this to
+  \[
+    \begin{tikzcd}
+      I^*(B) \ar[d] \ar[r, twoheadrightarrow] &I^*(A) \ar[r, "g"] \ar[d] & f \ar[d]\\
+      1 \ar[r, equals] \ar[urr, dashed, "g'"] &1 \ar[r, equals] & 1
+    \end{tikzcd}
+  \]
+  And since $I^*(B) \epi I^*(A)$ we have that $g' \circ ! = g$ as well
+  so we're done.
+
+  Now instead suppose that $f : X \to I$ is $A$-orthogonal, we now
+  wish to show that it is $B$-orthogonal. We note that
+  \[
+    \begin{tikzcd}
+      {f^{I^*(B)} \times_I I^*(B)^{I^*(A)}} \ar[r] \ar[d, twoheadrightarrow] & f^{I^*(A)} \ar[d, "\iota^{-1}"]\\
+      {f^{I^*(B)} \times_I I^*(B)^2} \ar[r, shift left=0.2em] \ar[r, shift right=0.2em] & f\\
+    \end{tikzcd}
+  \]
+  Now we can conclude that the bottom two arrows are equal because the
+  left arrow is epi and so applying
+  Lemma~\ref{lem:orth:orthpushout2} gives us the desired conclusion.
+\end{proof}
 
 \section{Modest Sets}\label{sec:modest}
 \section{Conclusion}\label{sec:conclusion}
