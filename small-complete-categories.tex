@@ -430,8 +430,25 @@ sin to not be preserved by isomorphism or equivalence. In this case,
 we are in trouble because we will wish to establish the completeness
 of one internal category and transfer this to more convenient
 categories for semantics. In order to handle this, we will strengthen
-our notion of weak completeness to \emph{indexed} diagrams.
-
+our notion of weak completeness to \emph{indexed} diagrams. An indexed
+diagram is given in the usual category theoretic style, as a functor
+from an internal category in $\Ccat/I$ into $I^*(C)$. Therefore, our
+definition of (weak) completeness is simply that an internal category
+is (weakly) complete by the previous definition in each slice.
+\begin{thm}\label{thm:complete:preservation}
+  The following hold
+  \begin{enumerate}
+  \item Strong equivalences preserve and reflect both strong and weak
+    completeness
+  \item Weak equivalences preserve and reflect weak completeness
+  \end{enumerate}
+\end{thm}
+\begin{proof}
+  \todo{This is tricky but important}
+\end{proof}
+At this point we have developed all the theory that we need to being
+our investigation of what small complete categories exist in the
+effective topos.
 \section{Orthogonal Objects and Subquotients of the Natural Number Object}\label{sec:orth}
 \section{Modest Sets}\label{sec:modest}
 \section{Conclusion}\label{sec:conclusion}
