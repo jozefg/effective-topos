@@ -20,6 +20,7 @@
 \newcommand{\Etop}{\ensuremath{\mathcal{E}}}
 \newcommand{\Ftop}{\ensuremath{\mathcal{F}}}
 \newcommand{\pow}[1]{\ensuremath{\mathcal{P}\left(#1\right)}}
+\newcommand{\unchar}[1]{\ensuremath{\ulcorner #1 \urcorner}}
 \newcommand{\card}[1]{\ensuremath{\left\vert#1\right\vert}}
 \newcommand{\powfin}[1]{\ensuremath{\mathcal{P}_{fin}\left(#1\right)}}
 
@@ -33,6 +34,7 @@
 \DeclareMathOperator{\cod}{Cod}
 \DeclareMathOperator{\full}{Full}
 \DeclareMathOperator{\family}{Fam}
+\DeclareMathOperator{\orth}{Orth}
 
 \newtheorem{thm}{Theorem}[section]
 \newtheorem{cor}[thm]{Corollary}
@@ -172,7 +174,7 @@ instance:
 \begin{example}
   Any small category is just a category internal to $\set$.
 \end{example}
-\begin{example}
+\begin{example}\label{ex:internal:full}
   Given a category $\Ccat$ which is has pullbacks and local
   exponentials and a morphism $f : A \to B$ in this category, the
   category $\full(a)$ is an internal category defined as follows.
@@ -510,7 +512,70 @@ for establishing completeness will be the following.
 \item We shall show then that this subfibration is strongly complete.
 \end{itemize}
 All of these stepped when chained together are sufficient to give us
-the weak completeness of our internal category.
+the weak completeness of our internal category. The key insight here
+is the final step. We can, after all, define the internal category
+that we're working with in $\set$. We can certainly define the
+complete subfibration of arrows orthogonal to $\Omega$. In $\set$,
+however, these fibrations will not be even weakly
+equivalent. Unsurprisingly then, a great deal of our reasoning may be
+carried out in any topos and it is only this final step which should
+rely on the particulars of a realizability topos.
+
+To begin with, the internal category that we'll be working with has as
+the object of objects,
+\[
+  Q_0 = \{R \subseteq \pow{N} \mid (\forall X \in F.\ \exists x.\ x \in F)
+  \mathrel{\wedge}
+  (\forall X, Y \in F.\ (\exists x.\ x \in X \mathrel{\wedge} x \in Y) \implies X = Y)\}
+\]
+That is, the object of quotients of subsets of $N$. We can
+equivalently define this as
+\[
+  Q_0 = \{R : \Omega^{N \times N} \mid ``R \text{ is transitive and symmetric.}"\}
+\]
+The isomorphism of course is the functional relation sending $F$ to
+the PER where an element is identified with its equivalence
+class. Next, consider the restriction of
+$\in : X \times \pow{X} \to \Omega$ to $Q_0$. This situation is given
+by the pullback diagram
+\[
+  \begin{tikzcd}
+    Q \ar[d, "u"] \ar[r] & {\{(x, y) \mid x \in y\}} \ar[d, "\unchar{\in}"]\\
+     \pow{\pow{N}} \times Q_0 \ar[r, rightarrowtail] & \pow{\pow{N}} \times \pow{\pow{\pow{N}}}
+  \end{tikzcd}
+\]
+Then we have a map $Q \to Q_0$ given by $\pi_2 \circ u$. Let us then
+consider $\full(\pi_2 \circ u)$ (recalling
+Example~\ref{ex:internal:full}). To grasp this category intuitively,
+remember that a global object is simply an equivalence relation on a
+subset of $N$ and a global morphism, $f : S \to T$ maps equivalence
+classes of $S$ to equivalences classes of $T$. Thus we have
+successfully internalized subquotients of $N$. Our goal will be show
+that this internal category is weakly complete. In order to do this,
+we will switch gears entirely and begin to work with orthogonal
+morphisms.
+\begin{defn}\label{defn:orth:orth}
+  We say that a morphism $f : A \to B$ is orthogonal to an object $C$
+  if every commuting square has a unique diagonal\footnote{The
+    observant reader will note that this is simply the statement that
+    $!_{I^*(C)}$ is orthogonal to $!_{f}$ in $\eff/I$}
+  \[
+    \begin{tikzcd}
+      B \times C \ar[d, swap, "\pi_1"] \ar[r] & A \ar[d, "f"]\\
+      B \ar[r, equals] \ar[ur, dashed] & B
+    \end{tikzcd}
+  \]
+\end{defn}
+Let us define $\orth(A)$ to be the collection of indexed families
+orthogonal to $A$. We first observe the following elementary fact
+\begin{thm}\label{thm:orth:orthfibration}
+  $\orth(A)$ is a complete subfibration of $\cod$
+\end{thm}
+\begin{proof}
+  \todo{Essentially this means showing that products and equalizers
+    preserve orthogonality, $\Pi$ restricts, and pullbacks preserve
+    orthogonality}
+\end{proof}
 
 \section{Modest Sets}\label{sec:modest}
 \section{Conclusion}\label{sec:conclusion}
