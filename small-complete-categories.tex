@@ -576,6 +576,30 @@ orthogonal to $A$. We first observe the following elementary fact
     preserve orthogonality, $\Pi$ restricts, and pullbacks preserve
     orthogonality}
 \end{proof}
+We will now spend a bit more time establishing properties related
+purely to orthogonal objects so that we can characterize them more
+concisely in our case.
+\begin{lem}\label{lem:orth:orthsubobjects}
+  If $A \epi 1$ and $A$ is internally projective then $\orth(A)$ is
+  closed under subobjects.
+\end{lem}
+\begin{proof}
+  Suppose we have some $f : X \to I$ and $f' : X' \to I$ so that there
+  is an $m : f' \mono f$. We wish to show that if $f$ is orthogonal to
+  $A$ than so is $f'$. Let us localize our proof to $\eff/I$. It is
+  now sufficient to show that $f'^{I^*(A)} \cong f'$ where we have
+  assumed that $f^{I^*(A)} \cong f$. For this, we note that
+  $f \to f^{I^*(A)}$ is a mono since $I^*(A) \epi 1$ holds. This gives
+  us that the following is a pullback
+  \[
+    \begin{tikzcd}
+      f' \ar[d, rightarrowtail] \ar[r, rightarrowtail] & {f'^{I^*(A)}} \ar[d, rightarrowtail, "m_2"]\\
+      f \ar[r, rightarrowtail, swap, "m_1"] & {f^{I^*(A)}}
+    \end{tikzcd}
+  \]
+  Now since the bottom arrow is an iso, so too is the top and we're
+  done. In order to show this is a pullback
+\end{proof}
 
 \section{Modest Sets}\label{sec:modest}
 \section{Conclusion}\label{sec:conclusion}
