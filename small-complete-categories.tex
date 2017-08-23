@@ -768,7 +768,7 @@ call $\dagger$.
 \end{defn}
 We now begin characterizing under what conditions $\dagger$ is
 satisfied.
-\begin{lem}\label{defn:orth:sepimpliesdagger}
+\begin{lem}\label{lem:orth:sepimpliesdagger}
   If $X$ is separated then $X$ satisfies $\dagger$.
 \end{lem}
 \begin{proof}
@@ -808,15 +808,51 @@ satisfied.
     E \mono X \times N \mono \Delta X \times N
   \]
   is closed but this is a trivial exercise in realizing the
-  implication $\forall n, x.\ \not\not E\card{(x, n)} \to E\card{(x, n)}$
-  but this is easily done with a projection.
+  implication $\forall n, x.\ \neg\neg E\card{(x, n)} \to E\card{(x, n)}$;
+  it is easily done with a projection.
 \end{proof}
 \begin{lem}\label{defn:orth:sepsliceimpliesdagger}
   If $X \to I$ is separated and $I$ is separated then $X \to I$
   satisfies $\dagger$ in $\eff/I$.
 \end{lem}
 \begin{proof}
-  \todo{Should prove}
+  For this, we first note that an object is separated if and only if
+  the unit $A \to a(A)$ of the sheafification adjunction is a
+  monomorphism. Next, we can define $a$ in $\eff/I$ (written as $a_I$
+  for disambiguation) in terms of $a$ in $\eff$ by the following
+  pullback
+  \[
+    \begin{tikzcd}
+      A' \ar[r] \ar[d, swap, "a_I(f)"] & a(A) \ar[d, "a(f)"]\\
+      I \ar[r, swap, "\eta_I"] & a(I)
+    \end{tikzcd}
+  \]
+  Now if $I$ is separated and $f : X \to I$ is separated then $X$ is
+  separated by simple composition of these two facts. To see this,
+  first note that the top side is the composition of two monomorphisms
+  in the following diagram
+  \[
+    \begin{tikzcd}
+      A \ar[d, swap, "f"] \ar[r, "\eta_f"] & A' \ar[r] \ar[d, swap, "a_I(f)"] & a(A) \ar[d, "a(f)"]\\
+      I \ar[r, equals] & I \ar[r, swap, "\eta_I"] & a(I)
+    \end{tikzcd}
+  \]
+  and since
+  \[
+    \begin{tikzcd}
+      A \ar[rd, swap, "\eta_f"] \ar[rr, "\eta_A"]&& a(A) \ar[dd, dashed]\\
+      &A' \ar[dr]&\\
+      && a(A)
+    \end{tikzcd}
+  \]
+  commutes using the universal property of $\eta_A$ we get that
+  $\eta_A$ is a mono by the properties of a the sheaf and the fact
+  that if $f \circ g$ is mono so is $g$.
+
+  In any case, this is all to establish that $X$ is
+  separated. Therefore, by Lemma~\ref{lem:orth:sepimpliesdagger} we
+  have that there is an $E$ so that $E \mono X \times N$ and $E \epi
+  N$ with $E \to N$ being a $\neg\neg$-sheaf.
 \end{proof}
 \begin{thm}\label{thm:orth:seporth}
   If $X \to I$ is orthogonal to $\Delta 2$ and is covered by $Y \to I$
