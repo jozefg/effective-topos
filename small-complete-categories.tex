@@ -724,20 +724,34 @@ arrows formed by pullback along $\pi_2 \circ u$.
     \begin{tikzcd}
       I \ar[ddd, swap, "f"] \ar[rd, "h"] \ar[rr, "\alpha"] && J \ar[ddd, "g"]\\
       & Q_1 \ar[d, "\pi_2^*(v)^{\pi_1^*(v)}"] &\\
-      & {Q \times Q} \ar[dl, swap, "\pi_1"] \ar[dr, "\pi_2"]&\\
-      C_0 && C_0
+      & {Q_0 \times Q_0} \ar[dl, swap, "\pi_1"] \ar[dr, "\pi_2"]&\\
+      Q_0 && Q_0
     \end{tikzcd}
   \]
   to the square
   \[
     \begin{tikzcd}
-      f^*(Q) \ar[d, swap, "f^*(v)"] \ar[r] & g^*(Q) \ar[d, "g^*(v)"]\\
+      f^*(Q) \ar[d, swap, "f^*(v)"] \ar[r, "h'"] & g^*(Q) \ar[d, "g^*(v)"]\\
       I \ar[r, swap, "\alpha"] & J
     \end{tikzcd}
   \]
-  determined by the universal property of a pullback. We must now
-  check that there is a unique correspondence between these two
-  diagrams.
+  Where $h'$ is determined by the isomorphism
+  \[
+    \hom(\langle f, g \circ \alpha \rangle, \pi_2^*(v)^{\pi_1^*(v)}) \cong
+    \hom(f^*(v), (g \circ \alpha)^*(v)) \cong
+    \hom(\Sigma_\alpha f^*(v), g^*(v))
+  \]
+  But unfolding this, we see the left most hom set is precisely that
+  contianing $h$s from the top diagram and the rightmost hom set is
+  precisely that containing $h'$s from the bottom set. Thus we have an
+  isomorphism between the two types of diagrams. This establishes that
+  the diagram is full and faithful. Since by definition the image of
+  this functor is $(Q)$ and it is obviously defined in a way so that
+  it $\cod \circ (Q) = \family(Q)$\footnote{Here we are abusing
+    notation and denoting the functor we are defining as $(Q)$}, it
+  only remains to show that it is cartesian. This, however, follows
+  automatically from the fact that the functor is full and faithful
+  and appropriately fibered.
 \end{proof}
 
 \section{Modest Sets}\label{sec:modest}
