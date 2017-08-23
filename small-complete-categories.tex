@@ -783,7 +783,33 @@ satisfied.
   \]
   Let us now define $E$ as with the underlying set of $X \times N$.
   Since we want $E$ to be separated, it suffices to define
-  $\card{-} : X \times N \to N$.
+  $\card{-} : X \times N \to N$. Let us define this with
+  \[
+    \card{(x, n)} =
+    \begin{cases}
+      \{n\} & n \in \card{x}\\
+      \emptyset & \text{otherwise}
+    \end{cases}
+  \]
+  Since $X$ and $N$ are both separated, this relation is trivially
+  functional with respect to their PERs so this gives rise to a
+  subobject $E \mono X \times N$. Next we need to define an
+  epimorphism $E \epi X$. We take the obvious functional relation
+  defined for the map $(x, n) \mapsto x$. We can trivially realize
+  this with $\lambda x. x$ so the properties of the resulting
+  functional relation may be realized as well. It is trivial to show
+  that this is epi because for all $x \in X$,
+  $\card{x} \neq \emptyset$. Finally, we need to show that
+  $f = (x, n) \mapsto n : E \to N$ is a $\neg\neg$-sheaf in $\eff/I$. It
+  suffices to show that $f \mono N^*(\Delta X)$ is a closed subobject
+  since $N^*$ is logical and thus preserves $\neg\neg$-sheaves. It
+  suffices to show that
+  \[
+    E \mono X \times N \mono \Delta X \times N
+  \]
+  is closed but this is a trivial exercise in realizing the
+  implication $\forall n, x.\ \not\not E\card{(x, n)} \to E\card{(x, n)}$
+  but this is easily done with a projection.
 \end{proof}
 \begin{lem}\label{defn:orth:sepsliceimpliesdagger}
   If $X \to I$ is separated and $I$ is separated then $X \to I$
