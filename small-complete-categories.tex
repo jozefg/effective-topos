@@ -89,7 +89,9 @@ advanced category theory have been provided but it is assumed that the
 reader is familiar with category theory as it is developed
 in~\citet{MacLane:98}. Any assumptions behind this that are not
 explicitly noted should be considered a defect and reported to the
-author.
+author. The author is heavily indebted to Hyland, Robinson, and
+Rosolini as the technical developments of this paper are more or less
+a stripped down version of~\citet{Hyland:90}.
 
 \section{Freyd's Theorem}\label{sec:freyd}
 
@@ -752,6 +754,25 @@ arrows formed by pullback along $\pi_2 \circ u$.
   only remains to show that it is cartesian. This, however, follows
   automatically from the fact that the functor is full and faithful
   and appropriately fibered.
+\end{proof}
+Having established this characterization of $\cat{Fam}(Q)$ as
+equivalent subfibration of $\cod$, we now work to show that this is
+on-the-nose equal to $\orth(\Delta 2) = \orth(\Omega)$. In order to do
+this, we will make use of the theory of $\neg\neg$ separated
+objects. In particular, let us characterize a property which we shall
+call $\dagger$.
+\begin{defn}\label{defn:orth:coveredsep}
+  We say that an object $X$ satisfies $\dagger$ if there is an
+  $E \mono X \times N$ so that $E \epi X$ and $E \to N$ is a
+  $\neg\neg$ sheaf in $\eff/N$.
+\end{defn}
+We now begin characterizing under what conditions $\dagger$ is
+satisfied.
+\begin{lem}\label{defn:orth:sepimpliesdagger}
+  If $X$ is separated then $X$ satisfies $\dagger$.
+\end{lem}
+\begin{proof}
+  \todo{Should prove}
 \end{proof}
 
 \section{Modest Sets}\label{sec:modest}
