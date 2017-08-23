@@ -772,8 +772,43 @@ satisfied.
   If $X$ is separated then $X$ satisfies $\dagger$.
 \end{lem}
 \begin{proof}
+  Suppose that $X$ is separated, in the effective topos this means
+  that it may be presented as $(X, \card{-})$ where
+  \[
+    x = y \in X \triangleq
+    \begin{cases}
+      \card{x} & x = y\\
+      \emptyset & \text{otherwise}
+    \end{cases}
+  \]
+  Let us now define $E$ as with the underlying set of $X \times N$.
+  Since we want $E$ to be separated, it suffices to define
+  $\card{-} : X \times N \to N$.
+\end{proof}
+\begin{lem}\label{defn:orth:sepsliceimpliesdagger}
+  If $X \to I$ is separated and $I$ is separated then $X \to I$
+  satisfies $\dagger$ in $\eff/I$.
+\end{lem}
+\begin{proof}
   \todo{Should prove}
 \end{proof}
+\begin{thm}\label{thm:orth:seporth}
+  If $X \to I$ is orthogonal to $\Delta 2$ and is covered by $Y \to I$
+  with property $\dagger$, then $X \to I$ is a subquotient of
+  $I^*(N)$.
+\end{thm}
+\begin{proof}
+  \todo{Should prove}
+\end{proof}
+\begin{thm}\label{defn:orth:seporth}
+  The subfibrations $(Q)$ and $\orth(\Delta 2)$ are identical.
+\end{thm}
+\begin{proof}
+  \todo{Really should prove}
+\end{proof}
+\begin{cor}
+  $Q$ is an small, weakly complete category.
+\end{cor}
 
 \section{Modest Sets}\label{sec:modest}
 \section{Conclusion}\label{sec:conclusion}
