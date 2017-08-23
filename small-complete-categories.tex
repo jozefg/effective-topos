@@ -698,6 +698,48 @@ subfibrations of orthogonal objects.
   \todo{Should prove this in full}.
 \end{proof}
 
+The remaining task is to prove that $\cat{Fam}(Q)$ is equivalent to
+$\orth(\Omega) = \orth(\Delta 2)$. In order to start doing this, we
+will begin with a more pleasant characterization of $\cat{Fam}(Q)$,
+denoted in~\citet{Hyland:90} as a $(Q)$. The idea is that
+$\cat{Fam}(Q) \simeq (Q) = \orth(\Delta 2)$, thus we break the
+trickier task of establishing an equivalence into a more generic piece
+of reasoning. The basic observation is that $\cat{Fam}(Q)$ is uniquely
+determined by $v = \pi_2 \circ u : Q \to Q_0$, as any internal category of
+the form $\full(f)$ is determined by $f$. It stands to reason then
+that it ought to be possible to recover our internal category as the
+full internal subcategory of $\cod : \eff^2 \to \eff$ given by all
+arrows formed by pullback along $\pi_2 \circ u$.
+\begin{thm}\label{thm:orth:altexternalization}
+  $(Q)$ is a fibration with a cartesian inclusion into
+  $\cod$.\footnote{This relies on some form of choice, namely a
+    particular choice of pullbacks.}
+\end{thm}
+\begin{proof}
+  In order to prove this, we will provide a full and faithful
+  cartesian functor from $\cat{Fam}(Q)$ into $\cod$ with the image of
+  $(Q)$. Let us send $f : I \to Q_0$ to the pullback $f^*(v)$. We then
+  send a morphism
+  \[
+    \begin{tikzcd}
+      I \ar[ddd, swap, "f"] \ar[rd, "h"] \ar[rr, "\alpha"] && J \ar[ddd, "g"]\\
+      & Q_1 \ar[d, "\pi_2^*(v)^{\pi_1^*(v)}"] &\\
+      & {Q \times Q} \ar[dl, swap, "\pi_1"] \ar[dr, "\pi_2"]&\\
+      C_0 && C_0
+    \end{tikzcd}
+  \]
+  to the square
+  \[
+    \begin{tikzcd}
+      f^*(Q) \ar[d, swap, "f^*(v)"] \ar[r] & g^*(Q) \ar[d, "g^*(v)"]\\
+      I \ar[r, swap, "\alpha"] & J
+    \end{tikzcd}
+  \]
+  determined by the universal property of a pullback. We must now
+  check that there is a unique correspondence between these two
+  diagrams.
+\end{proof}
+
 \section{Modest Sets}\label{sec:modest}
 \section{Conclusion}\label{sec:conclusion}
 
