@@ -1,0 +1,41 @@
+\section{Freyd's Theorem}\label{sec:freyd}
+
+Freyd's theorem is a well-known result in category theory which states
+that any small category which is complete for all small limits must be
+a poset. This is the starting point for our development because the
+nonconstructive argument that is used to prove this result suggests
+that it might fail in a nonclassical setting.
+\begin{thm}\label{thm:freyd:freyd}
+  In any small category $\Ccat$ which is complete must be a poset.
+\end{thm}
+\begin{proof}
+  Suppose we have such a $\Ccat$. We wish to show that for any
+  $A, B \in \Ccat$ that $\card{\hom(A, B)} \le 1$. Let's suppose that
+  this is not the case, namely, that we have a pair of objects $A$ and
+  $B$ so that $\card{\hom(A, B)} \ge 2$. Let us distinguish two
+  morphisms $a \neq b \in \hom(A, B)$ for later purposes.. Since
+  $\Ccat$ is small we know that the collection of all morphisms is a
+  set, let us say of cardinality $\kappa$. Let us then form the
+  product $C = \prod_{i \in \kappa} B$. This must exist since we have
+  assumed the existence of all small limits. Now consider
+  $\hom(A, C)$. We know that $\hom(A, C) \subset X$ where $X$ is
+  \[
+    X = \{\langle x_i \rangle_{i \in \kappa}\mid \forall i.\ x_i \in \{a, b\}\}
+  \]
+  However, $\card{X} = 2^\kappa$, contradicting our assumption that
+  the cardinality of the set of morphisms is $\kappa$.
+\end{proof}
+
+What is especially interesting is this result is that it can be
+generalized from applying to just a boolean topos, such as $\set$ to
+any topos which is based on top of $\set$ with an object of
+generators! In particular, we can generalize this result to any
+internal category to a Grothendieck topos. This result was concisely
+proven by \citet{Gubkin:10} and is restated below.
+\begin{thm}\label{thm:freyd:grothendieck}
+  In any category $\Ccat$ internal to a topos $\Etop$ based on $\set$
+  which is complete must be a poset.
+\end{thm}
+\begin{proof}
+  \todo{Reprove this}
+\end{proof}

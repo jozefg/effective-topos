@@ -1,0 +1,202 @@
+\section{Internal Category Theory in a Topos}\label{sec:internal}
+
+Before continuing further, it would behoove us to take some time to
+discuss and develop the theory of internal category theory to a
+topos. Essentially, the idea is that \emph{normal} category theory can
+be stated as simply category theory done internally to $\set$ which
+opens the door to doing category theory internally to $\eff$. To begin
+with, we will review the development of category theory internal to
+any category with pullbacks and pay particular attention to the
+question of internal limits.
+\begin{defn}\label{defn:internal:internalcat}
+  An internal category is a pair of objects $C_1$ and $C_0$ equipped
+  with the following data.
+  \begin{itemize}
+  \item A pair of parallel maps $\partial_0, \partial_1 : C_1 \to C_0$
+  \item A splitting for these maps $i : C_0 \to C_1$, explicitly,
+    $\partial_0 \circ i = \partial_1 \circ i = 1$)
+  \item Given the pullback
+    \[
+      \begin{tikzcd}
+        C_2 \ar[r] \ar[d] & C_1 \ar[d, "\partial_1"]\\
+        C_1 \ar[r, swap, "\partial_0"] & C_0
+      \end{tikzcd}
+    \]
+    a map $m : C_2 \to C_1$.
+  \end{itemize}
+  Moreover, these will satisfy the following properties,
+  \begin{itemize}
+  \item $m \circ (m \times 1) = m \circ (1 \times m)$
+  \item $\partial_0 \circ m = \partial_0 \circ \pi_1$
+  \item $\partial_1 \circ m = \partial_1 \circ \pi_2$
+  \item $m \circ \langle i \circ \partial_0, 1\rangle = 1$
+  \item $m \circ \langle 1, i \circ \partial_1\rangle = 1$
+  \end{itemize}
+\end{defn}
+This concept seems rather opaque at first glance, but it is in fact
+just the categorization of the normal definition of category. For
+instance:
+\begin{example}
+  Any small category is just a category internal to $\set$.
+\end{example}
+\begin{example}\label{ex:internal:full}
+  Given a category $\Ccat$ which is has pullbacks and local
+  exponentials and a morphism $f : A \to B$ in this category, the
+  category $\full(a)$ is an internal category defined as follows.
+  \begin{description}
+  \item[Objects] The object of objects is simply $B$
+  \item[Morphisms] The object of morphisms is given by the domain of
+    $\pi_2^*(f)^{\pi_1^*(f)}$, an object in $\Ccat/B \times B$. Let us
+    denote this object $B_1$. We then define
+    $\partial_i : B_1 \to B \times B \overset{\pi_i}{\to} B$
+  \end{description}
+  We then must describe the identity and composition morphisms. In
+  order to construct the identity morphism, it suffices to find a
+  morphism from $\Delta : B \to B \times B$ to
+  $\pi_2^*(a)^{\pi_1^*(a)}$ in $\Ccat/B \times B$. Doing this will
+  immediately ensure that it is indeed a section for $\partial_0$ and
+  $\partial_1$. By the universal property of an exponential, this is
+  equivalent to finding a morphism in
+  $\hom_{\Ccat/B \times B}(\Delta \times \pi_1^*(a), \pi_2^*(a))$.
+  However, examination of $\Delta \times \pi_1^*(a)$ shows that it is
+  equivalent to $\Sigma_\Delta a$ since
+  $\Delta^* \circ \pi_1^* \cong 1$. Therefore, we need a morphism in
+  \[
+    \hom_{\Ccat/B \times B}(\Sigma_\Delta a, \pi_2^*(a)) \cong
+    \hom_{\Ccat/B \times B}(a, \Delta^* \pi_2^*(a)) \cong
+    \hom_{\Ccat/B \times B}(a, a)
+  \]
+  So we simply pick the identity morphism.
+
+  Next we perform the same operation for composition. We need a
+  morphism in $\hom_{\Ccat/B \times B}(b_2, \pi_2^*(a)^{\pi_1^*(a)})$
+  where $b_2 : B_2 \to B \times B$ is defined as
+  $\langle \partial_0 \circ p, \partial_1 \circ p' \rangle$
+  with the domain given by the pullback
+  \[
+    \begin{tikzcd}
+      B_2 \ar[r, "p'"] \ar[d, swap, "p"] & B_1 \ar[d, "\partial_0"]\\
+      B_1 \ar[r, swap, "\partial_1"] & B
+    \end{tikzcd}
+  \]
+  In order to derive composition, we note that
+  \begin{align*}
+    \hom(\langle f, g \rangle, \pi_2^*(a)^{\pi_1^*(a)})
+    &\cong \hom(\Sigma_{\langle f, g \rangle} 1, \pi_2^*(a)^{\pi_1^*(a)})\\
+    &\cong \hom(1, \langle f, g \rangle^*(\pi_2^*(a)^{\pi_1^*(a)}))\\
+    &\cong \hom(1, (\langle f, g \rangle^*\pi_2^*)(a)^{\langle f, g \rangle^*\pi_1^*(a)})\\
+    &\cong \hom(1, g^*(a)^{f^*(a)})\\
+    &\cong \hom(f^*(a), g^*(a))
+  \end{align*}
+  Therefore, we merely need to find a morphism
+  \[
+    m \in \hom((\delta_0 \circ p)^*(a), (\delta_1 \circ p')^*(a))
+  \]
+  We note that by
+  $1 \in \hom(\pi_2^*(a)^{\pi_1^*(a)}, \pi_2^*(a)^{\pi_1^*(a)})$ we
+  have a morphism
+  $f \in \hom(\partial_0^*(a), \partial_1^*(a))$ so we can obtain
+  \[
+    m \triangleq p^*(f) \circ p'^*(f)
+  \]
+  Which typechecks because we have that
+  $\partial_1 \circ p = \partial_0 \circ p'$ by the definition of
+  $B_2$.
+\end{example}
+It will be fruitful to develop a small amount of normal category
+theory in this framework. For instance, we can define what it means to
+be a poset
+\begin{defn}\label{defn:internal:poset}
+  An internal category is a poset if
+  $\langle \partial_0, \partial_1 \rangle$ is a monomorphism.
+\end{defn}
+Intuitively, a category if is a poset if the function which strips
+away all information from a morphism except its domain and codomain
+does not lose any information. In other words, there is at most one
+morphism of any given type. In order to define what it means for a
+category to have limits and other universal constructions, it will be
+simplest to establish a corresponding version of $\cat{Cat}$ for
+internal categories: $\cat{Cat}(\Ccat)$. Then all of these
+constructions can be defined by the existence of suitable
+adjoints. Therefore, it is necessary to define corresponding internal
+versions of a functor and natural transformation.
+\begin{defn}\label{defn:internal:functor}
+  An internal functor $F : C \to D$ is a pair of morphisms
+  $F_0 : C_0 \to D_0$ and $F_1 : C_1 \to D_1$ so that $F_0$ and $F_1$
+  commute with $i$, $m$, and $\partial_i$.
+\end{defn}
+\begin{defn}\label{defn:internal:naturaltrans}
+  An internal natural transformation $\alpha : F \to G$ is a morphism
+  $C_0 \to D_1$ so that the following diagrams commute
+  \[
+    \begin{tikzcd}
+      &C_1 \ar[dl, swap, "{\langle \alpha \circ \partial_0, G_1 \rangle}"]
+           \ar[dr, "{\langle F_1, \alpha \circ \partial_1 \rangle}"]&\\
+      D_2 \ar[r, "m"] & D_1 & D_2 \ar[l, "m"]
+    \end{tikzcd}
+    \begin{tikzcd}
+      &C_0 \ar[d, "\alpha"] \ar[dl, swap, "F_0"] \ar[dr, "G_0"]&\\
+      D_0 & D_1 \ar[l, "\partial_0"] \ar[r, swap, "\partial_1"] & D_0
+    \end{tikzcd}
+  \]
+\end{defn}
+The diagram on the right being that the arrows produced by the
+natural transformation have the right type. The diagram on the left
+is simply an expression of naturality.
+\begin{thm}
+  $\cat{Cat}(\Ccat)$ is a 2-category with internal categories,
+  functors, and natural transformations.
+\end{thm}
+\begin{proof}
+  \todo{Probably should prove some parts of this}
+\end{proof}
+Having fleshed out that this forms a 2-category, we know that it
+automatically inherits the notion of adjoint functors and therefore,
+equivalences that are describable in all 2-categories. We will
+devote greater care to the question of equivalences in the next
+section, but for now we will take the opportunity to make some obvious
+definitions.
+
+\begin{thm}\label{thm:internal:2categorical}
+  The 2-category $\cat{cat}(\Ccat)$ has finite (co)limits and
+  exponentials when the ambient category does.
+\end{thm}
+\begin{proof}
+  \todo{Routine proof, but should spell out}
+\end{proof}
+
+As a final construction, we will concern ourselves with the conversion
+of an internal category to a particular fibration on the
+category. This will be essential for the remainder of our technical
+development because it is much more convenient to prove the
+completeness of fibrations rather than work with cumbersome diagrams
+for internal categories. Furthermore, the fibration, or
+\emph{externalization}, of an internal category shares many essential
+properties with its internal category.
+\begin{defn}\label{defn:internal:externalization}
+  The \emph{externalization} of an internal category $C \in \Ccat$ is
+  a functor $\family(C) : \cat{Fam}(C) \to \Ccat$ where
+  \begin{description}
+  \item[Objects] Objects of $\cat{Fam}(C)$ are maps $I \to C_0$ in
+    $\Ccat$.
+  \item[Morphisms] Morphisms of $\cat{Fam}(C)(f, g)$ are pairs of maps
+    $(\alpha, h)$ where $\alpha : \dom(f) \to \dom(g)$ and a map $h :
+    I \to C_1$ so the following commutes
+    \[
+      \begin{tikzcd}
+        I \ar[dd, swap, "f"] \ar[rd, "h"] \ar[rr, "\alpha"] && J \ar[dd, "g"]\\
+        & C_1 \ar[dl, swap, "\partial_0"] \ar[dr, "\partial_1"] &\\
+        C_0 && C_0
+      \end{tikzcd}
+    \]
+    In other words, it is an $I$-indexed collection of morphisms which
+    map one family of $C$ objects onto the new family.
+  \end{description}
+\end{defn}
+
+\begin{thm}\label{thm:internal:externalization}
+  $\family(C)$ is a split fibration.
+\end{thm}
+\begin{proof}
+  \todo{Should prove this in full}
+\end{proof}

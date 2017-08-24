@@ -1,0 +1,43 @@
+\section{Introduction}\label{sec:introduction}
+
+In this note I'd like to discuss a remarkable discovery of the 1970s:
+the existence of small, complete, non-poset internal categories in the
+effective topos. This is a surprising discovery not because these
+subcategories are particularly exotic; in fact they are quite
+natural. What makes this surprising is that no Grothendieck topos
+(importantly $\set$) can contain such an internal category. Therefore,
+it is a direct result of the nonclassical metatheory that $\eff$
+provides that we can construct such internal categories.
+
+These categories are in fact interesting for reasons beyond their mere
+existence. They provide a method for describing naive semantics for
+type theories with impredicative polymorphism, notably System F, which
+would otherwise be impossible to describe. In essence, the
+completeness of the internal category means that $\forall$ may be
+simply interpreted as the product over the object of objects,
+something that's in fact contained in the internal category since it's
+closed under such limits. A more detailed description of the semantics
+of System F that this provides is a subject for a future note however.
+
+In this note we will mainly be concerned with establishing the minimum
+complete theory in order to describe the internal categories of
+interest and prove their completeness. This is nontrivial since even
+stating what completeness is requires a fair amount of delicate
+consideration. In section~\ref{sec:freyd} we will start by proving
+that this work is in fact worth it; these categories don't exist in
+$\set$. In sections~\ref{sec:completeness} and~\ref{sec:completeness}
+some of the underlying theory behind our constructions, including a
+discussion on why the right notion of subcategory to consider is in
+fact, an internal category. Finally, the main thrust of the note is
+developed in sections~\ref{sec:orth} and~\ref{sec:modest} where we
+prove the existence of two such internal categories, the category of
+objects orthogonal two $\Omega$ and the category of so-called
+\emph{modest sets}. It is sadly impossible for this note to be
+entirely knowledge free, references to the appropriate topics in more
+advanced category theory have been provided but it is assumed that the
+reader is familiar with category theory as it is developed
+in~\citet{MacLane:98}. Any assumptions behind this that are not
+explicitly noted should be considered a defect and reported to the
+author. The author is heavily indebted to Hyland, Robinson, and
+Rosolini as the technical developments of this paper are more or less
+a stripped down version of~\citet{Hyland:90}.

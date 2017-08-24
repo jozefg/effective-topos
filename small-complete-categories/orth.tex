@@ -1,0 +1,430 @@
+\section{Orthogonal Objects and Subquotients of the Object of Realizers}\label{sec:orth}
+
+The first small complete category we will be examining is the one
+determined by partial equivalences relations on the object of
+realizers (in the $\eff$, the natural number object). Our methodology
+for establishing completeness will be the following.
+\begin{itemize}
+\item First we will concretely define the internal category we're
+  studying
+\item Second, we will prove it to be weakly equivalent when
+  externalized to the full subfibration of $\cod$ given by arrows
+  orthogonal to $\Omega$
+\item We shall show then that this subfibration is strongly complete.
+\end{itemize}
+All of these stepped when chained together are sufficient to give us
+the weak completeness of our internal category. The key insight here
+is the final step. We can, after all, define the internal category
+that we're working with in $\set$. We can certainly define the
+complete subfibration of arrows orthogonal to $\Omega$. In $\set$,
+however, these fibrations will not be even weakly
+equivalent. Unsurprisingly then, a great deal of our reasoning may be
+carried out in any topos and it is only this final step which should
+rely on the particulars of a realizability topos.
+
+To begin with, the internal category that we'll be working with has as
+the object of objects,
+\[
+  Q_0 = \{R \subseteq \pow{N} \mid (\forall X \in F.\ \exists x.\ x \in F)
+  \mathrel{\wedge}
+  (\forall X, Y \in F.\ (\exists x.\ x \in X \mathrel{\wedge} x \in Y) \implies X = Y)\}
+\]
+That is, the object of quotients of subsets of $N$. We can
+equivalently define this as
+\[
+  Q_0 = \{R : \Omega^{N \times N} \mid ``R \text{ is transitive and symmetric.}"\}
+\]
+The isomorphism of course is the functional relation sending $F$ to
+the PER where an element is identified with its equivalence
+class. Next, consider the restriction of
+$\in : X \times \pow{X} \to \Omega$ to $Q_0$. This situation is given
+by the pullback diagram
+\[
+  \begin{tikzcd}
+    Q \ar[d, "u"] \ar[r] & {\{(x, y) \mid x \in y\}} \ar[d, "\unchar{\in}"]\\
+     \pow{\pow{N}} \times Q_0 \ar[r, rightarrowtail] & \pow{\pow{N}} \times \pow{\pow{\pow{N}}}
+  \end{tikzcd}
+\]
+Then we have a map $Q \to Q_0$ given by $\pi_2 \circ u$. Let us then
+consider $\full(\pi_2 \circ u)$ (recalling
+Example~\ref{ex:internal:full}). To grasp this category intuitively,
+remember that a global object is simply an equivalence relation on a
+subset of $N$ and a global morphism, $f : S \to T$ maps equivalence
+classes of $S$ to equivalences classes of $T$. Thus we have
+successfully internalized subquotients of $N$. Our goal will be show
+that this internal category is weakly complete. In order to do this,
+we will switch gears entirely and begin to work with orthogonal
+morphisms.
+\begin{defn}\label{defn:orth:orth}
+  We say that a morphism $f : A \to B$ is orthogonal to an object $C$
+  if every commuting square has a unique diagonal\footnote{The
+    observant reader will note that this is simply the statement that
+    $!_{I^*(C)}$ is orthogonal to $!_{f}$ in $\eff/I$}
+  \[
+    \begin{tikzcd}
+      B \times C \ar[d, swap, "\pi_1"] \ar[r] & A \ar[d, "f"]\\
+      B \ar[r, equals] \ar[ur, dashed] & B
+    \end{tikzcd}
+  \]
+\end{defn}
+Let us define $\orth(A)$ to be the collection of indexed families
+orthogonal to $A$. We first observe the following elementary fact
+\begin{thm}\label{thm:orth:orthfibration}
+  $\orth(A)$ is a complete subfibration of $\cod$
+\end{thm}
+\begin{proof}
+  \todo{Essentially this means showing that products and equalizers
+    preserve orthogonality, $\Pi$ restricts, and pullbacks preserve
+    orthogonality}
+\end{proof}
+We will now spend a bit more time establishing properties related
+purely to orthogonal objects so that we can characterize them more
+concisely in our case.
+\begin{lem}\label{lem:orth:orthsubobjects}
+  If $A \epi 1$ and then $\orth(A)$ is closed under subobjects.
+\end{lem}
+\begin{proof}
+  Suppose we have some $f : X \to I$ and $f' : X' \to I$ so that there
+  is an $m : f' \mono f$. We wish to show that if $f$ is orthogonal to
+  $A$ than so is $f'$. Let us localize our proof to $\eff/I$. It is
+  now sufficient to show that $f'^{I^*(A)} \cong f'$ where we have
+  assumed that $f^{I^*(A)} \cong f$. For this, we note that
+  $f \to f^{I^*(A)}$ is a mono since $I^*(A) \epi 1$ holds. This gives
+  us that the following is a pullback
+  \[
+    \begin{tikzcd}
+      f' \ar[d, rightarrowtail] \ar[r, rightarrowtail] & {f'^{I^*(A)}} \ar[d, rightarrowtail, "m^{I^*(A)}"]\\
+      f \ar[r, rightarrowtail, swap, "m'"] & {f^{I^*(A)}}
+    \end{tikzcd}
+  \]
+  Now since the bottom arrow is an iso, so too is the top and we're
+  done. In order to show this is a pullback we just have to show that
+  if we have $x \in f$ and $\lambda y. z \in f'^{I^*(A)}$ so that
+  $m^*(\lambda y. z) = \lambda y. x$ we then have that
+  $\lambda y. m(z(y)) = \lambda y. x$ so we have that for all $y$,
+  $m(z(y)) = x$ so this pair uniquely corresponds to a $z \in f'$ as
+  required.
+\end{proof}
+We now turn to recharacterizing orthogonality in a slightly different
+way that will allow us to prove a number of important closure
+theorems.
+\begin{lem}\label{lem:orth:orthpushout}
+  In order to show that $f : X \to I$ is orthogonal to $A \epi 1$ if
+  and only if that there is an $\iota$
+  \[
+    \begin{tikzcd}
+      f^{I^*(A)} \times_I I^*(A) \ar[r, "\pi_1"] \ar[d, "ev"] & f^{I^*(A)} \ar[d, "\iota"]\\
+      f \ar[r, equals] & f
+    \end{tikzcd}
+  \]
+\end{lem}
+\begin{proof}
+  The only if direction is trivial because $f$ being orthogonal to $A$
+  specifically implies that $\iota : f^{I^*(A)} \cong f$ must exist
+  and such a map obviously forms a commutative square. For the if
+  direction, if $\iota$ exists then it is clear that it is a right
+  identity to the diagonal $f \to f^{I^*(A)}$ which is monotone since
+  $A \epi 1$ giving us that $f \to f^{I^*(A)}$ is an iso as required.
+\end{proof}
+\begin{cor}\label{lem:orth:orthpushout2}
+  The previous lemma can be stated as the following statement if the
+  following two maps commute.
+  \[
+    \begin{tikzcd}
+      {f^{I^*(A)} \times_I I^*(A)^2} \ar[r] &
+      {f^{I^*(A)} \times_I I^*(A) \times_I I^*(A)} \ar[r, shift left=0.2em] \ar[r, shift right=0.2em] &
+      {f^{I^*(A)} \times_I I^*(A)} \ar[r] &
+      f
+    \end{tikzcd}
+  \]
+\end{cor}
+\begin{proof}
+  \todo{Should be a simple elaboration of pushout conditions}
+\end{proof}
+In particular, we really wish for a theorem to characterize when
+$\orth(A)$ is the same as $\orth(B)$ for some $A$ and $B$. This is
+because the object $\Omega$ in $\eff$ is somewhat ungainly to work
+with. It would be much more convenient if we could switch to studying
+simpler objects (it will turn out that quotients of $\neg\neg$-sheaves
+suffice).
+\begin{lem}\label{lem:orth:orthequiv}
+  If $B \epi A \epi 1$ so that $2 \to A$ inducing an epimorphism
+  $B^A \epi B^2$ by composition then $\orth(A)$ is equal to
+  $\orth(B)$.
+\end{lem}
+\begin{proof}
+  First, we wish to show that if $f : X \to I$ is $B$-orthogonal than
+  it is $A$-orthogonal. Suppose we have the following commutative diagram
+  \[
+    \begin{tikzcd}
+      I^*(A) \ar[r, "g"] \ar[d] & f \ar[d]\\
+      1 \ar[r, equals] & 1
+    \end{tikzcd}
+  \]
+  We can rewrite this to
+  \[
+    \begin{tikzcd}
+      I^*(B) \ar[d] \ar[r, twoheadrightarrow] &I^*(A) \ar[r, "g"] \ar[d] & f \ar[d]\\
+      1 \ar[r, equals] \ar[urr, dashed, "g'"] &1 \ar[r, equals] & 1
+    \end{tikzcd}
+  \]
+  And since $I^*(B) \epi I^*(A)$ we have that $g' \circ ! = g$ as well
+  so we're done.
+
+  Now instead suppose that $f : X \to I$ is $A$-orthogonal, we now
+  wish to show that it is $B$-orthogonal. We note that
+  \[
+    \begin{tikzcd}
+      {f^{I^*(B)} \times_I I^*(B)^{I^*(A)}} \ar[r] \ar[d, twoheadrightarrow] & f^{I^*(A)} \ar[d, "\iota^{-1}"]\\
+      {f^{I^*(B)} \times_I I^*(B)^2} \ar[r, shift left=0.2em] \ar[r, shift right=0.2em] & f\\
+    \end{tikzcd}
+  \]
+  Now we can conclude that the bottom two arrows are equal because the
+  left arrow is epi and so applying
+  Lemma~\ref{lem:orth:orthpushout2} gives us the desired conclusion.
+\end{proof}
+Having developed all of the supplementary theory, we are now in a
+position to state and prove one of the main theorems we want about
+subfibrations of orthogonal objects.
+\begin{thm}\label{thm:orth:allequiv}
+  The following fibrations are all equal to $\orth(\Delta 2)$
+  \begin{enumerate}
+  \item $\orth(\Delta S)$ where $S$ has at least two elements.
+  \item $\orth(U)$ where $U$ is a uniform object with at least 2
+    distinct sections
+  \item $\orth(\Omega)$
+  \end{enumerate}
+\end{thm}
+\begin{proof}
+  \todo{Should prove this in full}.
+\end{proof}
+
+The remaining task is to prove that $\cat{Fam}(Q)$ is equivalent to
+$\orth(\Omega) = \orth(\Delta 2)$. In order to start doing this, we
+will begin with a more pleasant characterization of $\cat{Fam}(Q)$,
+denoted in~\citet{Hyland:90} as a $(Q)$. The idea is that
+$\cat{Fam}(Q) \simeq (Q) = \orth(\Delta 2)$, thus we break the
+trickier task of establishing an equivalence into a more generic piece
+of reasoning. The basic observation is that $\cat{Fam}(Q)$ is uniquely
+determined by $v = \pi_2 \circ u : Q \to Q_0$, as any internal category of
+the form $\full(f)$ is determined by $f$. It stands to reason then
+that it ought to be possible to recover our internal category as the
+full internal subcategory of $\cod : \eff^2 \to \eff$ given by all
+arrows formed by pullback along $\pi_2 \circ u$.
+\begin{thm}\label{thm:orth:altexternalization}
+  $(Q)$ is a fibration with a cartesian inclusion into
+  $\cod$.\footnote{This relies on some form of choice, namely a
+    particular choice of pullbacks.}
+\end{thm}
+\begin{proof}
+  In order to prove this, we will provide a full and faithful
+  cartesian functor from $\cat{Fam}(Q)$ into $\cod$ with the image of
+  $(Q)$. Let us send $f : I \to Q_0$ to the pullback $f^*(v)$. We then
+  send a morphism
+  \[
+    \begin{tikzcd}
+      I \ar[ddd, swap, "f"] \ar[rd, "h"] \ar[rr, "\alpha"] && J \ar[ddd, "g"]\\
+      & Q_1 \ar[d, "\pi_2^*(v)^{\pi_1^*(v)}"] &\\
+      & {Q_0 \times Q_0} \ar[dl, swap, "\pi_1"] \ar[dr, "\pi_2"]&\\
+      Q_0 && Q_0
+    \end{tikzcd}
+  \]
+  to the square
+  \[
+    \begin{tikzcd}
+      f^*(Q) \ar[d, swap, "f^*(v)"] \ar[r, "h'"] & g^*(Q) \ar[d, "g^*(v)"]\\
+      I \ar[r, swap, "\alpha"] & J
+    \end{tikzcd}
+  \]
+  Where $h'$ is determined by the isomorphism
+  \[
+    \hom(\langle f, g \circ \alpha \rangle, \pi_2^*(v)^{\pi_1^*(v)}) \cong
+    \hom(f^*(v), (g \circ \alpha)^*(v)) \cong
+    \hom(\Sigma_\alpha f^*(v), g^*(v))
+  \]
+  But unfolding this, we see the left most hom set is precisely that
+  contianing $h$s from the top diagram and the rightmost hom set is
+  precisely that containing $h'$s from the bottom set. Thus we have an
+  isomorphism between the two types of diagrams. This establishes that
+  the diagram is full and faithful. Since by definition the image of
+  this functor is $(Q)$ and it is obviously defined in a way so that
+  it $\cod \circ (Q) = \family(Q)$\footnote{Here we are abusing
+    notation and denoting the functor we are defining as $(Q)$}, it
+  only remains to show that it is cartesian. This, however, follows
+  automatically from the fact that the functor is full and faithful
+  and appropriately fibered.
+\end{proof}
+Having established this characterization of $\cat{Fam}(Q)$ as
+equivalent subfibration of $\cod$, we now work to show that this is
+on-the-nose equal to $\orth(\Delta 2) = \orth(\Omega)$. In order to do
+this, we will make use of the theory of $\neg\neg$ separated
+objects. In particular, let us characterize a property which we shall
+call $\dagger$.
+\begin{defn}\label{defn:orth:coveredsep}
+  We say that an object $X$ satisfies $\dagger$ if there is an
+  $E \mono X \times N$ so that $E \epi X$ and $E \to N$ is a
+  $\neg\neg$ sheaf in $\eff/N$.
+\end{defn}
+We now begin characterizing under what conditions $\dagger$ is
+satisfied.
+\begin{lem}\label{lem:orth:sepimpliesdagger}
+  If $X$ is separated then $X$ satisfies $\dagger$.
+\end{lem}
+\begin{proof}
+  Suppose that $X$ is separated, in the effective topos this means
+  that it may be presented as $(X, \card{-})$ where
+  \[
+    x = y \in X \triangleq
+    \begin{cases}
+      \card{x} & x = y\\
+      \emptyset & \text{otherwise}
+    \end{cases}
+  \]
+  Let us now define $E$ as with the underlying set of $X \times N$.
+  Since we want $E$ to be separated, it suffices to define
+  $\card{-} : X \times N \to N$. Let us define this with
+  \[
+    \card{(x, n)} =
+    \begin{cases}
+      \{n\} & n \in \card{x}\\
+      \emptyset & \text{otherwise}
+    \end{cases}
+  \]
+  Since $X$ and $N$ are both separated, this relation is trivially
+  functional with respect to their PERs so this gives rise to a
+  subobject $E \mono X \times N$. Next we need to define an
+  epimorphism $E \epi X$. We take the obvious functional relation
+  defined for the map $(x, n) \mapsto x$. We can trivially realize
+  this with $\lambda x. x$ so the properties of the resulting
+  functional relation may be realized as well. It is trivial to show
+  that this is epi because for all $x \in X$,
+  $\card{x} \neq \emptyset$. Finally, we need to show that
+  $f = (x, n) \mapsto n : E \to N$ is a $\neg\neg$-sheaf in $\eff/I$. It
+  suffices to show that $f \mono N^*(\Delta X)$ is a closed subobject
+  since $N^*$ is logical and thus preserves $\neg\neg$-sheaves. It
+  suffices to show that
+  \[
+    E \mono X \times N \mono \Delta X \times N
+  \]
+  is closed but this is a trivial exercise in realizing the
+  implication $\forall n, x.\ \neg\neg E\card{(x, n)} \to E\card{(x, n)}$;
+  it is easily done with a projection.
+\end{proof}
+\begin{lem}\label{defn:orth:sepsliceimpliesdagger}
+  If $X \to I$ is separated and $I$ is separated then $X \to I$
+  satisfies $\dagger$ in $\eff/I$.
+\end{lem}
+\begin{proof}
+  For this, we first note that an object is separated if and only if
+  the unit $A \to a(A)$ of the sheafification adjunction is a
+  monomorphism. Next, we can define $a$ in $\eff/I$ (written as $a_I$
+  for disambiguation) in terms of $a$ in $\eff$ by the following
+  pullback
+  \[
+    \begin{tikzcd}
+      A' \ar[r] \ar[d, swap, "a_I(f)"] & a(A) \ar[d, "a(f)"]\\
+      I \ar[r, swap, "\eta_I"] & a(I)
+    \end{tikzcd}
+  \]
+  Now if $I$ is separated and $f : X \to I$ is separated then $X$ is
+  separated by simple composition of these two facts. To see this,
+  first note that the top side is the composition of two monomorphisms
+  in the following diagram
+  \[
+    \begin{tikzcd}
+      A \ar[d, swap, "f"] \ar[r, "\eta_f"] & A' \ar[r] \ar[d, swap, "a_I(f)"] & a(A) \ar[d, "a(f)"]\\
+      I \ar[r, equals] & I \ar[r, swap, "\eta_I"] & a(I)
+    \end{tikzcd}
+  \]
+  and since
+  \[
+    \begin{tikzcd}
+      A \ar[rd, swap, "\eta_f"] \ar[rr, "\eta_A"]&& a(A) \ar[dd, dashed]\\
+      &A' \ar[dr]&\\
+      && a(A)
+    \end{tikzcd}
+  \]
+  commutes using the universal property of $\eta_A$ we get that
+  $\eta_A$ is a mono by the properties of a the sheaf and the fact
+  that if $f \circ g$ is mono so is $g$.
+
+  In any case, this is all to establish that $X$ is
+  separated. Therefore, by Lemma~\ref{lem:orth:sepimpliesdagger} we
+  have that there is an $E$ so that $E \mono X \times N$ and
+  $E \epi N$ with $E \to N$ being a $\neg\neg$-sheaf. Next, we note
+  that $f \times_I N^*(I) \cong X \times I$. Therefore, we have a mono
+  \[
+    \begin{tikzcd}
+      E \ar[r, rightarrowtail] \ar[dr] &
+      X \times N \ar[d, swap, "f \circ \pi_2"] \ar[r, equals] &
+      X \times_I I^*(N) \ar[dl] \\
+      &I&
+  \end{tikzcd}
+  \]
+  Therefore we have a surjection $E \epi f$ given simply by
+  composition with $\pi_1$. All that is left to show is that the
+  following is a $\neg\neg$-sheaf.
+  \[
+    \begin{tikzcd}
+      E \ar[r, rightarrowtail] \ar[dr] &
+      X \times_I I^*(N) \ar[r, "\pi_2"] &
+      I^*(N) \ar[dl] \\
+      &I&
+  \end{tikzcd}
+  \]
+  In order to show this it suffices to show that $f : E \to I^*(N)$ is
+  a closed subobject of a sheaf, $a_I X \times N$, which is a sheaf
+  since it is equal to $N^*(a_I X)$ and $N^*$ is logical. Let us first
+  observe that we then have the pullback
+  \[
+    \begin{tikzcd}
+      a_I X \times N \ar[r] \ar[d] & a(X \times N) \ar[d] \\
+      I \times N \ar[r, swap, "\eta"] & a(I \times N)
+    \end{tikzcd}
+  \]
+  Now we can extend this
+  \[
+    \begin{tikzcd}
+      E \ar[d, swap, "f"] \ar[r, rightarrowtail] &
+      X \times N \ar[d] \ar[r, rightarrowtail, "\eta"] &
+      a_I(X) \times N \ar[r] \ar[d] &
+      a(X) \times N \ar[d] \\
+      I \times N \ar[r, equals] &
+      I \times N \ar[r, equals] &
+      I \times N \ar[r, swap, rightarrowtail, "\eta"] &
+      a(I) \times N
+    \end{tikzcd}
+  \]
+  We note that $E \mono a(X) \times N$ is closed because
+  $a_I(X) \times N \mono a(X) \times N$ is closed. This in turn
+  follows from the fact that $(f, g)$ is closed if $f$ and $g$ are
+  both closed, obviously $1 : N \to N$ is closed and $a_I(X) \to a(X)$
+  is closed because this is a morphism in the subcategory of
+  $\neg\neg$-sheaves in $\eff/I$. Since
+  $a_I(X) \times N \to a(X) \times N$ is mono, we know that
+  \[
+    \begin{tikzcd}
+      a_I(X) \times N \ar[r, equals] \ar[d, equals] & a_I(X) \times N \ar[d, rightarrowtail] \\
+      a_I(X) \times N \ar[r, rightarrowtail] & a(X) \times N
+    \end{tikzcd}
+  \]
+  is a pullback and so $E \mono a_I(X) \times N$ is a closed subobject
+  because closed subobjects are preserved by pullback.
+\end{proof}
+\begin{thm}\label{thm:orth:seporth}
+  If $X \to I$ is orthogonal to $\Delta 2$ and is covered by $Y \to I$
+  with property $\dagger$, then $X \to I$ is a subquotient of
+  $I^*(N)$.
+\end{thm}
+\begin{proof}
+  \todo{Should prove}
+\end{proof}
+\begin{thm}\label{defn:orth:seporth}
+  The subfibrations $(Q)$ and $\orth(\Delta 2)$ are identical.
+\end{thm}
+\begin{proof}
+  \todo{Really should prove}
+\end{proof}
+\begin{cor}
+  $Q$ is an small, weakly complete category.
+\end{cor}
