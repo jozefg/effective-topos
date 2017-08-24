@@ -851,8 +851,66 @@ satisfied.
 
   In any case, this is all to establish that $X$ is
   separated. Therefore, by Lemma~\ref{lem:orth:sepimpliesdagger} we
-  have that there is an $E$ so that $E \mono X \times N$ and $E \epi
-  N$ with $E \to N$ being a $\neg\neg$-sheaf.
+  have that there is an $E$ so that $E \mono X \times N$ and
+  $E \epi N$ with $E \to N$ being a $\neg\neg$-sheaf. Next, we note
+  that $f \times_I N^*(I) \cong X \times I$. Therefore, we have a mono
+  \[
+    \begin{tikzcd}
+      E \ar[r, rightarrowtail] \ar[dr] &
+      X \times N \ar[d, swap, "f \circ \pi_2"] \ar[r, equals] &
+      X \times_I I^*(N) \ar[dl] \\
+      &I&
+  \end{tikzcd}
+  \]
+  Therefore we have a surjection $E \epi f$ given simply by
+  composition with $\pi_1$. All that is left to show is that the
+  following is a $\neg\neg$-sheaf.
+  \[
+    \begin{tikzcd}
+      E \ar[r, rightarrowtail] \ar[dr] &
+      X \times_I I^*(N) \ar[r, "\pi_2"] &
+      I^*(N) \ar[dl] \\
+      &I&
+  \end{tikzcd}
+  \]
+  In order to show this it suffices to show that $f : E \to I^*(N)$ is
+  a closed subobject of a sheaf, $a_I X \times N$, which is a sheaf
+  since it is equal to $N^*(a_I X)$ and $N^*$ is logical. Let us first
+  observe that we then have the pullback
+  \[
+    \begin{tikzcd}
+      a_I X \times N \ar[r] \ar[d] & a(X \times N) \ar[d] \\
+      I \times N \ar[r, swap, "\eta"] & a(I \times N)
+    \end{tikzcd}
+  \]
+  Now we can extend this
+  \[
+    \begin{tikzcd}
+      E \ar[d, swap, "f"] \ar[r, rightarrowtail] &
+      X \times N \ar[d] \ar[r, rightarrowtail, "\eta"] &
+      a_I(X) \times N \ar[r] \ar[d] &
+      a(X) \times N \ar[d] \\
+      I \times N \ar[r, equals] &
+      I \times N \ar[r, equals] &
+      I \times N \ar[r, swap, rightarrowtail, "\eta"] &
+      a(I) \times N
+    \end{tikzcd}
+  \]
+  We note that $E \mono a(X) \times N$ is closed because
+  $a_I(X) \times N \mono a(X) \times N$ is closed. This in turn
+  follows from the fact that $(f, g)$ is closed if $f$ and $g$ are
+  both closed, obviously $1 : N \to N$ is closed and $a_I(X) \to a(X)$
+  is closed because this is a morphism in the subcategory of
+  $\neg\neg$-sheaves in $\eff/I$. Since
+  $a_I(X) \times N \to a(X) \times N$ is mono, we know that
+  \[
+    \begin{tikzcd}
+      a_I(X) \times N \ar[r, equals] \ar[d, equals] & a_I(X) \times N \ar[d, rightarrowtail] \\
+      a_I(X) \times N \ar[r, rightarrowtail] & a(X) \times N
+    \end{tikzcd}
+  \]
+  is a pullback and so $E \mono a_I(X) \times N$ is a closed subobject
+  because closed subobjects are preserved by pullback.
 \end{proof}
 \begin{thm}\label{thm:orth:seporth}
   If $X \to I$ is orthogonal to $\Delta 2$ and is covered by $Y \to I$
