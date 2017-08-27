@@ -468,6 +468,35 @@ satisfied.
   orthogonal to $a(2)$ by Lemma~\ref{lem:orth:north}. Finally, this
   gives us that $E' \to I$ is orthogonal to $\Omega$ by
   Lemma~\ref{lem:orth:orthsubobjects}.
+
+  Next, we know that $E \to N$ is a sheaf by the definition of
+  $\dagger$ so we have that
+  \[
+    (E \to N)^{N^*(a(2))} \cong (E \to N)^2 \cong E \to N \times_N E \to N
+  \]
+  Now based on this we can form the following commutative square
+  \[
+    \begin{tikzcd}
+      (E \to N)^{N^*(a(2))} \ar[r, twoheadrightarrow] \ar[d] & (E \to N) \times_N (E \to N) \ar[d, twoheadrightarrow]\\
+      (E' \to N)^{N^*(a(2))} \ar[r] & (E' \to N) \times_N (E \to N)\\
+    \end{tikzcd}
+  \]
+  This in turn implies that
+  $(E' \to N)^{N^*(a(2))} \epi (E' \to N) \times_N (E \to N)$ and
+  since $(E' \to N) \cong (E' \to N)^{N^*(a(2))}$ ($E'$ is orthogonal
+  to $a(2)$) we then have an epi
+  \[
+    (E' \to N) \to (E' \to N) \times_N (E' \to N)
+  \]
+  This expands to the commutativity of the following pullback diagram
+  \[
+    \begin{tikzcd}
+      E' \times_N E' \ar[d] \ar[r] & E' \ar[d] \ar[l, bend right, twoheadrightarrow] \\
+      \ar[u, bend left, twoheadrightarrow] E' \ar[r] & N
+    \end{tikzcd}
+  \]
+  Therefore, $E' \times_N E' \cong E'$ and we have $E' \mono N$ as
+  required.
 \end{proof}
 \begin{thm}\label{defn:orth:seporth}
   The subfibrations $(Q)$ and $\orth(\Delta 2)$ are identical.
