@@ -316,7 +316,7 @@ satisfied.
   implication $\forall n, x.\ \neg\neg E\card{(x, n)} \to E\card{(x, n)}$;
   it is easily done with a projection.
 \end{proof}
-\begin{lem}\label{defn:orth:sepsliceimpliesdagger}
+\begin{lem}\label{lem:orth:sepsliceimpliesdagger}
   If $X \to I$ is separated and $I$ is separated then $X \to I$
   satisfies $\dagger$ in $\eff/I$.
 \end{lem}
@@ -498,11 +498,35 @@ satisfied.
   Therefore, $E' \times_N E' \cong E'$ and we have $E' \mono N$ as
   required.
 \end{proof}
-\begin{thm}\label{defn:orth:seporth}
-  The subfibrations $(Q)$ and $\orth(\Delta 2)$ are identical.
+\begin{thm}\label{thm:orth:seporth}
+  The subfibrations $(Q)$ and $\orth(\Delta 2)$ are identical in the
+  fibers over separated objects.
 \end{thm}
 \begin{proof}
-  \todo{Really should prove}
+  For this, we first note that $(Q)^I$ is comprised of families
+  covered by a subquotient of $N$. It therefore suffices to show that
+  a family is orthogonal to $\Delta 2$ if and only if it is covered by
+  a subquotient of $N$. The if direction is obvious since $N$ is
+  orthogonal to $\Delta 2$, therefore, so are all subobjects of $N$
+  and therefore so are all things covered by subobjects of $N$. Next,
+  suppose that we have $X \to I$ which is orthogonal to $\Delta 2$. We
+  can cover $X \to I$ with $Y \to I$ which is a separated object and
+  therefore, we may apply Lemma~\ref{lem:orth:sepsliceimpliesdagger}
+  as well as Theorem~\ref{thm:orth:seporth} to conclude that $X \to I$
+  is a subquotient of $I^*(N)$ as required.
+\end{proof}
+\begin{cor}
+  The subfibrations $(Q)$ and $\orth(\Delta 2)$ are weakly
+  equivalent.
+\end{cor}
+\begin{proof}
+  This follows immediately from the definition of weak equivalence and
+  the fact that every object is covered by a separated object so we
+  may apply Theorem~\ref{thm:orth:seporth} to get our modified,
+  weaker, version of essential surjectivity.
+\end{proof}
+\begin{proof}
+  This follows
 \end{proof}
 \begin{cor}
   $Q$ is an small, weakly complete category.
