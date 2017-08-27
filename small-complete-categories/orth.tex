@@ -198,6 +198,12 @@ subfibrations of orthogonal objects.
 \begin{proof}
   \todo{Should prove this in full}.
 \end{proof}
+\begin{lem}\label{lem:orth:north}
+  $N$ is orthogonal to $\Omega$.
+\end{lem}
+\begin{proof}
+  \todo{This is necessary later}
+\end{proof}
 
 The remaining task is to prove that $\cat{Fam}(Q)$ is equivalent to
 $\orth(\Omega) = \orth(\Delta 2)$. In order to start doing this, we
@@ -412,12 +418,56 @@ satisfied.
   because closed subobjects are preserved by pullback.
 \end{proof}
 \begin{thm}\label{thm:orth:seporth}
-  If $X \to I$ is orthogonal to $\Delta 2$ and is covered by $Y \to I$
-  with property $\dagger$, then $X \to I$ is a subquotient of
-  $I^*(N)$.
+  If $f : X \to I$ is orthogonal to $\Delta 2$ and is covered by
+  $g : Y \to I$ with property $\dagger$, then $X \to I$ is a
+  subquotient of $I^*(N)$.
 \end{thm}
 \begin{proof}
-  \todo{Should prove}
+  Suppose that $h : E \to I$ is the object so that
+  \[
+    \begin{tikzcd}
+      E \ar[rr, rightarrowtail] \ar[dr] & & Y \times_I I^*(N) \ar[dl]\\
+      & I &
+    \end{tikzcd}
+  \]
+  We can rewrite this diagram as
+  \[
+    \begin{tikzcd}
+      E \ar[rr, rightarrowtail] \ar[ddr] & & Y \times_I I^*(N) \ar[d, twoheadrightarrow]\\
+      & & X \times_I I^*(N) \ar[dl]\\
+      & I &
+    \end{tikzcd}
+  \]
+  We know that this map from $E \to X \times I^*(N)$ has a canonical
+  factorization as a epi followed by a mono so we can complete this
+  square
+  \[
+    \begin{tikzcd}
+      E \ar[rr, rightarrowtail] \ar[d, twoheadrightarrow] & & Y \times_I I^*(N) \ar[d, twoheadrightarrow]\\
+      E' \ar[rr, rightarrowtail] \ar[dr] & & X \times_I I^*(N) \ar[dl]\\
+      & I &
+    \end{tikzcd}
+  \]
+  Since $E \to Y \times_I I^*(N) \to Y$ is epi, as is
+  $Y \times_I I^*(N) \to X \times_I I^*(N)$ we know that
+  $E \to E' \to X \times_I I^*(N) \to X$ must also be epi. It is then a
+  simple property of epimorphisms that $E' \to X \times_I I^*(N) \to X$
+  is itself an epimorphism. Now, if we can show that
+  $E' \to X \times_I I^*(N) \to I^*(N)$ is a monomomorphism, then we
+  have
+  \[
+    \begin{tikzcd}
+      E' \ar[rr, rightarrowtail] \ar[dr] & & X \times_I I^*(N) \ar[dl]\\
+      & I &
+    \end{tikzcd}
+  \]
+  $X \times_I I^*(N) \cong X \times N$ and $\orth(\Omega)$ is closed
+  under finite limits by Theorem~\ref{thm:orth:orthfibration} we note
+  that $X \times N$ is orthogonal to $\orth(\Omega)$. Here we have
+  also used that $\orth(\Omega) = \orth(a(2))$ and that $N$ is
+  orthogonal to $a(2)$ by Lemma~\ref{lem:orth:north}. Finally, this
+  gives us that $E' \to I$ is orthogonal to $\Omega$ by
+  Lemma~\ref{lem:orth:orthsubobjects}.
 \end{proof}
 \begin{thm}\label{defn:orth:seporth}
   The subfibrations $(Q)$ and $\orth(\Delta 2)$ are identical.
