@@ -31,13 +31,61 @@ generalized from applying to just a boolean topos, such as $\set$ to
 any topos which is based on top of $\set$ with an object of
 generators! In particular, we can generalize this result to any
 internal category to a Grothendieck topos. This result was concisely
-proven by \citet{Gubkin:10} and is restated below.
+proven by \citet{Gubkin:10} and is restated for the purposes of better
+preservation.
 \begin{thm}\label{thm:freyd:grothendieck}
   In any category $\Ccat$ internal to a topos $\Etop$ based on $\set$
   which is complete must be a poset.
 \end{thm}
 \begin{proof}
-  \todo{Reprove this}
+  This proof relies essentially on two properties of Grothendieck
+  toposes, first, the existence of a global sections functor into set,
+  $\amalg \dashv \Gamma$ and an object of generators $G$. Using these
+  two properties, we can transfer any complete non-poset internal
+  category, $C$, to $\set$. This is done in two steps, first we
+  consider the category $C^G$, where the operations of the internal
+  category are lifted to $C^G$ by the functor action of $-^G$.
+
+  This internal category is then complete. In order to show this we
+  must show that for any internal category $D$, the functor
+  $\Delta : C^G \to (C^G)^D$ has a right ad joint. However, it is
+  clear that $(C^G)^D \cong (C^D)^G$ so we may simply lift the adjoint
+  we have, $C^D \to C$, from completeness of $C$. It is a simple
+  matter to show that the appropriate equations for the adjoint
+  diagram are preserved by the functor $-^G$.
+
+  Next we apply the global sections functor to get an internal
+  category in $\set$. It follows in fact that this category is
+  internally complete as well because any we know that
+  $\Delta : C^G \to (C^G)^{\amalg_S 1}$ has a right adjoint,
+  $\lim_S : (C^G)^{\amalg_S 1} \to C^G$ giving us a morphism
+  $\Gamma(\lim_S) : \Gamma((C^G)^{\amalg_S 1}) \to \Gamma(C^G)$. But
+  of course, we have that
+  \[
+    \Gamma((C^G)^{\amalg_S 1}) \cong \hom(\amalg_S 1, C^G) \cong
+    \hom(S, \Gamma(C^G))
+  \]
+  But $\hom(S, \Gamma(C^G)) \cong \Gamma(C^G)^S$ so we have the
+  desired $\Gamma(\lim_S) : \Gamma(C^G)^S \to \Gamma(C^G)$ and it is
+  routine to check that the appropriate equations are preserved.
+
+  As a final step, we note that $\Gamma(C^G)$ a poset because
+  $\Gamma(C^G)_1 \cong \hom(G, C_1)$ and if
+  $\Gamma(\langle \partial_0, \partial_1 \rangle) : \hom(G, C_1) \to \hom(G, C_0 \times C_0)$
+  was a monomorphism then
+  \[
+    \langle \partial_0, \partial_1 \rangle \circ f = \langle \partial_0, \partial_1 \rangle \circ g
+  \]
+  which $f, g : G \to C_1$ would imply $f = g$. However, we
+  specifically assumed this was not the case by supposing that $C$ was
+  not a poset, that is, by supposing precisely that
+  $\langle \partial_0, \partial_1 \rangle$ was not a morphism and
+  therefore that there was a $h, k : A \to C_1$ so that
+  $\langle \partial_0, \partial_1 \rangle \circ h = \langle \partial_0, \partial_1 \rangle \circ k$
+  so that $h \neq k$. Finally, since $h \neq k$ we must have a $g : G
+  \to A$ so that $h \circ g \neq k \circ g$ but
+  $\langle \partial_0, \partial_1 \rangle \circ h \circ g = \langle \partial_0, \partial_1 \rangle \circ k \circ g$
+  holds, giving us the desired contradiction.
 \end{proof}
 
 %%% Local Variables:
