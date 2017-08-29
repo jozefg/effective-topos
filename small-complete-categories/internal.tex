@@ -1,4 +1,4 @@
-\section{Internal Category Theory in a Topos}\label{sec:internal}
+\section{Internal Category Theory}\label{sec:internal}
 
 Before continuing further, it would behoove us to take some time to
 discuss and develop the theory of internal category theory to a
@@ -132,7 +132,7 @@ versions of a functor and natural transformation.
     \begin{tikzcd}
       &C_1 \ar[dl, swap, "{\langle \alpha \circ \partial_0, G_1 \rangle}"]
            \ar[dr, "{\langle F_1, \alpha \circ \partial_1 \rangle}"]&\\
-      D_2 \ar[r, "m"] & D_1 & D_2 \ar[l, "m"]
+      D_2 \ar[r, swap, "m"] & D_1 & D_2 \ar[l, "m"]
     \end{tikzcd}
     \begin{tikzcd}
       &C_0 \ar[d, "\alpha"] \ar[dl, swap, "F_0"] \ar[dr, "G_0"]&\\
@@ -148,7 +148,6 @@ is simply an expression of naturality.
   functors, and natural transformations.
 \end{thm}
 \begin{proof}
-  \todo{Probably should prove some parts of this}
 \end{proof}
 Having fleshed out that this forms a 2-category, we know that it
 automatically inherits the notion of adjoint functors and therefore,
@@ -156,15 +155,40 @@ equivalences that are describable in all 2-categories. We will
 devote greater care to the question of equivalences in the next
 section, but for now we will take the opportunity to make some obvious
 definitions.
-
 \begin{thm}\label{thm:internal:2categorical}
   The 2-category $\cat{cat}(\Ccat)$ has finite (co)limits and
   exponentials when the ambient category does.
 \end{thm}
 \begin{proof}
-  \todo{Routine proof, but should spell out}
+  For the sake of brevity, we will only prove the (more interesting)
+  case for exponentials. Suppose that our ambient category has
+  exponentials and limits, we then which to construct $C^D$ for two
+  internal categories. The first of these, $(C^D)_0$ will be defined
+  as
+  \[
+    \{\langle f_0, f_1 \rangle : C_0^{D_0} \times C_1^{D_1} \mid
+    i = f_1 \circ i \mathrel{\wedge} f_0 \circ \partial_i = \partial_i \circ f_1
+    \mathrel{\wedge} f_1 \circ m = m \circ \langle f_1, f_1 \rangle \}
+  \]
+  Here we are using the internal language of the category (which
+  contains equality since $\Ccat$ is assumed to have limits). The
+  object of morphisms is defined as
+  \[
+    \{(F, G, \alpha) : (C^D)_0 \times (C^D)_0 \times D_1^{C_0} \mid
+    F_0 = \partial_0 \circ \alpha \mathrel{\wedge} G_0 = \partial_1 \circ \alpha
+    \mathrel{\wedge}
+    m \circ \langle \alpha \circ \partial_0, G_1 \rangle = m \circ \langle F_1, \alpha \circ \partial_1 \rangle\}
+  \]
+  We define
+  \[
+    \partial_i = \pi_i \qquad
+    i = \langle 1, 1, \Lambda i \rangle
+  \]
+  multiplication is arduous to write out but is simply the standard
+  composition of natural transformations. It is immediate by
+  definition that $C^D$ satisfies the required properties for
+  exponentials.
 \end{proof}
-
 As a final construction, we will concern ourselves with the conversion
 of an internal category to a particular fibration on the
 category. This will be essential for the remainder of our technical
