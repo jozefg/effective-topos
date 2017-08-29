@@ -1,6 +1,7 @@
 #+TITLE: The to-do list for this collection of notes.
 
-* TODO Add a bibliography
+* DONE Add a bibliography
+  CLOSED: [2017-08-28 Mon 22:03]
 * Concrete topics
 ** TODO Small complete internal categories
 ** Naive models of System F in the effective topos
