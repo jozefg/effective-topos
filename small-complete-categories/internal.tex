@@ -219,10 +219,35 @@ properties with its internal category.
 \end{defn}
 
 \begin{thm}\label{thm:internal:externalization}
-  $\family(C)$ is a split fibration.
+  $\family(C)$ is a (split) fibration.
 \end{thm}
 \begin{proof}
-  \todo{Should prove this in full}
+  In order to show this we break this proof into two components. First
+  off, we show that $\family(C)$ is a fibration. Suppose we are given
+  an object $f : I \to C_0$ in $\cat{Fam}(C)$, we wish to find a
+  lifting of $u : J \to I$ to a morphism $\bar{u} : u^*(f) \to f$. For this, we
+  choose $u^*(f)$ to be the map $f \circ u$ and then the desired map
+  $h : u^*(f) \to C_1$ is just given by $i \circ f \circ u$. This obviously
+  makes the diagram
+  \[
+    \begin{tikzcd}
+      J \ar[dd, swap, "uf"] \ar[rr, "u"] \ar[dr, "ifu"] & & I \ar[dd, "f"]\\
+      & C_1 \ar[dl, swap, "\partial_0"] \ar[dr, "\partial_1"] &\\
+      C_0 && C_0
+    \end{tikzcd}
+  \]
+  It is obvious that this is a cartesian morphism, given
+  \[
+    \begin{tikzcd}
+      K \ar[d, swap, "k"] \ar[rd, "{\family(C)((v, h))}"]&\\
+      J \ar[r, "u"] & I
+    \end{tikzcd}
+  \]
+  then we simply lift $k$ to $(k, h)$ since the map from
+  $u^*(f) \to f$ is just the identity for the diagram of arrows
+  component this obviously still commutes.
+
+  \todo{Prove that this is split}
 \end{proof}
 
 %%% Local Variables:
