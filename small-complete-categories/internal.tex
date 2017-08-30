@@ -247,7 +247,21 @@ properties with its internal category.
   $u^*(f) \to f$ is just the identity for the diagram of arrows
   component this obviously still commutes.
 
-  \todo{Prove that this is split}
+  Now in order to prove that this is a split fibration it suffices to
+  show that $u^*(f) = f \circ u$ and to show that
+  $u^*((id, h)) = (1, h \circ u)$. The first is immediate by our
+  construction of $u^*(f)$. The second follows from the commutativity
+  of the following in $\cat{Fam}(C)$
+  \[
+    \begin{tikzcd}
+      u^*(f') \ar[r, "{\bar{u}(f')}"] \ar[d, swap, "{(1, h \circ u)}"] &
+      f' \ar[d, "{(1, h)}"]\\
+      u^*(f) \ar[r, swap, "\bar{u}(f)"] & f
+    \end{tikzcd}
+  \]
+  Since then $v^*(u^*(f)) = f \circ u \circ v = (u \circ v)^*(f)$ and similarly,
+  $v^*(u^*((1, h))) = (1, h \circ u \circ v) = (u \circ v)^*((1, h))$
+  giving us the two conditions we need for a split fibration.
 \end{proof}
 
 %%% Local Variables:
