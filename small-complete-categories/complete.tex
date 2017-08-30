@@ -28,7 +28,44 @@ right notion of finite limit for externalizations as well.
   finite limits.
 \end{thm}
 \begin{proof}
-  \todo{Flesh me out!}
+  First let us suppose that $C$ has finite limits and attempt to show
+  that $\family(C)$ has them. As is usual for proving the existence of
+  finite limits, we simply prove that this property holds for products
+  and equalizers.
+
+  First products, suppose that $C$ has products. That is, we know that
+  there is an internal functor $p : C \times C \to C$ so that there is
+  an internal natural transformation $\eta : 1 \to p \circ \Delta$.
+  That is, an external map $\eta : C_0 \to C_1$ sending each object
+  $X$ to the diagonal map $X \to X \times X$ internally which
+  satisfies the usual universal property; any internal map
+  $A \to B \times C$ factors through $\eta_A : A \to A \times A$.
+
+  We then suppose that we have $f, g : I \to C_0$ as objects in
+  $\cat{Fam}_I(C)$. We want to show that
+  $p_0 \circ \langle f, g \rangle$ is a product. That is, that for any
+  $h$,
+  \[
+    \hom(h, f) \times (h, g) \cong \hom(h, p_0 \circ \langle f, g \rangle)
+  \]
+  However, since we're in a fiber, we know that $\hom(x, y)$ is
+  precisely the same as a morphism $z : I \to C_1$ so that
+  $x = \partial_0 \circ z$ and $y = \partial_1 \circ z$, or, put more
+  concisely, we have that $z(i) : x(i) \to y(i)$.
+
+  We note that a morphism $h \to f$ is a map $x : I \to C_1$ so that
+  $\partial_0 \circ x = h$ and $\partial_1 \circ x = f$. A map from
+  $h \to g$ is similarly a map $y : I \to C_1$ so that
+  $\partial_0 \circ y = h$ and $\partial_1 \circ y = g$. We then apply
+  the morphism part of the functor to get
+  $z = p_1 \circ \langle x, y \rangle : I \to C_1$ so that internally
+  $z(i) : h(i) \times h(i) \to f(i) \times g(i)$. We can precompose
+  this with the diagonal,
+  $z' = m \circ \langle \eta \circ h, z \rangle$ which internally has
+  the type $z'(i) : h(i) \to f(i) \times g(i)$. Moreover, this clearly
+  satisfies the universal property we expect for a product in
+  $\cat{Fam}_I(C)$ so $p_0 \circ \langle f, g \rangle$ gives us
+  products. The case for equalizers is identical.
 \end{proof}
 Often times the existence of such an adjoint is too strong a
 condition. Working internally to a topos, another reasonable approach
