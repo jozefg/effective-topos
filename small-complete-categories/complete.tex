@@ -64,7 +64,29 @@ right notion of finite limit for externalizations as well.
 
   We now turn to the reverse direction, suppose that $\family(C)$ has
   fiberwise products, we will show that this implies the existence of
-  products in $C$.
+  products in $C$. Suppose that $\family(C)$ has fiberwise limits. We
+  wish to exhibit and adjoint $p : C \times C \to C$. First we define
+  $p_0 : C_0 \times C_0 \to C_0$. This is done by noting that that we
+  have a map $\hom(-, C_0) \times \hom(-, C_0) \to \hom(-, C_0)$
+  sending $(f, g) \mapsto f \times g$. Moreover, this is natural
+  because products are \emph{split} and reindexing is just
+  precomposition. Thus, by Yoneda we have a map
+  $p_0 : C_0 \times C_0 \to C_0$. Next we define
+  $p_1 : C_1 \times C_1 \to C_1$ by an identical process since maps in
+  a fiber of $\cat{Fam}_I(C)$ are equivalent to maps in
+  $\hom(I, C_1)$. Furthermore, we have that
+  $\partial_i \circ p_1 = p_0 \circ \partial_i$ since
+  $y(\partial_i) \circ y(p_1) = y(p_0) \circ y(\partial_i)$ and $y$ is
+  faithful. The conditions for $m$ and $i$ are equivalent and rely on
+  properties of our natural transformations. It remains to show that
+  $\Delta \dashv p$. For this, we must illustrate an
+  $\eta : 1 \to p \circ \Delta$ which is appropriately universal. Let
+  us consider the family unique map $1 \to 1 \times 1$ in
+  $\cat{Fam}_{C_0}(C)$. This is a map $\eta : C_0 \to C_1$ so that
+  \[
+    \partial_0 \circ \eta = 1 \qquad \partial_1 \circ \eta = p_0
+  \]
+  as required.
 \end{proof}
 Often times the existence of such an adjoint is too strong a
 condition. Working internally to a topos, another reasonable approach
