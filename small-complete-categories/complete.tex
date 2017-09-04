@@ -81,12 +81,28 @@ right notion of finite limit for externalizations as well.
   properties of our natural transformations. It remains to show that
   $\Delta \dashv p$. For this, we must illustrate an
   $\eta : 1 \to p \circ \Delta$ which is appropriately universal. Let
-  us consider the family unique map $1 \to 1 \times 1$ in
-  $\cat{Fam}_{C_0}(C)$. This is a map $\eta : C_0 \to C_1$ so that
+  us consider the family unique map $X \to X \times X$ in
+  $\cat{Fam}_{I}(C)$. This map is preserved by reindexing and so is
+  natural in $I$. Additionally, this unique map has the type
+  $I \to C_1$ and so by instantiating it at $I = C_0$ we get
+  $\eta : C_0 \to C_1$ so that
   \[
     \partial_0 \circ \eta = 1 \qquad \partial_1 \circ \eta = p_0
   \]
-  as required.
+  as required. Lastly we need to desired universal property. It
+  suffices to show that the property holds for every $I$. Therefore,
+  suppose that we have a map $f : I \to C_1$
+  \[
+    f(i) : X(i) \to p_0(A(i), B(i))
+  \]
+  We wish to show that we can factor $f$ through $\eta$, then the
+  Yoneda lemma gives us our desired universality property. For this,
+  we note that we have a map in the fiber $\cat{Fam}_I(C)$ between $X$
+  and $p \circ \langle A, B \rangle$. By the property the universal
+  property of products this factors map factors through
+  $X \to p \circ \langle X, X \rangle$. However, we now that this is
+  precisely equivalent to factoring through $\eta$ since the diagonal
+  is preserved by reindexing.
 \end{proof}
 Often times the existence of such an adjoint is too strong a
 condition. Working internally to a topos, another reasonable approach
