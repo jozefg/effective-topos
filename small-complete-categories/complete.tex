@@ -171,7 +171,7 @@ Weak equivalences are more difficult because there isn't a
 corresponding notion of existential quantifier at in the metalogic
 which corresponds to internal existence. In order to deal with this,
 we draw inspiration from Kripke-Joyal semantics where $\exists$ is
-modelled with a change of base.
+modeled with a change of base.
 \begin{thm}\label{thm:complete:weakequivalencelifts}
   $F : C \to D$ is a weak equivalence if and only if it lifts to
   $\family(F)$ so that $\family(F)$ is cartesian, full, faithful, and
@@ -180,10 +180,8 @@ modelled with a change of base.
   $\alpha^*(X) \cong \family(F)(Y)$.
 \end{thm}
 \begin{proof}
-  First we show that an internal functor lifts to a cartesian functor
-  and that an functor between externalizations corresponds to an
-  internal functor. For the former, $\family(F)$ can be defined as
-  sending
+  First we show that an internal functor lifts to a cartesian
+  functor. First we note that $\family(F)$ can be defined as sending
   \[
     \begin{tikzcd}
       I\ar[d, "f"] \\
@@ -277,6 +275,16 @@ modelled with a change of base.
   $\partial_1 \circ f = y \circ \alpha$. This precisely what we
   supposed however, picking $x = p$ and $f = q$ so we're done.
 \end{proof}
+\begin{defn}\label{defn:complete:weakequivalencefib}
+  A pair of fibrations, $P$ and $Q$, are said to be weakly equivalent
+  when there is a third fibration $V$ so that there are weak
+  equivalences $V \to P$ and $V \to Q$.
+
+  A weak equivalence is a Cartesian morphism which is full, faithful,
+  and for any $X$ in $\cat{Fam}(D)$ there is a $Y \in \cat{Fam}(C)$ so
+  that there is an epi $\alpha \in \hom(\family(F)(Y), X)$. so that
+  $\alpha^*(X) \cong \family(F)(Y)$.
+\end{defn}
 Now we turn to the fatal flaw in
 Definition~\ref{defn:complete:weakcompletebroken}.
 \begin{thm}\label{thm:complete:weakcompletenotpreserved}
@@ -353,22 +361,65 @@ is (weakly) complete by the previous definition in each slice.
 \end{proof}
 As a final observation, this notion of completeness has a pleasant
 characterization at the level of fibrations.
-\begin{thm}\label{thm:complete:completefibration}
-  The following hold
+\begin{defn}\label{defn:complete:completefibration}
   \begin{itemize}
   \item $C$ is complete if $\family(C)$ has fiberwise finite limits and a
-    right adjoint to reindexing.
+    right adjoint to reindexing. Moreover, both of these are preserved
+    by reindexing.
   \item $C$ is weakly complete if $\family(C)$ if given a finite
     diagram in the fiber over $I$, there is a $K \epi I$ so that the
     reindexing of the diagram has a limit over $K$. Similarly, for
     each $u : I \to J$ there is a $e : J \epi K$ so that $(eu)^*$ has
-    a right adjoint.
+    a right adjoint. Furthermore, reindexing preserves all finite
+    limits and indexed products when they exist.
   \end{itemize}
-  Furthermore, (weak) equivalences of fibration preserve (weak)
-  completeness.
+\end{defn}
+
+Like any good categorical definition, we shall expect completeness and
+weak completeness to be preserved by equivalences.
+\begin{thm}\label{thm:complete:completefibration}
+  (Weak) equivalences of fibration preserve (weak) completeness.
 \end{thm}
 \begin{proof}
-  \todo{Really tricky but very important}
+  Again we shall only prove this for weak completeness and
+  equivalences because our final result will involve the weak
+  completeness of an internal category.
+
+  In order to do this, we must show that a weak equivalence preserves
+  and reflects weak completeness because,
+  Definition~\ref{defn:complete:weakequivalencefib} requires
+  equivalences heading in both directions.
+
+  Suppose we have a weak equivalence $F : P \to Q$ between the
+  fibrations $P$ and $Q$. First, we wish to show that if $P$ is weakly
+  complete then so is $Q$. Suppose we have a finite diagram,
+  $d : D \to Q^J$ in $Q$ in the fiber above $J$, since it is finite
+  there is an object $I$ with an epimorphism $\alpha : I \epi J$ so
+  that reindexing all of $d$ along $\alpha$ (by abuse of notation
+  denoted as $\alpha^*(d)$) we have that $\alpha^*(d) \cong F \circ e$
+  where $e$ is a diagram $D' \to P^I$. By weak completeness of $P$ we
+  can find a $\beta : K \epi I$ so that there is a limit of
+  $\beta^*(d')$, let us call it $X$. I then claim that there is a
+  limit for $(\alpha\beta)^*(d)$ in $Q$, namely $F(X)$. Suppose that
+  we had a cone for $(\alpha\beta)^*(d)$, $Y$, in $Q^K$, we need to
+  exhibit a unique vertical morphism from $Y$ to $F(X)$. Then by our
+  equivalent of fullness and essential surjectivity, there is a
+  $\gamma : L \epi K$ and a $Z$ so that $\gamma^*(Y) \cong F(Z)$ and
+  the cone for $Y$ can be lifted to a cone on $Z$. This gives us a
+  unique morphism from $Z \to \gamma^*(X)$ in $P^L$ since reindexing
+  preserves finite limits in $P$. Therefore, there is a unique
+  morphism from
+  $\gamma^*(Y) \cong F(Z) \to F(\gamma^*(X)) \cong \gamma^*(F(X))$
+  (the latter isomorphism following from the fact that $F$ is
+  cartesian).
+\end{proof}
+
+\begin{thm}\label{thm:complete:completeexternalization}
+  An internal category $C$ is weakly complete if and only if its
+  externalization is.
+\end{thm}
+\begin{proof}
+
 \end{proof}
 At this point we have developed all the theory that we need to being
 our investigation of what small complete categories exist in the
