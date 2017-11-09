@@ -283,12 +283,25 @@ Definition~\ref{defn:complete:weakcompletebroken}.
   Weak completeness is not preserved by weak equivalences.
 \end{thm}
 \begin{proof}
-  Suppose that we have $C$ weakly equivalent to $C'$ and that $C$ is
-  weakly complete, we wish to demonstrate that $C'$ needn't be weakly
-  complete. Since $C \equiv C'$, we have an internal functor
-  $C \to C'$ and since it's an equivalence it's internally full,
-  faithful and essentially surjective. Essential surjectivity implies
-  that $C \epi C'$ \todo{Finish}
+  Suppose that we have $C$ weakly equivalent to $C'$ both being
+  internal discrete categories and that $C$ is weakly complete, we
+  wish to demonstrate that $C$ needn't be weakly complete. Since
+  $C \equiv C'$, we have an internal functor $C \to C'$, $F$, and
+  since it's an equivalence it's internally full, faithful and
+  essentially surjective. Fullness and faithfulness are trivial in
+  this case because $C$ and $C'$ are discrete categories. Moreover,
+  since $C$ and $C'$ are discrete, we know that
+  $\isos(C) \cong \Delta$ in the slice over $C \times C$. Therefore,
+  being essentially surjective is really equivalent to $F_0$ being an
+  epi so we have $C_0 \epi C'_0$.
+
+  Suppose now that we have a diagram $C^D$ formed by a discrete
+  category $D$. This in turn tells us that $C^D$ and $C'^D$ are both
+  discrete. However, there is no equivalence $C^D \equiv C'^D$ since
+  we needn't have an epi $C_0^{D_0} \epi C_0'^{D_0}$. This means that
+  given a diagram on $C'$, we cannot necessarily transfer it to a
+  diagram on $C$ to calculate a limit. We can only do this when $D$ is
+  internally projective.
 \end{proof}
 This is a major issue, in category theory it is after all a cardinal
 sin to not be preserved by isomorphism or equivalence. In this case,
