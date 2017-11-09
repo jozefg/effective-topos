@@ -310,7 +310,7 @@ of one internal category and transfer this to more convenient
 categories for semantics. In order to handle this, we will strengthen
 our notion of weak completeness to \emph{indexed} diagrams. An indexed
 diagram is given in the usual category theoretic style, as a functor
-from an internal category in $\Ccat/I$ into $I^*(C)$. Therefore, our
+from an internal category in $D/I$ into $I^*(C)$. Therefore, our
 definition of (weak) completeness is simply that an internal category
 is (weakly) complete by the previous definition in each slice.
 \begin{thm}\label{thm:complete:preservation}
@@ -322,7 +322,34 @@ is (weakly) complete by the previous definition in each slice.
   \end{enumerate}
 \end{thm}
 \begin{proof}
-  \todo{This is tricky but important}
+  As we are only making use of weak completeness in this note, I will
+  only prove the second point. We wish to show that weak equivalences
+  preserve and reflect weak completeness.
+
+  First, reflection so we suppose we have $F : C \equiv C'$ and $C'$
+  being complete. Suppose we have a diagram $d : D \to I^*(C)$. We can
+  trivially extend this to a diagram $I^*(F) \circ d : D \to I^*(C')$.
+  By assumption, there is an internal limit of this diagram so there
+  is a $\alpha : u \epi 1$ so that $p : u \to I^*(C_0')$ exists and is
+  a limit for $I^*(F) \circ d$. Now, since $F$ is essentially
+  surjective, there is a $\beta : v \epi u$ so that
+  $q : v \to I^*(C_0)$ exists and there is an $f : v \to I^*(C_1')$ so
+  that $f$ is an isomorphism between $I^*(F_0) \circ q$ and
+  $p \circ \beta$. It is then a simple matter to check that $q$ is our
+  desired limit for $d$. It follows from the fact that any cone over
+  $d$ in $I^*(C)$ can be mapped to a cone in $I^*(C')$ and the unique
+  map from this cone to $q$ can be lifted to $C$ by the fullness and
+  faithfulness of $F$.
+
+  For preservation, suppose that $F : C \equiv C'$ and that $C$ is
+  complete. We need to show that $C'$ is as well. For this, suppose
+  that we have a diagram $d : D \to I^*(C')$. By taking the iso-comma
+  square formed by $d$ and $I^*(F)$, we end up with a diagram on
+  $I^*(C)$. The limit of this diagram is must exist internally by
+  assumption and it is trivial to check that it is mapped to a limit
+  of $d$ by $I^*(F)$. Notice that it is vital that we are working in
+  the slice category so that we can make use of the iso-comma square
+  in order to construct a diagram on $I^*(C)$ from one on $I^*(C')$.
 \end{proof}
 As a final observation, this notion of completeness has a pleasant
 characterization at the level of fibrations.
