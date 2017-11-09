@@ -153,7 +153,9 @@ the completion of weak equivalences to an equivalence relation.
 \begin{defn}\label{defn:complete:weakequivalence}
   Two internal categories, $C$ and $D$, are said to be weakly
   equivalent if there is an third internal category, $E$, so that
-  there is a pair weak equivalences, $F : E \to C$ and $G : E \to D$.
+  there is a pair weak equivalences, $F : E \to C$ and $G : E \to
+  D$. That is, a pair of functors which are internally full, faithful,
+  and essentially surjective.
 \end{defn}
 We wish to generalize the notion of equivalences of internal
 categories to equivalences of their fibrations so that we can work
@@ -164,22 +166,116 @@ steps, first of all
   of their externalizations.
 \end{thm}
 \begin{proof}
-  \todo{Should be a straightforward check}
 \end{proof}
 Weak equivalences are more difficult because there isn't a
 corresponding notion of existential quantifier at in the metalogic
 which corresponds to internal existence. In order to deal with this,
 we draw inspiration from Kripke-Joyal semantics where $\exists$ is
-modelled with a change of base. \todo{elaborate}
+modelled with a change of base.
 \begin{thm}\label{thm:complete:weakequivalencelifts}
-  $F : C \to D$ is a weak equivalence if it lifts to $\family(F)$ so
-  that $\family(F)$ is cartesian, full, faithful, and for any $X$ in
-  $\cat{Fam}(D)$ there is a $Y \in \cat{Fam}(C)$ so that
-  there is an $\alpha \in \hom(\family(D)(\family(F)(Y)), X)$. so that
+  $F : C \to D$ is a weak equivalence if and only if it lifts to
+  $\family(F)$ so that $\family(F)$ is cartesian, full, faithful, and
+  for any $X$ in $\cat{Fam}(D)$ there is a $Y \in \cat{Fam}(C)$ so
+  that there is an epi $\alpha \in \hom(\family(F)(Y), X)$. so that
   $\alpha^*(X) \cong \family(F)(Y)$.
 \end{thm}
 \begin{proof}
-  \todo{This is weird but not too bad}
+  First we show that an internal functor lifts to a cartesian functor
+  and that an functor between externalizations corresponds to an
+  internal functor. For the former, $\family(F)$ can be defined as
+  sending
+  \[
+    \begin{tikzcd}
+      I\ar[d, "f"] \\
+      C_0
+    \end{tikzcd} \longrightarrow
+    \begin{tikzcd}
+      I\ar[d, "f"] \\
+      C_0 \ar[d, "F_0"]\\
+      D_0
+    \end{tikzcd}
+  \]
+  The action on morphisms sends
+  \[
+    \begin{tikzcd}
+      I \ar[dd, swap, "f"] \ar[rd, "h"] \ar[rr, "\alpha"] && J \ar[dd, "g"]\\
+      & C_1 \ar[dl, swap, "\partial_0"] \ar[dr, "\partial_1"] &\\
+      C_0 && C_0
+    \end{tikzcd} \longrightarrow
+    \begin{tikzcd}
+      I \ar[d, swap, "f"] \ar[rd, "h"] \ar[rr, "\alpha"] && J \ar[d, "g"]\\
+      C_0 \ar[dd, swap, "F_0"] &
+      C_1 \ar[d, "F_1"] \ar[l, swap, "\partial_0"] \ar[r, "\partial_1"] &
+      C_0 \ar[dd, "F_0"]\\
+      & D_1 \ar[dl, swap, "\partial_0"] \ar[dr, "\partial_1"] &\\
+      D_0 && D_0
+    \end{tikzcd}
+  \]
+  We now need to show that this is a cartesian functor. A cartesian
+  morphism in $\cat{Fam}(C)$ is one where the diagram of morphisms is
+  actually a diagram of isomorphisms. That is, where we in fact have
+  the situation
+  \[
+    \begin{tikzcd}
+      I \ar[dd, swap, "f"] \ar[rd, "h"] \ar[rr, "\alpha"] && J \ar[dd, "g"]\\
+      & \isos(C) \ar[dl, swap, "\partial_0"] \ar[dr, "\partial_1"] &\\
+      C_0 && C_0
+    \end{tikzcd}
+  \]
+  It thus suffices to show that $F_1$ restricts to a map
+  $\isos(C) \to \isos(D)$ by the above diagram. This however holds
+  because, permitting the internal argument,
+  \begin{align*}
+    \exists f^{-1}.\ m(f, f^{-1}) = i
+    &\iff \exists f^{-1}.\ F_1(m(f, f^{-1})) = i\\
+    &\iff \exists f^{-1}.\ m(F_1(f), F(f^{-1})) = i\\
+    &\iff \exists f^{-1}.\ m(F_1(f), f^{-1}) = i
+  \end{align*}
+  Now that we have that $\family(F)$ is cartesian we turn to showing
+  that it is faithful if and only if $F$ is. We note that $F$ being
+  faithful is equivalent to $F_1$ being a monomorphism which precisely
+  tells us that $\family(F)$ is faithful. For the reverse, suppose
+  that $\family(F)$ is faithful. Then we wish to show that $F_1$ is a
+  mono. We do have that $F_1^* : \hom(-, C_1) \to \hom(-, F_1)$ is a
+  faithful functor which is precisely what we need.
+
+  Faithfulness and essential surjectivity are proven in identical ways
+  so we focus here on essential surjectivity. Suppose that the formula
+  $\forall Y \in D_0.\ \exists X \in C_0.\ F(X) \cong Y$ holds, we
+  wish to show that $F$ is internally essentially surjective if and
+  only if for any $Y \in \cat{Fam}(D)$ there is an epi $\alpha$ and an
+  $X \in \cat{Fam}{C}$ so that $\family(F)(X) \cong \alpha^*(Y)$.
+  First the forward direction, suppose that we have a family
+  $y : Y \to D_0$. Then, by expanding the definition of ``$F$ is
+  internally essentially surjective'' we have that there is an epi
+  $\alpha : Z \epi Y$ so that there is a $p : Z \to C_0$ and
+  $q : Z \to \isos(D)$ so that $\partial_0 \circ q = F_0 \circ p$ and
+  $\partial_1 \circ q = y \circ \alpha$. We now need to show that
+  $\family(F)(p) \cong \alpha^*(y)$. However, this follows from the
+  commutativity of the diagram
+  \[
+    \begin{tikzcd}
+      Z \ar[d, swap, "p"] \ar[dr, "q"] && Z \ar[d, twoheadrightarrow, "\alpha"]\\
+      C_0 \ar[d, swap, "F_0"] & \isos(D) \ar[dl, swap, "\partial_0"] \ar[dr, "\partial_1"] & Y \ar[d, "y"]\\
+      D_0 && D_0
+    \end{tikzcd}
+  \]
+  For the reverse, suppose instead that for any $y : Y \to D_0$ we had
+  an $\alpha$, $p$ and $q$ so that the following diagram commutes.
+  \[
+    \begin{tikzcd}
+      Z \ar[d, swap, "p"] \ar[dr, "q"] && Z \ar[d, twoheadrightarrow, "\alpha"]\\
+      C_0 \ar[d, swap, "F_0"] & \isos(D) \ar[dl, swap, "\partial_0"] \ar[dr, "\partial_1"] & Y \ar[d, "y"]\\
+      D_0 && D_0
+    \end{tikzcd}
+  \]
+  We now wish to show that
+  $Y \Vdash \exists X.\ \exists f : \isos(C).\ f : X \to y$ holds in
+  the internal logic. By the Kripke-Joyal semantics it suffices to
+  show that there is a global element of $x : Z \to C_0$ and
+  $f : Z \to \isos(D)$ so that $\partial_0 \circ f = x$ and
+  $\partial_1 \circ f = y \circ \alpha$. This precisely what we
+  supposed however, picking $x = p$ and $f = q$ so we're done.
 \end{proof}
 Now we turn to the fatal flaw in
 Definition~\ref{defn:complete:weakcompletebroken}.
@@ -187,7 +283,12 @@ Definition~\ref{defn:complete:weakcompletebroken}.
   Weak completeness is not preserved by weak equivalences.
 \end{thm}
 \begin{proof}
-  Sketch the reason why this is true.
+  Suppose that we have $C$ weakly equivalent to $C'$ and that $C$ is
+  weakly complete, we wish to demonstrate that $C'$ needn't be weakly
+  complete. Since $C \equiv C'$, we have an internal functor
+  $C \to C'$ and since it's an equivalence it's internally full,
+  faithful and essentially surjective. Essential surjectivity implies
+  that $C \epi C'$ \todo{Finish}
 \end{proof}
 This is a major issue, in category theory it is after all a cardinal
 sin to not be preserved by isomorphism or equivalence. In this case,
