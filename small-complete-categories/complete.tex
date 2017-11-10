@@ -253,7 +253,7 @@ modeled with a change of base.
   commutativity of the diagram
   \[
     \begin{tikzcd}
-      Z \ar[d, swap, "p"] \ar[dr, "q"] && Z \ar[d, twoheadrightarrow, "\alpha"]\\
+      Z \ar[rr, equals] \ar[d, swap, "p"] \ar[dr, "q"] && Z \ar[d, twoheadrightarrow, "\alpha"]\\
       C_0 \ar[d, swap, "F_0"] & \isos(D) \ar[dl, swap, "\partial_0"] \ar[dr, "\partial_1"] & Y \ar[d, "y"]\\
       D_0 && D_0
     \end{tikzcd}
@@ -262,7 +262,7 @@ modeled with a change of base.
   an $\alpha$, $p$ and $q$ so that the following diagram commutes.
   \[
     \begin{tikzcd}
-      Z \ar[d, swap, "p"] \ar[dr, "q"] && Z \ar[d, twoheadrightarrow, "\alpha"]\\
+      Z \ar[rr, equals] \ar[d, swap, "p"] \ar[dr, "q"] && Z \ar[d, twoheadrightarrow, "\alpha"]\\
       C_0 \ar[d, swap, "F_0"] & \isos(D) \ar[dl, swap, "\partial_0"] \ar[dr, "\partial_1"] & Y \ar[d, "y"]\\
       D_0 && D_0
     \end{tikzcd}
@@ -374,19 +374,33 @@ characterization at the level of fibrations.
     limits and indexed products when they exist.
   \end{itemize}
 \end{defn}
-
 Like any good categorical definition, we shall expect completeness and
-weak completeness to be preserved by equivalences.
-\begin{thm}\label{thm:complete:completefibration}
+weak completeness to be preserved by equivalences. This, despite what
+is claimed in the original paper, appears to not be the case for weak
+equivalence and weak completeness. Instead, it seems necessary to work
+with pre-stacks (over the regular topology) rather than
+fibrations. These are fibrations which allow us to partially recover a
+fiber from a collection of fibers which cover it. This is reminiscent
+of the way that a separate presheaf, $S$, allows the partial recover
+of $S(X)$ from $(S(X_i))_{i \in I}$ for a covering family $I$. Thus we
+must make a slight detour into descent theory before we proceed. Since
+I am unfamiliar with the general theory and we do not need it, we
+shall not deal with stacks and pre-stacks in generality. The curious
+reader is referred to~\citet{Vistoli:04} or~\citet{Frey:14} the latter
+of which avoids descent theory in its full generality.
+
+Before proceeding, let us consider where the naive proposition we wish
+to prove becomes stuck.
+\begin{prop}\label{prop:complete:completefibrationbroken}
   (Weak) equivalences of fibration preserve (weak) completeness.
-\end{thm}
+\end{prop}
 \begin{proof}
+  \renewcommand{\qed}{\hfill \color{red}{\large \textsf{X}}}
   Again we shall only prove this for weak completeness and
   equivalences because our final result will involve the weak
-  completeness of an internal category.
-
-  In order to do this, we must show that a weak equivalence preserves
-  and reflects weak completeness because,
+  completeness of an internal category. In order to do this, we must
+  show that a weak equivalence preserves and reflects weak
+  completeness because,
   Definition~\ref{defn:complete:weakequivalencefib} requires
   equivalences heading in both directions.
 
@@ -395,27 +409,48 @@ weak completeness to be preserved by equivalences.
   complete then so is $Q$. Suppose we have a finite diagram,
   $d : D \to Q^J$ in $Q$ in the fiber above $J$, since it is finite
   there is an object $I$ with an epimorphism $\alpha : I \epi J$ so
-  that reindexing all of $d$ along $\alpha$ (by abuse of notation
-  denoted as $\alpha^*(d)$) we have that $\alpha^*(d) \cong F \circ e$
-  where $e$ is a diagram $D' \to P^I$. By weak completeness of $P$ we
-  can find a $\beta : K \epi I$ so that there is a limit of
-  $\beta^*(e)$, let us call it $X$. I then claim that there is a limit
-  for $(\alpha\beta)^*(d)$ in $Q$, namely $F(X)$. Suppose that we had
-  a cone for $(\alpha\beta)^*(d)$, $Y$, in $Q^K$, we need to exhibit a
-  unique morphism from $Y$ to $F(X)$. Then by our equivalent of
-  fullness and essential surjectivity, there is a $\gamma : L \epi K$
-  and a $Z$ so that $\gamma^*(Y) \cong F(Z)$ and the cone for $Y$ can
-  be lifted to a cone on $Z$. This gives us a unique morphism from
-  $Z \to \gamma^*(X)$ in $P^L$ since reindexing preserves finite
-  limits in $P$. Therefore, there is a unique morphism from
+  that reindexing all of $d$ along $\alpha$ we have that
+  $\alpha^* \circ d \cong F \circ e$ where $e$ is a diagram
+  $D' \to P^I$. By weak completeness of $P$ we can find a
+  $\beta : K \epi I$ so that there is a limit of $\beta^* \circ e$,
+  let us call it $X$. I then claim that there is a limit for
+  $(\alpha\beta)^* \circ d$ in $Q$, namely $F(X)$. Suppose that we had
+  a cone for $(\alpha\beta)^* \circ d$, $Y$, in $Q^K$, we need to
+  exhibit a unique morphism from $Y$ to $F(X)$. Then by our equivalent
+  of fullness and essential surjectivity, there is a
+  $\gamma : L \epi K$ and a $Z$ so that $\gamma^*(Y) \cong F(Z)$ and
+  the cone for $Y$ can be lifted to a cone on $Z$. This gives us a
+  unique morphism from $Z \to \gamma^*(X)$ in $P^L$ since reindexing
+  preserves finite limits in $P$. Therefore, there is a unique
+  morphism from
   $\gamma^*(Y) \cong F(Z) \to F(\gamma^*(X)) \cong \gamma^*(F(X))$
   (the latter isomorphism following from the fact that $F$ is
   cartesian). But now I'm stuck, I don't have that $\gamma^*$ is full
-  because $\gamma$ is epi, not split epi and I have not assumed the
-  external axiom of choice or anything like that. So, what gives? We
-  also have no descent conditions on these as we're working with
-  ordinary fibrations instead of stacks.
+  because $\gamma$ is epi, not split epi and nothing has been assumed
+  allowing us to move from $Q^L$ to $Q^K$.
 \end{proof}
+\renewcommand{\qed}{\hfill\ensuremath{\Box}}
+What is needed is to impose a condition on our fibrations allowing us
+to \emph{descend} from one fiber to another. Consider a jointly
+epimorphic family of morphisms, $(f_x : J_x \to I)_{x \in X}$ in
+$\Ccat$. Given a fibration $p : \Dcat \to \Ccat$, we can define what's
+called a \emph{descent datum}.
+\begin{defn}\label{defn:complete:descentdatum}
+  A descent datum for $(f_x : J_x \to I)_{x \in X}$ for $p$ is a
+  family of objects $A_x$ and a collection of isomorphisms
+  $\gamma_{x, y}$ so that
+  $\gamma_{xy} : y_{xy}^*(A_x) \cong z_{xy}^*(A_y)$ where $y_{xy}$ and
+  $z_{xy}$ are given by the pullback of $f_y$ along $f_x$.
+
+  Moreover, we require that the family of isomorphisms are compatible
+  with one another. That is, that the satisfy the conditions
+  \begin{enumerate}
+  \item The given the unique map $d_x : J_x \to J_x \times_I J_x$
+    induced by the diagonal we have
+    $d_x^*(y_{xx}^* A_x) \cong A_x \cong d_x^*(z_{xx}^*(A_x))$.
+  \item \todo{write out the associativity condition}
+  \end{enumerate}
+\end{defn}
 
 \begin{thm}\label{thm:complete:completeexternalization}
   An internal category $C$ is weakly complete if and only if its
