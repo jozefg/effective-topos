@@ -399,19 +399,22 @@ weak completeness to be preserved by equivalences.
   denoted as $\alpha^*(d)$) we have that $\alpha^*(d) \cong F \circ e$
   where $e$ is a diagram $D' \to P^I$. By weak completeness of $P$ we
   can find a $\beta : K \epi I$ so that there is a limit of
-  $\beta^*(d')$, let us call it $X$. I then claim that there is a
-  limit for $(\alpha\beta)^*(d)$ in $Q$, namely $F(X)$. Suppose that
-  we had a cone for $(\alpha\beta)^*(d)$, $Y$, in $Q^K$, we need to
-  exhibit a unique vertical morphism from $Y$ to $F(X)$. Then by our
-  equivalent of fullness and essential surjectivity, there is a
-  $\gamma : L \epi K$ and a $Z$ so that $\gamma^*(Y) \cong F(Z)$ and
-  the cone for $Y$ can be lifted to a cone on $Z$. This gives us a
-  unique morphism from $Z \to \gamma^*(X)$ in $P^L$ since reindexing
-  preserves finite limits in $P$. Therefore, there is a unique
-  morphism from
+  $\beta^*(e)$, let us call it $X$. I then claim that there is a limit
+  for $(\alpha\beta)^*(d)$ in $Q$, namely $F(X)$. Suppose that we had
+  a cone for $(\alpha\beta)^*(d)$, $Y$, in $Q^K$, we need to exhibit a
+  unique morphism from $Y$ to $F(X)$. Then by our equivalent of
+  fullness and essential surjectivity, there is a $\gamma : L \epi K$
+  and a $Z$ so that $\gamma^*(Y) \cong F(Z)$ and the cone for $Y$ can
+  be lifted to a cone on $Z$. This gives us a unique morphism from
+  $Z \to \gamma^*(X)$ in $P^L$ since reindexing preserves finite
+  limits in $P$. Therefore, there is a unique morphism from
   $\gamma^*(Y) \cong F(Z) \to F(\gamma^*(X)) \cong \gamma^*(F(X))$
   (the latter isomorphism following from the fact that $F$ is
-  cartesian).
+  cartesian). But now I'm stuck, I don't have that $\gamma^*$ is full
+  because $\gamma$ is epi, not split epi and I have not assumed the
+  external axiom of choice or anything like that. So, what gives? We
+  also have no descent conditions on these as we're working with
+  ordinary fibrations instead of stacks.
 \end{proof}
 
 \begin{thm}\label{thm:complete:completeexternalization}
