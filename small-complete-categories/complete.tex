@@ -430,11 +430,12 @@ to prove becomes stuck.
   allowing us to move from $Q^L$ to $Q^K$.
 \end{proof}
 \renewcommand{\qed}{\hfill\ensuremath{\Box}}
+
 What is needed is to impose a condition on our fibrations allowing us
-to \emph{descend} from one fiber to another. Consider a jointly
-epimorphic family of morphisms, $(f_x : J_x \to I)_{x \in X}$ in
-$\Ccat$. Given a fibration $p : \Dcat \to \Ccat$, we can define what's
-called a \emph{descent datum}.
+to \emph{descend} from one fiber to another. Consider a family of
+morphisms, $(f_x : J_x \to I)_{x \in X}$ in $\Ccat$. Given a fibration
+$p : \Dcat \to \Ccat$, we can define what's called a \emph{descent
+  datum}.
 \begin{defn}\label{defn:complete:descentdatum}
   A descent datum for $(f_x : J_x \to I)_{x \in X}$ for $p$ is a
   family of objects $A_x$ and a collection of isomorphisms
@@ -448,9 +449,156 @@ called a \emph{descent datum}.
   \item The given the unique map $d_x : J_x \to J_x \times_I J_x$
     induced by the diagonal we have
     $d_x^*(y_{xx}^* A_x) \cong A_x \cong d_x^*(z_{xx}^*(A_x))$.
-  \item \todo{write out the associativity condition}
+  \item If we form the triple pullback $J_x \times_I J_y \times_I J_z$
+    with $\pi_{xy} : J_x \times_I J_y \times_I J_z \to J_x \times_I J_y$
+    and similarly $\pi_{xz}$ and $\pi_{yz}$ then
+    \[
+      \begin{tikzcd}
+        \pi_{xy}^*(y^*_{xy}(A_x)) \ar[d] \ar[r, "\pi_{xy}^*(\gamma_{xy})"] &
+        \pi_{xy}^*(z^*_{xy}(A_y)) \ar[r] &
+        \pi_{yz}^*(z^*_{yz}(A_y)) \ar[d, "\pi_{yz}^*(\gamma_{yz})"]\\
+        \pi_{xz}^*(y^*_{xz}(A_x)) \ar[r, swap, "\pi_{xz}^*(\gamma_{xz})"] &
+        \pi_{xz}^*(z^*_{xz}(A_z)) \ar[r] &
+        \pi_{yz}^*(z_{yz}^*(A_z))
+      \end{tikzcd}
+    \]
+    commutes.
   \end{enumerate}
+
+  A morphism between descent datums is a family of morphisms
+  $(h_x)_{x \in X} : (A_x, \gamma_{xy}) \to (B_x, \rho_{xy})$ so that
+  \[
+    \begin{tikzcd}
+      y_{xy}^*(A_x) \ar[r, "\gamma_{xy}"] \ar[d, swap, "y_{xy}^*(h_x)"] &
+      z_{xy}^*(A_y) \ar[d, "z_{xy}^*(h_y)"]\\
+      y_{xy}^*(B_x) \ar[r, swap, "\rho_{xy}"] & z_{xy}^*(B_y)\\
+    \end{tikzcd}
+  \]
 \end{defn}
+All told, this gives us an obvious category
+$\desc(\Dcat, (f_x)_{x \in X})$. In an analogy with sheaves, we may
+think of these descent datums as matching families for a ``presheaf of
+categories''. Just as we can induce a matching family from an element
+of the sheaf at $I$, we can induce a descent datum from an object in
+the fiber above $I$.
+\begin{lem}
+  For any object $A$ in the fiber of $p$ above $I$,
+  $((f_x^*(A))_{x \in X}, \gamma_{xy})$ forms a descent datum where
+  $\gamma_{xy}$ is the witness for
+  $z_{xy}^* \circ f_y^* \cong y_{xy}^* \circ f_x^*$.
+
+  Furthermore, vertical morphisms introduce morphisms between descent
+  datums.
+\end{lem}
+\begin{proof}
+  The checks that these isomorphisms are coherent are trivial. In
+  order to construct a morphism between these induced descent datums
+  we simply pull back the original morphism along $f_x$ for each
+  $x$. The result obviously satisfies the required commutation
+  property.
+\end{proof}
+Let us denote this induced datum by $\phi_f(A)$. It is easy to check
+that $\phi_f$ in fact induces a functor mapping $p^I$ to
+$\desc(\Dcat, (f_x)_{x \in X})$. This raises a question, again by
+analogy with sheaves. When does a descent datum arise from $\phi$?
+Since we are working with categories now instead of merely sets of
+objects, we are entitled to ask to whether all the morphisms between
+$\phi_f(A)$ and $\phi_f(B)$ arise uniquely from $\phi_f$ as well. That
+is, when is $\phi_f$ full and faithful?
+\begin{defn}
+  We shall call a fibration $p$ a stack for a Grothendieck topology
+  $\mathcal{J}$ when $\phi_S$ is an equivalence for all
+  $S \in \mathcal{J}$ and $p$ is a prestack when $\phi_S$ is full and
+  faithful for all $S \in \mathcal{J}$.
+\end{defn}
+Intuitively, a stack gives us the ability to reconstruct an element of
+$p^I$ when we have a scattered collection of objects in $p^{J_x}$
+which look as though they ought to fit together. A prestack gives us
+the ability to do the same, but for vertical morphisms between two
+objects in $p^I$.
+
+We restrict our attention to the so called ``regular topology''. In
+this case we work only with singleton families $f$ instead of jointly
+epimorphic families. In this case we only need on object and one
+isomorphism for each descent datum, $A$ and
+$\iota : \pi_0^*(A) \cong \pi_1^*(A)$. What is particularly useful to
+us is that all the fibrations we want to work with form prestacks for
+this topology.
+\begin{thm}
+  For an internal category $C$, $\cat{Fam}(C)$ is a pre-stack.
+\end{thm}
+\begin{proof}
+  What we must show is that for all $\alpha : J \epi I$ that
+  $\Phi_\alpha$ is full and faithful. To do this, suppose that we have
+  two objects in $A, B \in \cat{Fam}(C)^I$, these give rise to two
+  descent datums $(\alpha^*(A), \iota_A)$ and $(\alpha^*(B), \iota_B)$
+  where$\iota$ is the natural isomorphisms
+  $\iota : p^*\alpha^* \cong q^*\alpha^*$ and $p, q$ is the kernel
+  pair of $\alpha$. Suppose we have a morphism between the descent
+  datums, that is, a morphism $f : \alpha^*(A) \to \alpha^*(B)$ which
+  satisfies $\iota_B \circ p^*(f) = q^*(f) \circ \iota_A$. We must
+  show that there is a $g$ so that $\alpha^*(g) = f$.
+
+  First, as a visualization of $f : \alpha^*(A) \to \alpha^*(B)$ we
+  have the commutative diagram
+  \[
+    \begin{tikzcd}
+      - \ar[d, swap, twoheadrightarrow, "\alpha"] \ar[rd, "f_0"] \ar[rr, "f_1"] && - \ar[d, twoheadrightarrow, "\alpha"]\\
+      - \ar[d, swap, "A"] & C_1 \ar[dl, swap, "\partial_0"] \ar[dr, "\partial_1"] & - \ar[d, "B"]\\
+      C_0 && C_0
+    \end{tikzcd}
+  \]
+  We would like to show that we can rewrite this diagram as
+  \[
+    \begin{tikzcd}
+      - \ar[d, swap, twoheadrightarrow, "\alpha"] \ar[rr, "f_1"] && - \ar[d, twoheadrightarrow, "\alpha"]\\
+      - \ar[dd, swap, "A"] \ar[rr, "g_1"] \ar[dr, "g_0"]  & & - \ar[dd, "B"]\\
+      & C_1 \ar[dl, swap, "\partial_0"] \ar[dr, "\partial_1"] &\\
+      C_0 && C_0
+    \end{tikzcd}
+  \]
+  So that $f_0 = g_0 \circ \alpha$ and the top square is a
+  pullback. In order to construct this $g$ let us turn to the data we
+  have about $f$. First, that if we can show that
+  $f_1 \circ p = f_1 \circ q$ then we automatically obtain a
+  factorization of $f_1$ through $\alpha$ since $\alpha$ is
+  coequalized by $p$ and $q$. In order to see this, we note that our
+  compatability condition on $f$ tells us that
+  \[
+    (\iota_B)_1 \circ p^*(f_1) = q^*(f_1) \circ (\iota_A)_1
+  \]
+
+
+  We can expand $\iota_B \circ p^*(f)$ and
+  $q^*(f) \circ \iota_A$ to the diagrams
+  \[
+    \begin{tikzcd}
+      - \ar[rdd, bend right, out = 270, in = 230, swap, "{m \circ \langle f_0 \circ f_1^*(p), (\iota_B)_0 \circ p^*(f_1) \rangle}"]
+        \ar[d, "f_1^*(p)"] \ar[r, "p^*(f_1)"] &
+      - \ar[d, "p"] \ar[r, "(\iota_B)_1"] & -\\
+      - \ar[r, swap, "f_1"] & - & &\\
+      & C_1 & &
+    \end{tikzcd}
+  \]
+  \[
+    \begin{tikzcd}
+      - \ar[r, "(\iota_A)_1"] \ar[ddr, swap, "{m \circ \langle (\iota_A)_0, f_0 \circ f_1^*(q) \circ (\iota_A)_1 \rangle}"]&
+      - \ar[r, "q^*(f_1)"] \ar[d, "f_1^*(q)"] & - \ar[d, "q"]\\
+      & - \ar[r, swap, "f_1"] & -\\
+      & C_1 &
+    \end{tikzcd}
+  \]
+  Where the two squares in the diagram above are pullbacks. The
+  equality we have thus expands to the equality of two morphisms:
+  \begin{align*}
+    m \circ \langle f_0 \circ f_1^*(p), (\iota_B)_0 \circ p^*(f_1) \rangle &=
+    m \circ \langle (\iota_A)_0, f_0 \circ f_1^*(q) \circ (\iota_A)_1 \rangle\\
+    (\iota_B)_1 \circ p^*(f_1) &= q^*(f_1) \circ (\iota_A)_1
+  \end{align*}
+  Since we know
+
+
+\end{proof}
 
 \begin{thm}\label{thm:complete:completeexternalization}
   An internal category $C$ is weakly complete if and only if its
