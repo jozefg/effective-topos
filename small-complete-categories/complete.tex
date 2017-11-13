@@ -294,7 +294,7 @@ Definition~\ref{defn:complete:weakcompletebroken}.
   Suppose that we have $C$ weakly equivalent to $C'$ both being
   internal discrete categories and that $C$ is weakly complete, we
   wish to demonstrate that $C$ needn't be weakly complete. Since
-  $C \equiv C'$, we have an internal functor $C \to C'$, $F$, and
+  $C \simeq C'$, we have an internal functor $C \to C'$, $F$, and
   since it's an equivalence it's internally full, faithful and
   essentially surjective. Fullness and faithfulness are trivial in
   this case because $C$ and $C'$ are discrete categories. Moreover,
@@ -305,7 +305,7 @@ Definition~\ref{defn:complete:weakcompletebroken}.
 
   Suppose now that we have a diagram $C^D$ formed by a discrete
   category $D$. This in turn tells us that $C^D$ and $C'^D$ are both
-  discrete. However, there is no equivalence $C^D \equiv C'^D$ since
+  discrete. However, there is no equivalence $C^D \simeq C'^D$ since
   we needn't have an epi $C_0^{D_0} \epi C_0'^{D_0}$. This means that
   given a diagram on $C'$, we cannot necessarily transfer it to a
   diagram on $C$ to calculate a limit. We can only do this when $D$ is
@@ -334,7 +334,7 @@ is (weakly) complete by the previous definition in each slice.
   only prove the second point. We wish to show that weak equivalences
   preserve and reflect weak completeness.
 
-  First, reflection so we suppose we have $F : C \equiv C'$ and $C'$
+  First, reflection so we suppose we have $F : C \simeq C'$ and $C'$
   being complete. Suppose we have a diagram $d : D \to I^*(C)$. We can
   trivially extend this to a diagram $I^*(F) \circ d : D \to I^*(C')$.
   By assumption, there is an internal limit of this diagram so there
@@ -349,7 +349,7 @@ is (weakly) complete by the previous definition in each slice.
   map from this cone to $q$ can be lifted to $C$ by the fullness and
   faithfulness of $F$.
 
-  For preservation, suppose that $F : C \equiv C'$ and that $C$ is
+  For preservation, suppose that $F : C \simeq C'$ and that $C$ is
   complete. We need to show that $C'$ is as well. For this, suppose
   that we have a diagram $d : D \to I^*(C')$. By taking the iso-comma
   square formed by $d$ and $I^*(F)$, we end up with a diagram on
@@ -532,7 +532,7 @@ this topology.
   $\Phi_\alpha$ is full and faithful. To do this, suppose that we have
   two objects in $A, B \in \cat{Fam}(C)^I$, these give rise to two
   descent datums $(\alpha^*(A), \iota_A)$ and $(\alpha^*(B), \iota_B)$
-  where$\iota$ is the natural isomorphisms
+  where $\iota$ is the natural isomorphisms
   $\iota : p^*\alpha^* \cong q^*\alpha^*$ and $p, q$ is the kernel
   pair of $\alpha$. Suppose we have a morphism between the descent
   datums, that is, a morphism $f : \alpha^*(A) \to \alpha^*(B)$ which
@@ -543,16 +543,16 @@ this topology.
   have the commutative diagram
   \[
     \begin{tikzcd}
-      - \ar[d, swap, twoheadrightarrow, "\alpha"] \ar[rd, "f_0"] \ar[rr, "f_1"] && - \ar[d, twoheadrightarrow, "\alpha"]\\
-      - \ar[d, swap, "A"] & C_1 \ar[dl, swap, "\partial_0"] \ar[dr, "\partial_1"] & - \ar[d, "B"]\\
+      J \ar[d, swap, twoheadrightarrow, "\alpha"] \ar[rd, "f_0"] \ar[rr, "f_1"] && J \ar[d, twoheadrightarrow, "\alpha"]\\
+      I \ar[d, swap, "A"] & C_1 \ar[dl, swap, "\partial_0"] \ar[dr, "\partial_1"] & I \ar[d, "B"]\\
       C_0 && C_0
     \end{tikzcd}
   \]
   We would like to show that we can rewrite this diagram as
   \[
     \begin{tikzcd}
-      - \ar[d, swap, twoheadrightarrow, "\alpha"] \ar[rr, "f_1"] && - \ar[d, twoheadrightarrow, "\alpha"]\\
-      - \ar[dd, swap, "A"] \ar[rr, "g_1"] \ar[dr, "g_0"]  & & - \ar[dd, "B"]\\
+      J \ar[d, swap, twoheadrightarrow, "\alpha"] \ar[rr, "f_1"] && J \ar[d, twoheadrightarrow, "\alpha"]\\
+      I \ar[dd, swap, "A"] \ar[rr, "g_1"] \ar[dr, "g_0"]  & & I \ar[dd, "B"]\\
       & C_1 \ar[dl, swap, "\partial_0"] \ar[dr, "\partial_1"] &\\
       C_0 && C_0
     \end{tikzcd}
@@ -567,29 +567,47 @@ this topology.
   \[
     (\iota_B)_1 \circ p^*(f_1) = q^*(f_1) \circ (\iota_A)_1
   \]
-
-
-  We can expand $\iota_B \circ p^*(f)$ and
-  $q^*(f) \circ \iota_A$ to the diagrams
+  However, since $\iota$ is a natural isomorphism, we must have then
+  that $p^*(f_1) = q^*(f_1)$ on the nose. Finally, since $q$ and $p$
+  are determined by the pullback of an epi, they themselves are
+  epis. Therefore, since we have that the following diagrams commute,
+  we may conclude that $f_1^*(q) = f_1^*(p)$.
   \[
     \begin{tikzcd}
-      - \ar[rdd, bend right, out = 270, in = 230, swap, "{m \circ \langle f_0 \circ f_1^*(p), (\iota_B)_0 \circ p^*(f_1) \rangle}"]
-        \ar[d, "f_1^*(p)"] \ar[r, "p^*(f_1)"] &
-      - \ar[d, "p"] \ar[r, "(\iota_B)_1"] & -\\
-      - \ar[r, swap, "f_1"] & - & &\\
-      & C_1 & &
+      J \times_J (J \times_J J) \ar[r] \ar[d, swap, "p^*(f_1)"]& J \times_J J \ar[d, "p"]\\
+      J \ar[r, swap, "f_1"] & J
+    \end{tikzcd}
+    \qquad
+    \begin{tikzcd}
+      J \times_J (J \times_J J) \ar[r] \ar[d, swap, "q^*(f_1)"]& J \times_J J \ar[d, "q"]\\
+      J \ar[r, swap, "f_1"] & J
     \end{tikzcd}
   \]
+  This tells us that in the following diagrams, $h_p = h_q$.
   \[
     \begin{tikzcd}
-      - \ar[r, "(\iota_A)_1"] \ar[ddr, swap, "{m \circ \langle (\iota_A)_0, f_0 \circ f_1^*(q) \circ (\iota_A)_1 \rangle}"]&
-      - \ar[r, "q^*(f_1)"] \ar[d, "f_1^*(q)"] & - \ar[d, "q"]\\
-      & - \ar[r, swap, "f_1"] & -\\
-      & C_1 &
+      J \times_J J \times_J J \ar[dr, "h_p", dashed] \ar[ddr, bend right, "p"] \ar[rrd, bend left, "f_1 \times f_1"]&&\\
+      & J \times_J (J \times_J J) \ar[r] \ar[d, swap, "p^*(f_1)"]& J \times_J J \ar[d, "p"]\\
+      & J \ar[r, swap, "f_1"] & J
+    \end{tikzcd}
+    \hspace{-3em}
+    \begin{tikzcd}
+      J \times_J J \times_J J \ar[dr, "h_q", dashed] \ar[ddr, bend right, "q"] \ar[rrd, bend left, "f_1 \times f_1"]&&\\
+      & J \times_J (J \times_J J) \ar[r] \ar[d, swap, "q^*(f_1)"]& J \times_J J \ar[d, "q"]\\
+      & J \ar[r, swap, "f_1"] & J
     \end{tikzcd}
   \]
-  Where the two squares in the diagram above are pullbacks. The
-  equality we have thus expands to the equality of two morphisms:
+  Therefore, we have that $f_1 \circ p = f_1 \circ q$ and we have our
+  desired extension $g_1 : I \to J$ so that $g_1 \circ \alpha =
+  f_1$. We an $f_0$ which satisfies similar properties. We essentially
+  repeat the procedure we have just done because by assumption we have
+  that
+  \[
+    m \circ \langle f_0 \circ f_1^*(p), (\iota_B)_0 \circ p^*(f_1) \rangle =
+    m \circ \langle (\iota_A)_0, f_0 \circ f_1^*(q) \circ (\iota_A)_1 \rangle
+  \]
+  Since $(\iota_{-})_0$ is an internal natural isomorphism, we can
+  conclude that
   \begin{align*}
     m \circ \langle f_0 \circ f_1^*(p), (\iota_B)_0 \circ p^*(f_1) \rangle &=
     m \circ \langle (\iota_A)_0, f_0 \circ f_1^*(q) \circ (\iota_A)_1 \rangle\\
