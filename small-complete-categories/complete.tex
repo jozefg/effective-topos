@@ -543,7 +543,7 @@ this topology.
   have the commutative diagram
   \[
     \begin{tikzcd}
-      J \ar[d, swap, twoheadrightarrow, "\alpha"] \ar[rd, "f_0"] \ar[rr, "f_1"] && J \ar[d, twoheadrightarrow, "\alpha"]\\
+      J \ar[d, swap, twoheadrightarrow, "\alpha"] \ar[rd, "f_0"] \ar[rr, equals] && J \ar[d, twoheadrightarrow, "\alpha"]\\
       I \ar[d, swap, "A"] & C_1 \ar[dl, swap, "\partial_0"] \ar[dr, "\partial_1"] & I \ar[d, "B"]\\
       C_0 && C_0
     \end{tikzcd}
@@ -551,71 +551,40 @@ this topology.
   We would like to show that we can rewrite this diagram as
   \[
     \begin{tikzcd}
-      J \ar[d, swap, twoheadrightarrow, "\alpha"] \ar[rr, "f_1"] && J \ar[d, twoheadrightarrow, "\alpha"]\\
-      I \ar[dd, swap, "A"] \ar[rr, "g_1"] \ar[dr, "g_0"]  & & I \ar[dd, "B"]\\
+      J \ar[d, swap, twoheadrightarrow, "\alpha"] \ar[rr, equals] && J \ar[d, twoheadrightarrow, "\alpha"]\\
+      I \ar[dd, swap, "A"] \ar[rr, equals] \ar[dr, "g_0"]  & & I \ar[dd, "B"]\\
       & C_1 \ar[dl, swap, "\partial_0"] \ar[dr, "\partial_1"] &\\
       C_0 && C_0
     \end{tikzcd}
   \]
   So that $f_0 = g_0 \circ \alpha$ and the top square is a
-  pullback. In order to construct this $g$ let us turn to the data we
-  have about $f$. First, that if we can show that
-  $f_1 \circ p = f_1 \circ q$ then we automatically obtain a
-  factorization of $f_1$ through $\alpha$ since $\alpha$ is
-  coequalized by $p$ and $q$. In order to see this, we note that our
-  compatability condition on $f$ tells us that
+  pullback. The first bit is obvious so we merely turn to constructing
+  this $g_0$. The commutative square we have for $f$ gives us that
   \[
-    (\iota_B)_1 \circ p^*(f_1) = q^*(f_1) \circ (\iota_A)_1
+    m \circ \langle (\iota_B)_0, f_0 \circ q \circ (\iota_B)_1 \rangle =
+    m \circ \langle f_0 \circ p, (\iota_A)_0 \rangle
   \]
-  However, since $\iota$ is a natural isomorphism, we must have then
-  that $p^*(f_1) = q^*(f_1)$ on the nose. Finally, since $q$ and $p$
-  are determined by the pullback of an epi, they themselves are
-  epis. Therefore, since we have that the following diagrams commute,
-  we may conclude that $f_1^*(q) = f_1^*(p)$.
+  In order to construct $g_0$, we also note that $\alpha$ is
+  coequalizes by its kernel pair (as $\eff$ is a topos). Therefore, it
+  suffices to show that $f_0 \circ p = f_0 \circ q$ in order to get a
+  factorization of $f_0$ through $\alpha$. But this follows
+  immediately from our assumption since the fact that $(\iota_A)_0$ is
+  an isomorphism gives us that
   \[
-    \begin{tikzcd}
-      J \times_J (J \times_J J) \ar[r] \ar[d, swap, "p^*(f_1)"]& J \times_J J \ar[d, "p"]\\
-      J \ar[r, swap, "f_1"] & J
-    \end{tikzcd}
-    \qquad
-    \begin{tikzcd}
-      J \times_J (J \times_J J) \ar[r] \ar[d, swap, "q^*(f_1)"]& J \times_J J \ar[d, "q"]\\
-      J \ar[r, swap, "f_1"] & J
-    \end{tikzcd}
+    (\iota_B)_0 \odot (f_0 \circ q \circ (\iota_B)_1) \odot (\iota_A)_0^{-1} = f_0 \circ p
   \]
-  This tells us that in the following diagrams, $h_p = h_q$.
+  Here we are using $\odot$ as notation for internal composition. But
+  we know that $\iota_0$ forms an internal natural transformation so
+  we may rewrite the right-hand side to
   \[
-    \begin{tikzcd}
-      J \times_J J \times_J J \ar[dr, "h_p", dashed] \ar[ddr, bend right, "p"] \ar[rrd, bend left, "f_1 \times f_1"]&&\\
-      & J \times_J (J \times_J J) \ar[r] \ar[d, swap, "p^*(f_1)"]& J \times_J J \ar[d, "p"]\\
-      & J \ar[r, swap, "f_1"] & J
-    \end{tikzcd}
-    \hspace{-3em}
-    \begin{tikzcd}
-      J \times_J J \times_J J \ar[dr, "h_q", dashed] \ar[ddr, bend right, "q"] \ar[rrd, bend left, "f_1 \times f_1"]&&\\
-      & J \times_J (J \times_J J) \ar[r] \ar[d, swap, "q^*(f_1)"]& J \times_J J \ar[d, "q"]\\
-      & J \ar[r, swap, "f_1"] & J
-    \end{tikzcd}
+    f_0 \circ q \circ (\iota_B)_1 = f_0 \circ p
   \]
-  Therefore, we have that $f_1 \circ p = f_1 \circ q$ and we have our
-  desired extension $g_1 : I \to J$ so that $g_1 \circ \alpha =
-  f_1$. We an $f_0$ which satisfies similar properties. We essentially
-  repeat the procedure we have just done because by assumption we have
-  that
+  Finally, however, we note that since $\iota_B$ is vertical we must
+  have that $(\iota_B)_1 = 1$ so this gives us that
   \[
-    m \circ \langle f_0 \circ f_1^*(p), (\iota_B)_0 \circ p^*(f_1) \rangle =
-    m \circ \langle (\iota_A)_0, f_0 \circ f_1^*(q) \circ (\iota_A)_1 \rangle
+    f_0 \circ q = f_0 \circ p
   \]
-  Since $(\iota_{-})_0$ is an internal natural isomorphism, we can
-  conclude that
-  \begin{align*}
-    m \circ \langle f_0 \circ f_1^*(p), (\iota_B)_0 \circ p^*(f_1) \rangle &=
-    m \circ \langle (\iota_A)_0, f_0 \circ f_1^*(q) \circ (\iota_A)_1 \rangle\\
-    (\iota_B)_1 \circ p^*(f_1) &= q^*(f_1) \circ (\iota_A)_1
-  \end{align*}
-  Since we know
-
-
+  holds as required so we get the desired factorization of $f_0$.
 \end{proof}
 
 \begin{thm}\label{thm:complete:completeexternalization}
