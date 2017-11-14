@@ -585,6 +585,73 @@ this topology.
     f_0 \circ q = f_0 \circ p
   \]
   holds as required so we get the desired factorization of $f_0$.
+
+  This gives us that the functor is full, faithful is a trivial
+  consequence of the fact that $\alpha$ is epi.
+\end{proof}
+\begin{thm}
+  The fundamental fibration is a stack relative to the regular topology.
+\end{thm}
+\begin{proof}
+  In order to show this, suppose that we have a descent datum
+  $(A, \alpha)$ for the regular epi $f : I \epi J$, we must show that
+  $(A, \alpha)$ is actually essentially image of $B$ under $f^*$ for
+  some $B$ above $J$.
+
+  This means showing that we can construct the following pullback
+  square for some $B$
+  \[
+    \begin{tikzcd}
+      X \ar[d, swap, "A"] \ar[r] & Y \ar[d, "B"]\\
+      I \ar[r, twoheadrightarrow, "f"] & J
+    \end{tikzcd}
+  \]
+  We know that $f$ is coequalized by its kernel pair as it is regular,
+  call this kernel pair $p$ and $q$. First, we note that we have an
+  equivalence relation on $A$ defined by the two morphisms $A^*(p)$
+  and $A^*(q) \circ \alpha$. Let us denote the domain of $A^*(p)$ as
+  $Z$ and the domain of $A^*(q)$ as $W$. In order to show this is
+  reflexive, we want to show that $\Delta : X \to X \times X$ factors
+  through $R = \langle A^*(p), A^*(q) \circ \alpha \rangle$. In order
+  to show that this holds, let us show that $\Delta^*(R)$ has a global
+  point (an obvious equivalence). However,
+  \[
+    \Delta^*(R) = \langle \Delta^*(A^*(p)), \Delta^*(\alpha) \circ \Delta^*(A^*(q)) \rangle
+  \]
+  We know by the unit condition (the first coherence condition on
+  $\alpha$) that $\Delta^*(\alpha) = 1$ so this is equivalent to
+  \[
+    \langle \Delta^*(A^*(p)), \Delta^*(A^*(q)) \rangle
+  \]
+  However, $(p, q)$ is a kernel pair and therefore it has a global
+  point which is preserved by $\Delta^* \circ A^*$ so we're done.
+
+  To show that it is symmetric we first observe that $p, q$ is
+  symmetric as a kernel pair. Therefore, we have that
+  $\twist \circ (p \times q) \cong p \times q$ in the slice above
+  $I \times I$. Therefore
+  $A^*(\twist) \circ A^*(p) \times A^*(q) \cong A^*(p) \times A^*(q)$
+  and since $A^*(\twist) = \twist$ (pullback preserves products) we
+  then have that $A^*(q), A^*(p)$ is also symmetric and since $\alpha$
+  is an iso and so so is $A^*(p), A^*(q) \circ \alpha$ as
+  required. Transitivity is the most involved. For this start by
+  forming the pullback
+  \[
+    \begin{tikzcd}
+      Z \times_X Z \ar[d, swap, "a"] \ar[r, "b"] & Z \ar[d, "A^*(q) \circ \alpha"]\\
+      Z \ar[r, swap, "A^*(p)"] & X
+    \end{tikzcd}
+  \]
+  Then we want to show that there exists an arrow $h$ below, letting
+  $R' = \langle A^*(p) \circ b, A^*(q) \circ \alpha \circ a \rangle$
+  \[
+    \begin{tikzcd}
+      Z \times_X Z \ar[dr, swap, "R'"]
+      \ar[rr, dashed, "h"]&&
+      Z \ar[dl, "R"]\\
+      & X \times X &
+    \end{tikzcd}
+  \]
 \end{proof}
 
 \begin{thm}\label{thm:complete:completeexternalization}
