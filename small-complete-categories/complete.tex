@@ -606,52 +606,124 @@ this topology.
       I \ar[r, twoheadrightarrow, "f"] & J
     \end{tikzcd}
   \]
-  We know that $f$ is coequalized by its kernel pair as it is regular,
-  call this kernel pair $p$ and $q$. First, we note that we have an
+  We know that $f$ is coequalized by its kernel pair as it is regular.
+  Call this kernel pair $p$ and $q$. First, we note that we have an
   equivalence relation on $A$ defined by the two morphisms $A^*(p)$
   and $A^*(q) \circ \alpha$. Let us denote the domain of $A^*(p)$ as
-  $Z$ and the domain of $A^*(q)$ as $W$. In order to show this is
-  reflexive, we want to show that $\Delta : X \to X \times X$ factors
-  through $R = \langle A^*(p), A^*(q) \circ \alpha \rangle$. In order
-  to show that this holds, let us show that $\Delta^*(R)$ has a global
-  point (an obvious equivalence). However,
+  $Z$ and the domain of $A^*(q)$ as $W$. In diagram form, our
+  equivalence relation are the two maps on top where each square is a
+  pullback.
   \[
-    \Delta^*(R) = \langle \Delta^*(A^*(p)), \Delta^*(\alpha) \circ \Delta^*(A^*(q)) \rangle
+    \begin{tikzcd}
+      Z \ar[r, "A^*(p)"] \ar[d, swap, "p^*(A)"] &
+      X \ar[d, "A"] &
+      W \ar[l, swap, "A^*(q)"] \ar[d, swap, "q^*(A)"] &
+      Z \ar[l, swap, "\alpha"] \ar[dl]\\
+      {I \times_J I} \ar[r, swap, "p"] &
+      I &
+      {I \times_J I} \ar[l, "q"]
+    \end{tikzcd}
   \]
-  We know by the unit condition (the first coherence condition on
-  $\alpha$) that $\Delta^*(\alpha) = 1$ so this is equivalent to
+  In order to show this is reflexive, we want to show that
+  $\Delta : A \to A \times A$ factors through
+  $R = \langle A^*(p), A^*(q) \circ \alpha \rangle$ in the fiber of
+  $I$. First we note that $R$ is defined by the universal property of
+  $X \times_I X$.
   \[
-    \langle \Delta^*(A^*(p)), \Delta^*(A^*(q)) \rangle
+    \begin{tikzcd}
+      Z \ar[ddr, bend right, swap, "A^*(p)"]
+      \ar[drr, bend left, "A^*(q) \circ \alpha"]
+      \ar[dr, dashed, "R"] &&\\
+      &X \times_I X \ar[r] \ar[d] & X \ar[d, "A"]\\
+      &X \ar[r, swap, "A"] & I
+    \end{tikzcd}
   \]
-  However, $(p, q)$ is a kernel pair and therefore it has a global
-  point which is preserved by $\Delta^* \circ A^*$ so we're done.
+  Now we wish to exhibit
+  \[
+    \begin{tikzcd}
+      Z \ar[rr, bend left, "A^*(p)"] \ar[rr, bend right, "A^*(q) \circ \alpha"] \ar[dr, swap, "p \circ p^*(A)"]
+      && X \ar[dl, "A"] \ar[ll, dashed]\\
+      & I &
+    \end{tikzcd}
+  \]
+  In order to exhibit this arrow, let us construct make use of the
+  fact that $\Delta^* \circ \pi_1^* \cong 1$ so it suffices to show
+  that
+  \[
+    \begin{tikzcd}
+      (\pi_1 \circ \Delta)^*(Z)
+      \ar[rrrr, bend left, "(\pi_1 \circ \Delta)^*(A^*(p))"]
+      \ar[rrrr, bend right, "(\pi_1 \circ \Delta)^*(A^*(q) \circ \alpha)"]
+      \ar[ddrr, swap, "(\pi_1 \circ \Delta)^*(p \circ p^*(A))"]
+      &&&& X \ar[ddll, "(\pi_1 \circ \Delta)^*(A)"] \ar[llll, dashed]\\
+      &&&&\\
+      && I &&
+    \end{tikzcd}
+  \]
+  But now we note that
+  $(\pi_1 \circ \Delta)^*(A^*(q) \circ \alpha) = (\pi_1 \circ
+  \Delta)^*(A^*(q))$ by the unit law. Thus we only need to show that
+  \[
+    \begin{tikzcd}
+      (\pi_1 \circ \Delta)^*(Z)
+      \ar[rrrr, bend left, "(\pi_1 \circ \Delta)^*(A^*(p))"]
+      \ar[rrrr, bend right, "(\pi_1 \circ \Delta)^*(A^*(q))"]
+      \ar[ddrr, swap, "(\pi_1 \circ \Delta)^*(p \circ p^*(A))"]
+      &&&& X \ar[ddll, "(\pi_1 \circ \Delta)^*(A)"] \ar[llll, dashed]\\
+      &&&&\\
+      && I &&
+    \end{tikzcd}
+  \]
+  However this in turn follows immediately from the fact that there is
+  a common splitting of $p, q$ since it a kernel pair. Next we
+  consider showing that this relation is symmetric. This means that we
+  wish to find a morphism $s$ so that
+  $A^*(q) \circ \alpha \circ s = A^*(p)$ and
+  $A^*(p) \circ s = A^*(q) \circ \alpha$.
 
-  To show that it is symmetric we first observe that $p, q$ is
-  symmetric as a kernel pair. Therefore, we have that
-  $\twist \circ (p \times q) \cong p \times q$ in the slice above
-  $I \times I$. Therefore
-  $A^*(\twist) \circ A^*(p) \times A^*(q) \cong A^*(p) \times A^*(q)$
-  and since $A^*(\twist) = \twist$ (pullback preserves products) we
-  then have that $A^*(q), A^*(p)$ is also symmetric and since $\alpha$
-  is an iso and so so is $A^*(p), A^*(q) \circ \alpha$ as
-  required. Transitivity is the most involved. For this start by
-  forming the pullback
+
+  First we make a
+  basic observation about $p$ and $q$: since they're a kernel pair
+  they form a symmetric relation. Therefore, we have a morphism
   \[
     \begin{tikzcd}
-      Z \times_X Z \ar[d, swap, "a"] \ar[r, "b"] & Z \ar[d, "A^*(q) \circ \alpha"]\\
-      Z \ar[r, swap, "A^*(p)"] & X
+      I \times_J I \ar[dr, swap, "{\langle q, p \rangle}"] \ar[rr, "x"] &&
+      I \times_J I \ar[dl, "{\langle p, q \rangle}"]\\
+      & I \times I &
     \end{tikzcd}
   \]
-  Then we want to show that there exists an arrow $h$ below, letting
-  $R' = \langle A^*(p) \circ b, A^*(q) \circ \alpha \circ a \rangle$
+  This in turn tells us that $p \circ x = q$ and $q \circ x = p$. Thus
+  we may conclude that $x_1 = A^*(x)$ is a map $A^*(p)$ to $A^*(q)$
+  when $x$ is viewed as a morphism between $p$ and $q$ and
+  $x_2 = A^*(x)$ is a map from $A^*(q)$ to $A^*(p)$ when $x$ is viewed
+  as a morphism between $q$ and $p$. Then however, we have that
+  $x_2 \circ \alpha$ is a morphism between $A^*(q) \circ \alpha$ and
+  $A^*(p)$. If we can then show that the following we'd be done.
   \[
-    \begin{tikzcd}
-      Z \times_X Z \ar[dr, swap, "R'"]
-      \ar[rr, dashed, "h"]&&
-      Z \ar[dl, "R"]\\
-      & X \times X &
-    \end{tikzcd}
+    A^*(q) \circ \alpha \circ x_2 \circ \alpha = A^*(p)
   \]
+  In order to do this, we merely need to show that
+  $\alpha \circ x_2 \circ \alpha = x_1$. Since $x_1$ is induced by a
+  universal property of a pullback, what we need to show is that
+  \begin{align*}
+    q^*(A) \circ \alpha \circ x_2 \circ \alpha &= x \circ p^*(A)\\
+    A \circ A^*(q) \circ \alpha \circ x_2 \circ \alpha &= A \circ A^*(p)
+  \end{align*}
+  We can rewrite this first equation to showing that
+  \[
+    q^*(A) \circ \alpha \circ x_2 \circ \alpha =
+    p^*(A) \circ x_2 \circ \alpha =
+    x \circ q^*(A) \circ \alpha =
+    x \circ p^*(A)
+  \]
+  For the second equation
+  \[
+    A \circ A^*(q) \circ \alpha \circ x_2 \circ \alpha =
+    q \circ p^*(A) \circ x_2 \circ \alpha =
+    q \circ q^*(A) \circ \alpha =
+    p \circ p^*(A)
+  \]
+  So this relation is indeed symmetric.
 \end{proof}
 
 \begin{thm}\label{thm:complete:completeexternalization}
