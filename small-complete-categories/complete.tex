@@ -725,7 +725,48 @@ this topology.
     A \circ A^*(p)
   \]
   So this relation is indeed symmetric. Finally we turn to the
-  question of showing this relationship to be transitive.
+  question of showing this relationship to be transitive. In order to
+  elaborate what this condition means let us form the following
+  pullback.
+  \[
+    \begin{tikzcd}
+      Y \ar[d, swap, "y_1"] \ar[r, "y_2"] & Z \ar[d, "A^*(p)"]\\
+      Z \ar[r, swap, "A^*(q) \circ \alpha"] & X
+    \end{tikzcd}
+  \]
+  Transitivity means that we must show
+  \[
+    \begin{tikzcd}
+      Y \ar[dr, swap, "{\langle A^*(p) \circ y_1, A^*(q) \circ \alpha \circ y_2 \rangle}"] \ar[rr, dashed] &&
+      Z \ar[dl, "{\langle A^*(p), A^*(q) \circ \alpha \rangle}"]\\
+      & X \times X &
+    \end{tikzcd}
+  \]
+  Therefore, we need an $x$ so that
+  $A^*(p) \circ x = A^*(p) \circ y_1$ and
+  $A^*(q) \circ \alpha \circ x = A^*(q) \circ \alpha \circ y_2$. We
+  note that as a kernel pair we of course have that $p$ and $q$ are
+  transitive. That is, given the pullback
+  \[
+    \begin{tikzcd}
+      K \ar[r, "\pi_2"] \ar[d, swap, "\pi_1"] & I \times_J I \ar[d, "p"]\\
+      I \times_J I \ar[r, swap, "q"] & I
+    \end{tikzcd}
+  \]
+  We have that there is a morphism $k$ so that
+  $p \circ \pi_1 = p \circ k$ and $q \circ \pi_2 = q \circ k$. We note
+  that by definition we have that $K$ is the product of $p$ and
+  $q$. Therefore, this diagram is preserved by $A^*$ and we have
+  $A^*(p) \circ \pi_1 = A^*(p) \circ A^*(k)$ and
+  $A^*(q) \circ \pi_2 = A^*(q) \circ A^*(k)$. Next, we observe that
+  $A^*(K)$ is in fact the meet of $A^*(p)$ and $A^*(q) \circ \alpha$
+  since $\alpha$ is an isomorphism. We therefore just need to show
+  that
+  \[
+    A^*(q) \circ \alpha \circ \alpha^{-1} \circ \pi_2 =
+    A^*(q) \circ \alpha \circ \alpha^{-1} \circ  \circ A^*(k)
+  \]
+  but this is immediate. Therefore we have a valid equivalence relation.
 \end{proof}
 
 \begin{thm}\label{thm:complete:completeexternalization}
