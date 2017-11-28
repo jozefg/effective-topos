@@ -797,24 +797,79 @@ this topology.
 
   Now we just need to show that this is a prestack. Suppose we have
   two objects $A : X \to J$ and $B : Y \to J$. We will show first that
-  if we have two morphisms $f, g : A \to B$ and that
-  $e^*(f) = e^*(g)$. We wish to show that $f = g$. First we state that
-  $e^*(f)$
+  if we have two morphisms $g, h : A \to B$ and that
+  $f^*(g) = e^*(h)$. We wish to show that $g = h$. Let us consider the
+  following diagram.
   \[
     \begin{tikzcd}
-      e^*(X) \ar[dr] \ar[rr, bend left] \ar[r, dashed, shift left=.25em, "e^*(f)"] \ar[r, dashed, swap, shift right=.25em, "e^*(g)"] &
-      e^*(Y) \ar[d] \ar[r] \ar[bend left, rr] &
-      X \ar[dr, swap, "A"] \ar[r, shift left=.25em, "f"] \ar[r, shift right=.25em, swap, "g"] &
+      f^*(X) \ar[dr] \ar[rr, bend left] \ar[r, dashed, shift left=.25em, "f^*(g)"] \ar[r, dashed, swap, shift right=.25em, "f^*(h)"] &
+      f^*(Y) \ar[d] \ar[r] \ar[bend left, rr] &
+      X \ar[dr, swap, "A"] \ar[r, shift left=.25em, "g"] \ar[r, shift right=.25em, swap, "h"] &
       Y \ar[d, "B"]\\
-      & I \ar[rr, swap, "e"] & & J
+      & I \ar[rr, swap, "f"] & & J
     \end{tikzcd}
   \]
-  However, this tells us that $f \circ A^*(e) = g \circ A^*(e)$ but
-  since $e$ is an epi, so is $A^*(e)$ so $f = g$ as required. Next we
+  However, this tells us that $g \circ A^*(f) = h \circ A^*(f)$ but
+  since $f$ is an epi, so is $A^*(f)$ so $g = h$ as required. Next we
   must show that it is full.
 
-  For this, suppose that we have
-
+  For this, suppose that we have a morphism $g : f^*(A) \to f^*(B)$ so
+  that $\iota_B \circ p^*(g) = q^*(g) \circ \iota_A$ where $\iota$ is
+  the canonical natural isomorphism induced between $p^*f^* =
+  q^*f^*$. We wish to show that $g = f^*(h)$ for some $h$. That is, we
+  wish to find a morphism $h$ making the following commute.
+  \[
+    \begin{tikzcd}
+      f^*(X) \ar[dr] \ar[rr, bend left] \ar[r, "g"] &
+      f^*(Y) \ar[d] \ar[r] \ar[bend left, rr] &
+      X \ar[dr, swap, "A"] \ar[r, dashed, "h"] &
+      Y \ar[d, "B"]\\
+      & I \ar[rr, swap, "f"] & & J
+    \end{tikzcd}
+  \]
+  Let us now turn to the condition
+  $\iota_B \circ p^*(g) = q^*(g) \circ \iota_A$. First, we observe
+  that since is an epi, it is a cover since covers are stable under
+  pullback we have the coequalizer $x$, $y$ given by
+  \[
+    \begin{tikzcd}
+      (p \circ f)^*(X) \ar[d] \ar[r, shift left=.25em, "x"] \ar[r, shift right=.25em, swap, "y"] &
+      f^*(X) \ar[r, "A^*(f)"] \ar[d] &
+      X \ar[d, "A"]\\
+      I \times_J I \ar[r, "p", shift left=.25em] \ar[r, swap, shift right=.25em, "q"] &
+      I \ar[r, swap, "f"] &
+      J
+    \end{tikzcd}
+  \]
+  Repeating this process for $B$ we may conclude that we have the
+  following coequalizers.
+  \[
+    \begin{tikzcd}
+      (p \circ f)^*(X) \ar[r, shift left=.25em, "x"] \ar[r, shift right=.25em, swap, "y"] &
+      f^*(X) \ar[r, "A^*(f)"] \ar[d, "g"] &
+      X\\
+      (p \circ f)^*(Y) \ar[r, shift left=.25em, "x'"] \ar[r, shift right=.25em, swap, "y'"] &
+      f^*(Y) \ar[r, swap, "B^*(f)"] &
+      Y
+    \end{tikzcd}
+  \]
+  Now our statement that $\iota_B \circ p^*(g) = q^*(g) \circ \iota_A$
+  can also be understood as saying that there is a morphism (trivially
+  induced by $p^*(h)$) which fits into the diagram
+  \[
+    \begin{tikzcd}
+      (p \circ f)^*(X) \ar[r, shift left=.25em, "x"] \ar[r, shift right=.25em, swap, "y"] \ar[d, dashed] &
+      f^*(X) \ar[r, "A^*(f)"] \ar[d, "g"] &
+      X\\
+      (p \circ f)^*(Y) \ar[r, shift left=.25em, "x'"] \ar[r, shift right=.25em, swap, "y'"] &
+      f^*(Y) \ar[r, swap, "B^*(f)"] &
+      Y
+    \end{tikzcd}
+  \]
+  However, by universal property we have exactly the desired
+  $h : X \to Y$ which immediately satisfies all the equalities we
+  need. Therefore we have a faithful functor and so it's an
+  equivalence.
 \end{proof}
 
 \begin{thm}\label{thm:complete:completeexternalization}
