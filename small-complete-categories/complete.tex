@@ -766,7 +766,55 @@ this topology.
     A^*(q) \circ \alpha \circ \alpha^{-1} \circ \pi_2 =
     A^*(q) \circ \alpha \circ \alpha^{-1} \circ  \circ A^*(k)
   \]
-  but this is immediate. Therefore we have a valid equivalence relation.
+  but this is immediate. Therefore we have a valid equivalence
+  relation, let us denote it by $R$.
+
+  Since $\eff$ is an exact category, we can form the quotient of $A$
+  by $R$ to produce an epimorphism $r : X \epi Y$. Moreover, since
+  this is a coequalizer of $R$, we know that there is a factorization
+  of $e \circ A$ through $r$ which gives us a $B : Y \to I$. We wish
+  to show that this $B$ pulled back along $f$ is isomorphic to $A$. We
+  note that there is a canonical morphism $x : A \to B$, induced by
+  the following diagram.
+  \[
+    \begin{tikzcd}
+      X \ar[dr, swap, "A"] \ar[r, dashed, "x"] \ar[rr, bend left, "r"] & f^*(Y) \ar[d] \ar[r] & Y \ar[d, "B"]\\
+      & I \ar[r, swap, "f"] & J
+    \end{tikzcd}
+  \]
+  We know that $x$ is a cover since $e \circ A^*(p)$ is fact $f^*(r)$
+  where $X$ is viewed to be over $I$ by the composite $f \circ A$. All
+  we must do then is show that it is monic since $\eff$ is in fact
+  balanced. In order to show this, suppose we have some
+  $a, b : C \to X$ so that $x \circ a = x \circ b$. Then we obviously
+  have that $r \circ a = r \circ b$ and $A \circ a = A \circ b$. By
+  the former, we may find a factorization $y$ of these arrows through
+  $R : p^*(X) \rightrightarrows X$. However, we have that
+  $p \circ p^*(A) \circ y = q \circ p^*(A) \circ y$ so it must be that
+  $p^*(A) \circ y$ factors through the equalizer of $p$ and $q$. This
+  is just the diagonal map though so $y$ factors through the pullback
+  of $p^*(X)$ so $a = b$ as required.
+
+  Now we just need to show that this is a prestack. Suppose we have
+  two objects $A : X \to J$ and $B : Y \to J$. We will show first that
+  if we have two morphisms $f, g : A \to B$ and that
+  $e^*(f) = e^*(g)$. We wish to show that $f = g$. First we state that
+  $e^*(f)$
+  \[
+    \begin{tikzcd}
+      e^*(X) \ar[dr] \ar[rr, bend left] \ar[r, dashed, shift left=.25em, "e^*(f)"] \ar[r, dashed, swap, shift right=.25em, "e^*(g)"] &
+      e^*(Y) \ar[d] \ar[r] \ar[bend left, rr] &
+      X \ar[dr, swap, "A"] \ar[r, shift left=.25em, "f"] \ar[r, shift right=.25em, swap, "g"] &
+      Y \ar[d, "B"]\\
+      & I \ar[rr, swap, "e"] & & J
+    \end{tikzcd}
+  \]
+  However, this tells us that $f \circ A^*(e) = g \circ A^*(e)$ but
+  since $e$ is an epi, so is $A^*(e)$ so $f = g$ as required. Next we
+  must show that it is full.
+
+  For this, suppose that we have
+
 \end{proof}
 
 \begin{thm}\label{thm:complete:completeexternalization}
