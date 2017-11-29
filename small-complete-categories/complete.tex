@@ -361,7 +361,7 @@ is (weakly) complete by the previous definition in each slice.
 \end{proof}
 As a final observation, this notion of completeness has a pleasant
 characterization at the level of fibrations.
-\begin{defn}\label{defn:complete:completefibration}
+\begin{defn}\label{defn:complete:completefibration}\hfill
   \begin{itemize}
   \item $C$ is complete if $\family(C)$ has fiberwise finite limits and a
     right adjoint to reindexing. Moreover, both of these are preserved
@@ -928,6 +928,21 @@ this topology.
   \[
     B \cong \prod_{(\gamma \circ \beta)^*(\alpha)} (\gamma \circ \beta)^*(A)
   \]
+  In order to show this, suppose we have some $X$, we need to show
+  that
+  \[
+    \hom(((\gamma \circ \beta)^*(\alpha))^*(X), (\gamma \circ \beta)^*(A)) \cong
+    \hom(X, B)
+  \]
+  For this, let us observe the following.
+  \begin{align*}
+    \hom(X, B) &\cong \hom(F(X), F(B))\\
+    &\cong \hom(F(X), \prod_{(\gamma \circ \beta)^*(\alpha)} F((\gamma \circ \beta)^*(A)))\\
+    &\cong \hom(((\gamma \circ \beta)^*(\alpha))^*(F(X)), F((\gamma \circ \beta)^*(A)))\\
+    &\cong \hom(F(((\gamma \circ \beta)^*(\alpha))^*(X)), F((\gamma \circ \beta)^*(A)))\\
+    &\cong \hom(((\gamma \circ \beta)^*(\alpha))^*(X), (\gamma \circ \beta)^*(A))
+  \end{align*}
+  so we have the desired indexed limit.
 \end{proof}
 
 
