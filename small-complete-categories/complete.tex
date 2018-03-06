@@ -363,15 +363,16 @@ As a final observation, this notion of completeness has a pleasant
 characterization at the level of fibrations.
 \begin{defn}\label{defn:complete:completefibration}\hfill
   \begin{itemize}
-  \item $C$ is complete if $\family(C)$ has fiberwise finite limits and a
-    right adjoint to reindexing. Moreover, both of these are preserved
-    by reindexing.
-  \item $C$ is weakly complete if $\family(C)$ if given a finite
+  \item $P : C \to \Etop$ is complete if $C$ has fiberwise finite
+    limits and a right adjoint to reindexing. Moreover, both of these
+    are preserved by reindexing.
+  \item $P : C \to \Etop$ is weakly complete if $C$ if given a finite
     diagram in the fiber over $I$, there is a $K \epi I$ so that the
     reindexing of the diagram has a limit over $K$. Similarly, for
-    each $u : I \to J$ there is a $e : J \epi K$ so that $(eu)^*$ has
-    a right adjoint. Furthermore, reindexing preserves all finite
-    limits and indexed products when they exist.
+    each $u : J \to I$ and $A \in P^J$ there is a $e : K \epi I$ so
+    that $\prod_{e^*(u)} (u^*(e))^*(A)$ exists. Furthermore,
+    reindexing preserves all finite limits and indexed products when
+    they exist.
   \end{itemize}
 \end{defn}
 Like any good categorical definition, we shall expect completeness and
@@ -872,7 +873,7 @@ this topology.
   equivalence.
 \end{proof}
 
-\begin{thm}\label{prop:complete:completefibrationbroken}
+\begin{thm}\label{thm:complete:completefibration}
   (Weak) equivalences of pre-stacks preserve (weak) completeness.
 \end{thm}
 \begin{proof}
@@ -913,80 +914,62 @@ this topology.
   along $\gamma$ thus gives us exactly the desired morphism.
 
   Second, we wish to show that if we have a morphism
-  $\alpha : J \to I$ then for each $A$ over $I$ that there is morphism
-  $\beta : K \epi J$ so that $\prod_{\beta^*(\alpha)} \beta^*(A)$
-  exists. Suppose that there we have an $A$ and $\alpha$ in $Q^I$, we
-  know that there is a $\beta : J \epi I$ so that
+  $\alpha : J \to I$ then for each $A$ over $J$ that there is morphism
+  $\delta : K \epi I$ so that $\prod_{\delta^*(\alpha)} (\alpha^*(\delta))^*(A)$
+  exists. Suppose that there we have an $A$ and $\alpha$ in $Q^J$, we
+  know that there is a $\beta : K \epi J$ so that
   $\beta^*(A) \cong F(B)$ for some $B \in P^J$. Therefore, there is a
-  $\gamma : K \epi J$ so that the following exists.
+  $\gamma : L \epi I$ so that the following exists.
   \[
-    \prod_{(\gamma \circ \beta)^*(\alpha)} \gamma^*(B)
+    \prod_{\gamma^*(\alpha \circ \beta)} ((\alpha \circ \beta)^*\gamma)^*(B)
   \]
-  I then claim that
+  By Beck-Chevalley we have that the above is isomorphic to
   \[
-    F(\prod_{(\gamma \circ \beta)^*(\alpha)} \gamma^*(B)) \cong
-    \prod_{(\gamma \circ \beta)^*(\alpha)} F(\gamma^*(B))
-  \]
-  which then immediately gives us our conclusion as
-  \[
-    \prod_{(\gamma \circ \beta)^*(\alpha)} F(\gamma^*(B)) \cong
-    \prod_{(\gamma \circ \beta)^*(\alpha)} (\gamma \circ \beta)^*(A)
-  \]
-  In order to see that this isomorphism holds, suppose we have some
-  $X$. We must show that
-  \[
-    \hom(((\gamma \circ \beta)^*(\alpha))^*(X), \gamma^*(F(B))) \cong
-    \hom(X, F(\prod_{(\gamma \circ \beta)^*(\alpha)} \gamma^*(B)))
-  \]
-  In order to see this, we note that there is an epi, $\delta$, and an
-  object $Y$ so that $F(Y) \cong \delta^*(X)$. It is clear that
-  \[
-    \hom(((\gamma \circ \beta)^*(\alpha))^*(F(Y)), (\delta \circ \gamma)^*(F(B))) \cong
-    \hom(F(Y), F(\prod_{(\gamma \circ \beta)^*(\alpha)} (\delta \circ \gamma)^*(B)))
+    \gamma^*(\prod_{\alpha \circ \beta} B)
   \]
 
 
 
 
 
-  Now we have the repeat the entire process again, but this time
-  backwards! Suppose we have a weak equivalence $F : P \to Q$ and that
-  $Q$ is weakly complete, we wish to show that $P$ is as well. First,
-  suppose we have a finite limit in $Q$ above $I$, $d : D \to Q^I$, we
-  must calculate a limit for it reindexed over $J$ where $J \epi
-  I$. First, let us observe that
+  % Now we have the repeat the entire process again, but this time
+  % backwards! Suppose we have a weak equivalence $F : P \to Q$ and that
+  % $Q$ is weakly complete, we wish to show that $P$ is as well. First,
+  % suppose we have a finite limit in $Q$ above $I$, $d : D \to Q^I$, we
+  % must calculate a limit for it reindexed over $J$ where $J \epi
+  % I$. First, let us observe that
 
-  Second, we wish to show that if we have a morphism
-  $\alpha : J \to I$ then for each $A$ over $I$ that there is morphism
-  $\beta : K \epi J$ so that $\prod_{\beta^*(\alpha)} \beta^*(A)$
-  exists. Suppose that we have such an $\alpha$ and $A$, then we know
-  that there is a $\beta : K \epi J$ so that
-  $\prod_{\beta^*(\alpha)} \beta^*(F(A))$ exists. There must be some
-  $\gamma : L \epi K$ so that there is a $B$ over $K$ so that
-  \[
-    F(B) \cong \gamma^*(\prod_{\beta^*(\alpha)} \beta^*(F(A)))
-    \cong \prod_{(\gamma \circ \beta)^*(\alpha)} (\gamma \circ \beta)^*(F(A))
-    \cong \prod_{(\gamma \circ \beta)^*(\alpha)} F((\gamma \circ \beta)^*(A))
-  \]
-  I claim that
-  \[
-    B \cong \prod_{(\gamma \circ \beta)^*(\alpha)} (\gamma \circ \beta)^*(A)
-  \]
-  In order to show this, suppose we have some $X$, we need to show
-  that
-  \[
-    \hom(((\gamma \circ \beta)^*(\alpha))^*(X), (\gamma \circ \beta)^*(A)) \cong
-    \hom(X, B)
-  \]
-  For this, let us observe the following.
-  \begin{align*}
-    \hom(X, B) &\cong \hom(F(X), F(B))\\
-    &\cong \hom(F(X), \prod_{(\gamma \circ \beta)^*(\alpha)} F((\gamma \circ \beta)^*(A)))\\
-    &\cong \hom(((\gamma \circ \beta)^*(\alpha))^*(F(X)), F((\gamma \circ \beta)^*(A)))\\
-    &\cong \hom(F(((\gamma \circ \beta)^*(\alpha))^*(X)), F((\gamma \circ \beta)^*(A)))\\
-    &\cong \hom(((\gamma \circ \beta)^*(\alpha))^*(X), (\gamma \circ \beta)^*(A))
-  \end{align*}
-  so we have the desired indexed limit.
+  % Second, we wish to show that if we have a morphism
+  % $\alpha : J \to I$ then for each $A$ over $I$ that there is morphism
+  % $\beta : K \epi J$ so that $\prod_{\beta^*(\alpha)} \beta^*(A)$
+  % exists. Suppose that we have such an $\alpha$ and $A$, then we know
+  % that there is a $\beta : K \epi J$ so that
+  % $\prod_{\beta^*(\alpha)} \beta^*(F(A))$ exists. There must be some
+  % $\gamma : L \epi K$ so that there is a $B$ over $K$ so that
+  % \[
+  %   F(B) \cong \gamma^*(\prod_{\beta^*(\alpha)} \beta^*(F(A)))
+  %   \cong \prod_{(\gamma \circ \beta)^*(\alpha)} (\gamma \circ \beta)^*(F(A))
+  %   \cong \prod_{(\gamma \circ \beta)^*(\alpha)} F((\gamma \circ \beta)^*(A))
+  % \]
+  % I claim that
+  % \[
+  %   B \cong \prod_{(\gamma \circ \beta)^*(\alpha)} (\gamma \circ \beta)^*(A)
+  % \]
+  % In order to show this, suppose we have some $X$, we need to show
+  % that
+  % \[
+  %   \hom(((\gamma \circ \beta)^*(\alpha))^*(X), (\gamma \circ \beta)^*(A)) \cong
+  %   \hom(X, B)
+  % \]
+  % For this, let us observe the following.
+  % \begin{align*}
+  %   \hom(X, B) &\cong \hom(F(X), F(B))\\
+  %   &\cong \hom(F(X), \prod_{(\gamma \circ \beta)^*(\alpha)} F((\gamma \circ \beta)^*(A)))\\
+  %   &\cong \hom(((\gamma \circ \beta)^*(\alpha))^*(F(X)), F((\gamma \circ \beta)^*(A)))\\
+  %   &\cong \hom(F(((\gamma \circ \beta)^*(\alpha))^*(X)), F((\gamma \circ \beta)^*(A)))\\
+  %   &\cong \hom(((\gamma \circ \beta)^*(\alpha))^*(X), (\gamma \circ \beta)^*(A))
+  % \end{align*}
+  % so we have the desired indexed limit.
 
 \end{proof}
 
