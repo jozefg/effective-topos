@@ -364,16 +364,38 @@ characterization at the level of fibrations.
 \begin{defn}\label{defn:complete:completefibration}\hfill
   \begin{itemize}
   \item $P : C \to \Etop$ is complete if $C$ has fiberwise finite
-    limits and a right adjoint to reindexing. Moreover, both of these
-    are preserved by reindexing.
+    limits and a right adjoint to reindexing. Moreover, limits are
+    preserved by reindexing and indexed products satisfy
+    Beck-Chevalley.
   \item $P : C \to \Etop$ is weakly complete if $C$ if given a finite
     diagram in the fiber over $I$, there is a $K \epi I$ so that the
     reindexing of the diagram has a limit over $K$. Similarly, for
     each $u : J \to I$ and $A \in P^J$ there is a $e : K \epi I$ so
     that $\prod_{e^*(u)} (u^*(e))^*(A)$ exists. Furthermore,
-    reindexing preserves all finite limits and indexed products when
-    they exist.
+    reindexing preserves all finite limits and indexed products that
+    exist satisfy Beck-Chevalley.
   \end{itemize}
+\end{defn}
+An important property of indexed products mentioned above is the so
+called Beck-Chevalley condition. This check intuitively states that
+indexed products respect substitution. It is of particular important
+when using fibrations to model some dependent type theory where we
+generally wish a strict form. For our case the more standard
+Beck-Chevalley condition is sufficient:
+\begin{defn}\label{defn:complete:beckchevalley}
+  Given a fibration $P$ and some object $A \in P^C$, given a pullback
+  square
+  \[
+    \begin{tikzcd}
+      A \ar[d, "h"] \ar[r, "g"] & B \ar[d, "i"]\\
+      C \ar[r, "f"] & D
+    \end{tikzcd}
+  \]
+  we shall say that $P$ satisfies the Beck-Chevalley square if
+  $\prod_f A$ exists then $\prod_g h^*(A)$ exists and moreover
+  \[
+    i^*(\prod_f A) \cong \prod_g h^*(A)
+  \]
 \end{defn}
 Like any good categorical definition, we shall expect completeness and
 weak completeness to be preserved by equivalences. This, despite what
@@ -921,16 +943,101 @@ this topology.
   $\beta^*(A) \cong F(B)$ for some $B \in P^J$. Therefore, there is a
   $\gamma : L \epi I$ so that the following exists.
   \[
-    \prod_{\gamma^*(\alpha \circ \beta)} ((\alpha \circ \beta)^*\gamma)^*(B)
+    \prod_{\gamma^*(\alpha \circ \beta)} ((\alpha \circ \beta)^*\gamma)^* B \cong
+    \prod_{(\beta^*\gamma)^*\alpha} (\alpha^*(\beta^*\gamma))^* B
   \]
-  By Beck-Chevalley we have that the above is isomorphic to
+  We now what to show that the desired product is given by the
+  following.
   \[
-    \gamma^*(\prod_{\alpha \circ \beta} B)
+    F(\prod_{\gamma^*(\alpha \circ \beta)} ((\alpha \circ \beta)^*\gamma)^* B)
   \]
-
-
-
-
+  We note that since $F$ preserves reindexing, we know that
+  \[
+    \prod_{\gamma^*(\alpha \circ \beta)} ((\alpha \circ \beta)^*\gamma)^* A \cong
+    \prod_{\gamma^*(\alpha \circ \beta)} ((\alpha \circ \beta)^*\gamma)^* F(B) \cong
+    \prod_{\gamma^*(\alpha \circ \beta)} F(((\alpha \circ \beta)^*\gamma)^* B)
+  \]
+  Therefore, supposing we have some $C \in Q^K$, we wish to show that
+  \[
+    \hom((\gamma^*(\alpha \circ \beta))^* C, ((\alpha \circ \beta)^*\gamma)^* F(B)) \cong
+    \hom(C, F(\prod_{\gamma^*(\alpha \circ \beta)} ((\alpha \circ \beta)^*\gamma)^* B))
+  \]
+  Given a morphism $f : C \to F(\prod_{\gamma^*(\alpha \circ \beta)} ((\alpha \circ \beta)^*\gamma)^* B)$
+  we note that by functoriality we then have a morphism
+  \[
+    (\gamma^*(\alpha \circ \beta))^*f :
+    (\gamma^*(\alpha \circ \beta))^*C \to
+    (\gamma^*(\alpha \circ \beta))^*F(\prod_{\gamma^*(\alpha \circ \beta)} ((\alpha \circ \beta)^*\gamma)^* B)
+  \]
+  But since $F$ respects reindexing, we have
+  \[
+    (\gamma^*(\alpha \circ \beta))^*F(\prod_{\gamma^*(\alpha \circ \beta)} ((\alpha \circ \beta)^*\gamma)^* B) \cong
+    F((\gamma^*(\alpha \circ \beta))^*\prod_{\gamma^*(\alpha \circ \beta)} ((\alpha \circ \beta)^*\gamma)^* B)
+  \]
+  Wherein, by the counit of the adjunction for products, $\epsilon$, we have
+  \[
+    \epsilon \circ (\gamma^*(\alpha \circ \beta))^*f :
+    (\gamma^*(\alpha \circ \beta))^*C \to ((\alpha \circ \beta)^*\gamma)^* F(B)
+  \]
+  Which gives us one direction of the desired bijection. Next, suppose
+  we have $g : C \to F(\prod_{\gamma^*(\alpha \circ \beta)} ((\alpha \circ \beta)^*\gamma)^* B)$.
+  We know that there is some $\nu : M \epi K$ so that there is a
+  $D \in P^M$ with $F(D) \cong \nu^*(C)$. We note that
+  \[
+    \nu^*(g) : F(D) \cong \nu^*C \to \nu^*(F(\prod_{\gamma^*(\alpha \circ \beta)} ((\alpha \circ \beta)^*\gamma)^* B))
+  \]
+  Wherein, we use the fullness of $F$ to conclude that there is some
+  $h$ so that $F(h) = \nu^*(g) \cong \iota$ with $\iota : F(D) \cong
+  \nu^*(C)$. Here we have that $h$ is the type
+  \[
+    D \to \nu^*(\prod_{\gamma^*(\alpha \circ \beta)} ((\alpha \circ \beta)^*\gamma)^* B)
+  \]
+  By an application of Beck-Chevalley, since we have the pullback
+  square
+  \[
+    \begin{tikzcd}
+      - \ar[r, "\nu^*(\gamma^*(\alpha \circ \beta))", dashed]
+        \ar[d, swap, "(\gamma^*(\alpha \circ \beta))^*\nu", dashed] &
+      M \ar[d, "\nu"]\\
+      - \ar[r, swap, "\gamma^*(\alpha \circ \beta)"]  & K
+    \end{tikzcd}
+  \]
+  We can view $h$ as having the type
+  \[
+    D \to \prod_{\nu^*(\gamma^*(\alpha \circ \beta))} ((\gamma^*(\alpha \circ \beta))^*\nu)^*(((\alpha \circ \beta)^*\gamma)^* B))
+  \]
+  We can then transpose $h$ to get
+  \[
+    \hat{h} : (\nu^*(\gamma^*(\alpha \circ \beta)))^*D \to (\gamma^*(\alpha \circ \beta))^*\nu)^*(((\alpha \circ \beta)^*\gamma)^* B)
+  \]
+  We can then send this back to a morphism in $Q$ with
+  \[
+    F(\hat{h}) :
+    (\nu^*(\gamma^*(\alpha \circ \beta)))^*(\nu^* C) \to ((\gamma^*(\alpha \circ \beta))^*\nu)^*(((\alpha \circ \beta)^*\gamma)^* F(B))
+  \]
+  Rewriting this with more natural isomorphisms we have
+  \[
+    F(\hat{h}) :
+    (\nu \circ \nu^*(\gamma^*(\alpha \circ \beta)))^*C \to
+    ((\gamma^*(\alpha \circ \beta))^*\nu)^*(((\alpha \circ \beta)^*\gamma)^* F(B))
+  \]
+  We can rewrite this using the equalities we get from the pullback
+  square above. For conciseness, let us use
+  $\kappa = (\gamma^*(\alpha \circ \beta))^*\nu$ which we know to be a
+  regular epimorphism.
+  \[
+    F(\hat{h}) :
+    \kappa^*((\gamma^*(\alpha \circ \beta))^*C) \to
+    \kappa^*(((\alpha \circ \beta)^*\gamma)^* F(B))
+  \]
+  Now we are in a position to apply descent. In order to conclude that
+  there is an unique morphism
+  $(\gamma^*(\alpha \circ \beta))^*C) \to ((\alpha \circ \beta)^*\gamma)^* F(B)$
+  all that is necessary is to show that
+  \[
+    \iota_X \circ p^*(F(\hat{h})) = q^*(F(\hat{h})) \circ \iota_Y
+  \]
+  Where $(p, q)$ is the kernel pair of $\kappa$.
 
   % Now we have the repeat the entire process again, but this time
   % backwards! Suppose we have a weak equivalence $F : P \to Q$ and that
