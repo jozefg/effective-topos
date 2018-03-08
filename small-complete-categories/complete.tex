@@ -120,13 +120,13 @@ language. That is for example,
   $f : A \to B \triangleq \partial_0(f) = A \mathrel{\wedge} \partial_1(f) = B$.
 \end{defn}
 These definitions can be shown to coincide if and only if the topos
-satisfies the axiom of choice\footnote{I'm 80\% sure at least} but
-since the effective topos does not, we are then left with two
-different notions of finite limits. The one based on the existence of
-adjoints essentially asserts the global existence of a limit cone and
-will be called the \emph{strong} notion of finite limits. The one
-based on the internal language is implied by this and is called the
-\emph{weak} or \emph{local} version of a finite limit.
+satisfies the axiom of choice but since the effective topos does not,
+we are then left with two different notions of finite limits. The one
+based on the existence of adjoints essentially asserts the global
+existence of a limit cone and will be called the \emph{strong} notion
+of finite limits. The one based on the internal language is implied by
+this and is called the \emph{weak} or \emph{local} version of a finite
+limit.
 
 We can take this idea to its natural completion and define (weak)
 completeness for all small limits.
@@ -316,7 +316,14 @@ sin to not be preserved by isomorphism or equivalence. In this case,
 we are in trouble because we will wish to establish the completeness
 of one internal category and transfer this to more convenient
 categories for semantics. In order to handle this, we will strengthen
-our notion of weak completeness to \emph{indexed} diagrams. An indexed
+our notion of weak completeness to \emph{indexed} diagrams and that
+the limits merely need to exist fiberwise and internally\footnote{The
+  crucial move here is not really considering slices, it is the
+  ability to have to show this limit exists fiberwise! This statement
+  is strictly weaker than the previous notion of weak completeness
+  without the axiom of choice. We do not need a pseudo-inverse to move
+  the diagram backwards, we can use a different construction to
+  construct an \emph{internally} isomorphic diagram.}. An indexed
 diagram is given in the usual category theoretic style, as a functor
 from an internal category in $D/I$ into $I^*(C)$. Therefore, our
 definition of (weak) completeness is simply that an internal category
@@ -325,8 +332,9 @@ is (weakly) complete by the previous definition in each slice.
   The following hold
   \begin{enumerate}
   \item Strong equivalences preserve and reflect both strong and weak
-    completeness
-  \item Weak equivalences preserve and reflect weak completeness
+    completeness of internal categories.
+  \item Weak equivalences preserve and reflect weak completeness of
+    internal categories.
   \end{enumerate}
 \end{thm}
 \begin{proof}
@@ -335,47 +343,74 @@ is (weakly) complete by the previous definition in each slice.
   preserve and reflect weak completeness.
 
   First, reflection so we suppose we have $F : C \simeq C'$ and $C'$
-  being complete. Suppose we have a diagram $d : D \to I^*(C)$. We can
-  trivially extend this to a diagram $I^*(F) \circ d : D \to I^*(C')$.
-  By assumption, there is an internal limit of this diagram so there
-  is a $\alpha : u \epi 1$ so that $p : u \to I^*(C_0')$ exists and is
-  a limit for $I^*(F) \circ d$. Now, since $F$ is essentially
-  surjective, there is a $\beta : v \epi u$ so that
-  $q : v \to I^*(C_0)$ exists and there is an $f : v \to I^*(C_1')$ so
-  that $f$ is an isomorphism between $I^*(F_0) \circ q$ and
-  $p \circ \beta$. It is then a simple matter to check that $q$ is our
-  desired limit for $d$. It follows from the fact that any cone over
-  $d$ in $I^*(C)$ can be mapped to a cone in $I^*(C')$ and the unique
-  map from this cone to $q$ can be lifted to $C$ by the fullness and
-  faithfulness of $F$.
+  being complete. Suppose we have a diagram $d : D \to I^*(C)$ in
+  $\Etop/I$. We can trivially extend this to a diagram
+  $I^*(F) \circ d : D \to I^*(C')$. By assumption, there is an
+  internal limit of this diagram. Let us denote the formula for a
+  limit existing as $\phi$, eg
+  \begin{align*}
+    \forall i : I.\ \exists l : C_0'.\ \exists f : C_1'^{D_0^i}.\ &(\forall d : D_0.\ f : l \to (I^*(F) \circ d)(d)) \land\\
+    &(\forall g : D_1^i.\ f(\partial_1(g)) = (I^*(F) \circ d)(g)) \circ f(\partial_0(g)) \land\\
+    &\text{`This cone is universal'}
+  \end{align*}
+  Here we have used $X^i$ to signify the $i$th fiber of some object
+  $f : X \to I$, defined in the standard way as
+  $\{x : X \mid f(x) = i\}$.
+
+  Since $I^*$ (indeed pullback functors in general) are logical in a
+  topos, we know that $I^*(F)$ is full, faithful and internally surjective
+  internally. Therefore, we know that the internal formulas
+  \begin{gather*}
+    \forall x : C_0'.\ \exists y : C_0.\ F_0(y) = x\\
+    \forall f : C_0'.\ \exists g : C_1.\ F_1(g) = f\\
+    \forall f, g : C_1.\ f = g \iff F_1(f) = F_1(g)
+  \end{gather*}
+  Using these formulas along with the statement of an internal limit
+  given above, simple manipulation is sufficient to conclude the
+  validity of the following formula.
+  \begin{align*}
+    \forall i : I.\ \exists l : C_0.\ \exists f : C_1^{D_0}.\ &(\forall d : D_0^i.\ f : l \to (I^*(F) \circ d)(d)) \land\\
+    &(\forall g : D_1^i.\ f(\partial_1(g)) = (I^*(F) \circ d)(g)) \circ f(\partial_0(g)) \land\\
+    &\text{`This cone is universal'}
+  \end{align*}
+  Which is precisely the desired internal limit for $I^*(C)$.
 
   For preservation, suppose that $F : C \simeq C'$ and that $C$ is
-  complete. We need to show that $C'$ is as well. For this, suppose
-  that we have a diagram $d : D \to I^*(C')$. By taking the iso-comma
-  square formed by $d$ and $I^*(F)$, we end up with a diagram on
-  $I^*(C)$. The limit of this diagram is must exist internally by
-  assumption and it is trivial to check that it is mapped to a limit
-  of $d$ by $I^*(F)$. Notice that it is vital that we are working in
-  the slice category so that we can make use of the iso-comma square
-  in order to construct a diagram on $I^*(C)$ from one on $I^*(C')$.
+  complete. We need to show that $C'$ is as well. Suppose that there
+  is a functor $d : D \to I^*(C')$, the central challenge is that we
+  cannot immediately factor $d$ through $F$.
+
+
+  For this, suppose that we have a diagram $d : D \to I^*(C')$. By
+  taking the iso-comma square formed by $d$ and $I^*(F)$ with the top
+  corner $D'$, we end up with a diagram on $I^*(C)$,
+  $d' : D' \to I^*(C)$. The limit of this diagram is must exist
+  internally by assumption and it is trivial to check that it is
+  mapped to a in $I^*(C')$ by $I^*(F)$. Finally, considered fiberwise,
+  we have that the diagram $I^*(F) \circ d' \cong d$ internally. In
+  particular, this means that the limit we have just constructed is
+  the desired one.
 \end{proof}
 As a final observation, this notion of completeness has a pleasant
 characterization at the level of fibrations.
 \begin{defn}\label{defn:complete:completefibration}\hfill
   \begin{itemize}
-  \item $P : C \to \Etop$ is complete if $C$ has fiberwise finite
+  \item $P : C \to \Etop$ is complete if $P$ has fiberwise finite
     limits and a right adjoint to reindexing. Moreover, limits are
     preserved by reindexing and indexed products satisfy
     Beck-Chevalley.
-  \item $P : C \to \Etop$ is weakly complete if $C$ if given a finite
-    diagram in the fiber over $I$, there is a $K \epi I$ so that the
-    reindexing of the diagram has a limit over $K$. Similarly, for
-    each $u : J \to I$ and $A \in P^J$ there is a $e : K \epi I$ so
-    that $\prod_{e^*(u)} (u^*(e))^*(A)$ exists. Furthermore,
-    reindexing preserves all finite limits and indexed products that
-    exist satisfy Beck-Chevalley.
+  \item $P : C \to \Etop$ is weakly complete if $P$ if there is a full
+    subcategory of $s(\Etop) \included \Etop$ so that $P$ is complete
+    as a fibration over $s(\Etop)$ and every object in $P$ is covered
+    by an object in $s(\Etop)$.
   \end{itemize}
 \end{defn}
+This definition of weakly complete is directly transcribed from
+\citet{Hyland:88} as opposed to the definition from
+\citet{Hyland:90}. The latter definition being essentially an
+unfolding of the former, but precisely specifying the Beck-Chevalley
+condition and reindexing compatibility is quite cumbersome.
+
 An important property of indexed products mentioned above is the so
 called Beck-Chevalley condition. This check intuitively states that
 indexed products respect substitution. It is of particular important
@@ -387,8 +422,8 @@ Beck-Chevalley condition is sufficient:
   square
   \[
     \begin{tikzcd}
-      A \ar[d, "h"] \ar[r, "g"] & B \ar[d, "i"]\\
-      C \ar[r, "f"] & D
+      A \ar[d, swap, "h"] \ar[r, "g"] & B \ar[d, "i"]\\
+      C \ar[r, swap, "f"] & D
     \end{tikzcd}
   \]
   we shall say that $P$ satisfies the Beck-Chevalley square if
@@ -448,9 +483,9 @@ to prove becomes stuck.
   morphism from
   $\gamma^*(Y) \cong F(Z) \to F(\gamma^*(X)) \cong \gamma^*(F(X))$
   (the latter isomorphism following from the fact that $F$ is
-  cartesian). But now I'm stuck, I don't have that $\gamma^*$ is full
-  because $\gamma$ is epi, not split epi and nothing has been assumed
-  allowing us to move from $Q^L$ to $Q^K$.
+  cartesian). But now we're stuck, there is now reason why $\gamma^*$
+  must be full because $\gamma$ is epi, not split epi and nothing has
+  been assumed allowing us to move from $Q^L$ to $Q^K$.
 \end{proof}
 \renewcommand{\qed}{\hfill\ensuremath{\Box}}
 
