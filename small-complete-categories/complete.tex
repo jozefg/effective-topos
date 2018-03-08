@@ -987,8 +987,8 @@ this topology.
     \nu^*(g) : F(D) \cong \nu^*C \to \nu^*(F(\prod_{\gamma^*(\alpha \circ \beta)} ((\alpha \circ \beta)^*\gamma)^* B))
   \]
   Wherein, we use the fullness of $F$ to conclude that there is some
-  $h$ so that $F(h) = \nu^*(g) \cong \iota$ with $\iota : F(D) \cong
-  \nu^*(C)$. Here we have that $h$ is the type
+  $h$ so that $F(h) = \nu^*(g) \circ \iota$ with
+  $\iota : F(D) \cong \nu^*(C)$. Here we have that $h$ is the type
   \[
     D \to \nu^*(\prod_{\gamma^*(\alpha \circ \beta)} ((\alpha \circ \beta)^*\gamma)^* B)
   \]
@@ -1037,7 +1037,12 @@ this topology.
   \[
     \iota_X \circ p^*(F(\hat{h})) = q^*(F(\hat{h})) \circ \iota_Y
   \]
-  Where $(p, q)$ is the kernel pair of $\kappa$.
+  Where $(p, q)$ is the kernel pair of $\kappa$ and $\iota_{X, Y}$ are
+  the canonical isomorphisms:
+  \begin{align*}
+    \iota_X &: p^*\kappa^*((\gamma^*(\alpha \circ \beta))^*C) \cong q^*\kappa^*((\gamma^*(\alpha \circ \beta))^*C)\\
+    \iota_Y &: p^*\kappa^*(((\alpha \circ \beta)^*\gamma)^* F(B)) \cong q^*\kappa^*(((\alpha \circ \beta)^*\gamma)^* F(B))
+  \end{align*}
 
   % Now we have the repeat the entire process again, but this time
   % backwards! Suppose we have a weak equivalence $F : P \to Q$ and that
